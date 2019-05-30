@@ -11,7 +11,15 @@ const user = {
                 cb(404, findError);
             }
         });
-    }
+    },
+    getCreditCardsByUser: (data, cb) => {},
+    addCreditCard: (data, cb) => {},
+    removeCreditCard: (data, cb) => {},
+    updateCreditCard: (data, cb) => {},
+    getShippingAddressesByUser: (data, cb) => {},
+    addShippingAddress: (data, cb) => {},
+    removeShippingAddress: (data, cb) => {},
+    updateShippingAddress: (data, cb) => {}
 };
 
 module.exports = user;
