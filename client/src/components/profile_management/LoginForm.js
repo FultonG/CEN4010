@@ -28,11 +28,7 @@ function LoginForm(props) {
 
     function handleLoginResponse(response, email) {
         localStorage.setItem("auth_token", response.data);
-        const request = {
-            auth_token: response.data,
-            email: email
-        };
-        API.getUser(request)
+        API.getUser({email: email})
             .then(res => props.onLogin(res.data))
             .catch(err => alert("Login Error - " + err));
     }

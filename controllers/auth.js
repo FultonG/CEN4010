@@ -8,7 +8,7 @@ const auth = {
             if (result != null) {
                 bcrypt.compare(body.password, result.password, function (error, res) {
                     let token = jwt.sign({ username: result.email },
-                        "softwareengineering1",
+                        process.env.JWT_SECRET,
                         {
                             expiresIn: '24h' // expires in 24 hours
                         }
@@ -49,23 +49,6 @@ const auth = {
             }
             else{
                 cb(409, findResult);
-            }
-        });
-    },
-    getUser: (data, cb) => {
-        jwt.verify(data.auth_token, "softwareengineering1", function(err, decoded) {
-            if (err) {
-                cb(401, err)
-            } else {
-                const collection = mongodbConnection.db().collection("Auth");
-                collection.findOne({ email: data.email }, (findError, findResult) => {
-                    if(findResult) {
-                        cb(200, findResult);
-                    }
-                    else{
-                        cb(404, findError);
-                    }
-                });
             }
         });
     }
