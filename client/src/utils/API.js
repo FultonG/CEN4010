@@ -7,5 +7,8 @@ export default {
     },
     createAccount: function(data){
         return axios.post('/api/auth/create', data)
+    },
+    getUser: function(data) {
+        return axios.post('/api/auth/getUser', data)
     }
 };
