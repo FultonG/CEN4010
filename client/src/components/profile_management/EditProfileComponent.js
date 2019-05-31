@@ -16,15 +16,16 @@ function EditProfileComponent() {
             <Container style={{ paddingTop: "20px" }}>
                 <b>Hello Sprint 1!</b>
                 <h1>Other Edit Profile Stuff Will Go Here</h1>
-                <b> Your credit cards</b>
+                <b>Your credit cards</b>
                 <ul>
 
                 </ul>
-                <b> Add a credit card</b>
+                <b>Add a credit card</b>
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">
                     <Form.Label>Credit Card Number</Form.Label>
-                        <Form.Control type="text"/>
+                    <Form.Control type="text"/>
                  </Form.Group>
+                 <Form.Label>Expiration Date</Form.Label>
                  <Form.Row controlId="EditProfileComponent.expirationDate">
                      <Form.Group as={Col} md="4">
                         <Form.Control as="select">
@@ -38,7 +39,8 @@ function EditProfileComponent() {
                     </Form.Group>
                  </Form.Row>
                  <Form.Group controlId="EditProfileComponent.CVV">
-                    <Form.Control type="text" placeholder="CVV"/>
+                    <Form.Label>Security Code</Form.Label>
+                    <Form.Control style={{ width: "25%" }} type="text" placeholder="CVV"/>
                  </Form.Group>
                  <Button type="submit">Add</Button>
             </Container>
