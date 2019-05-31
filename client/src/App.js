@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateAccountForm from './components/profile_management/CreateAccountForm';
 import NavbarComponent from "./components/NavbarComponent";
-import EditProfileComponent from "./components/EditProfileComponent";
+import EditProfileComponent from "./components/profile_management/EditProfileComponent";
 
 function App() {
     // Null until we make the default page.
