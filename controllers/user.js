@@ -16,7 +16,7 @@ https://github.com/FultonG/CEN4010/blob/development/routes/api/user.js
 
 const user = {
     getUser: (data, cb) => {
-        const collection = mongodbConnection.db().collection("Auth");
+        const collection = mongodbConnection.db().collection("User");
         collection.findOne({ email: data.email }, (findError, findResult) => {
             if (findResult) {
                 const {password, _id, ...rest} = findResult;
