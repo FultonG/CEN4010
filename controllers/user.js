@@ -6,6 +6,12 @@ https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/
 https://docs.mongodb.com/manual/reference/method/db.collection.insertOne/
 https://docs.mongodb.com/manual/reference/method/db.collection.deleteOne/
 https://docs.mongodb.com/manual/reference/method/db.collection.find/
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/
+
+data - passed to API calls in EditProfileComponent
+https://github.com/FultonG/CEN4010/blob/development/client/src/components/profile_management/EditProfileComponent.jsb
+cb - callback passed in api file
+https://github.com/FultonG/CEN4010/blob/development/routes/api/user.js
 */
 
 const user = {
