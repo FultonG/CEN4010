@@ -1,12 +1,14 @@
 import React from "react";
+//import React, { useState } from "react";
 import { Form, Alert, Button, Container } from "react-bootstrap";
 import {Grid, Col, Dropdown, DropdownButton} from "react-bootstrap";
-
+import EditNicknameinfo from "../profile_management/EditNicknameinfo";
+import EditPersonalInfo from "../profile_management/EditPersonalInfo";
 function EditProfileComponent() {
-
     const months = ["January", "February", "March", "April", "May", "June", 
                     "July", "August", "September", "October", "November", "December"]; 
 
+  
     function handleSubmit(event) {
         // TODO
     }
@@ -17,16 +19,14 @@ function EditProfileComponent() {
         }
     }
 
+    
 
     return (
         <React.Fragment>
             <Container style={{ paddingTop: "20px" }}>
-                <b>Hello Sprint 1!</b>
-                <h1>Other Edit Profile Stuff Will Go Here</h1>
-                <b>Your credit cards</b>
-                <ul>
 
-                </ul>
+                <EditNicknameinfo/>
+                <EditPersonalInfo/>
                 <b>Add a credit card</b>
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">
                     <Form.Label>Credit Card Number</Form.Label>
