@@ -1,4 +1,12 @@
 const mongodbConnection = require("../dbconfig/connection.js");
+
+/**
+Some helpful resources!
+https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/
+https://docs.mongodb.com/manual/reference/method/db.collection.insertOne/
+https://docs.mongodb.com/manual/reference/method/db.collection.deleteOne/
+*/
+
 const user = {
     getUser: (data, cb) => {
         const collection = mongodbConnection.db().collection("Auth");
