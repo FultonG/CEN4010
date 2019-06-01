@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const auth = {
     authenticateUser: (body, cb) => {
-        const collection = mongodbConnection.db().collection("Auth");
+        const collection = mongodbConnection.db().collection("User");
         collection.findOne({ email: body.email }, (err, result) => {
             if (result != null) {
                 bcrypt.compare(body.password, result.password, function (error, res) {
@@ -32,7 +32,7 @@ const auth = {
         });
     },
     createUser: (data, cb) => {
-        const collection = mongodbConnection.db().collection("Auth");
+        const collection = mongodbConnection.db().collection("User");
         collection.findOne({ email: data.email }, (findError, findResult) => {
             if(!findResult){
                 bcrypt.hash(data.password, 10, (err, hash) => {
