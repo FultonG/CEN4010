@@ -4,6 +4,7 @@ import { Form, Alert, Button, Container } from "react-bootstrap";
 import {Grid, Col, Dropdown, DropdownButton} from "react-bootstrap";
 import EditNicknameinfo from "../profile_management/EditNicknameinfo";
 import EditPersonalInfo from "../profile_management/EditPersonalInfo";
+import EditShippingInfo from "../profile_management/EditShippingInfo";
 function EditProfileComponent() {
     const months = ["January", "February", "March", "April", "May", "June", 
                     "July", "August", "September", "October", "November", "December"]; 
@@ -35,6 +36,7 @@ function EditProfileComponent() {
 
                 <EditNicknameinfo/>
                 <EditPersonalInfo/>
+                <EditShippingInfo/>
                 <b>Add a credit card</b>
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">
                     <Form.Label>Credit Card Number</Form.Label>
