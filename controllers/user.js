@@ -5,6 +5,7 @@ Some helpful resources!
 https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/
 https://docs.mongodb.com/manual/reference/method/db.collection.insertOne/
 https://docs.mongodb.com/manual/reference/method/db.collection.deleteOne/
+https://docs.mongodb.com/manual/reference/method/db.collection.find/
 */
 
 const user = {
