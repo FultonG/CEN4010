@@ -7,9 +7,16 @@ function EditProfileComponent() {
     const months = ["January", "February", "March", "April", "May", "June", 
                     "July", "August", "September", "October", "November", "December"]; 
 
-    function handleMonthChange() {
-        // TODO    
+    function handleSubmit(event) {
+        // TODO
     }
+
+    function checkLength(event) {
+        if (event.currentTarget.value.length > event.currentTarget.maxLength) {
+            event.currentTarget.value = event.currentTarget.value.slice(0, event.currentTarget.maxLength)
+        }
+    }
+
 
     return (
         <React.Fragment>
@@ -23,7 +30,7 @@ function EditProfileComponent() {
                 <b>Add a credit card</b>
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">
                     <Form.Label>Credit Card Number</Form.Label>
-                    <Form.Control type="text"/>
+                    <Form.Control type="number" maxlength="16" onInput={checkLength}/>
                  </Form.Group>
                  <Form.Label>Expiration Date</Form.Label>
                  <Form.Row controlId="EditProfileComponent.expirationDate">
@@ -35,12 +42,12 @@ function EditProfileComponent() {
                            </Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} md="4">    
-                        <Form.Control type="text" placeholder="Year"/>
+                        <Form.Control type="number" maxlength="4" onInput={checkLength} placeholder="Year"/>
                     </Form.Group>
                  </Form.Row>
                  <Form.Group controlId="EditProfileComponent.CVV">
                     <Form.Label>Security Code</Form.Label>
-                    <Form.Control style={{ width: "25%" }} type="text" placeholder="CVV"/>
+                    <Form.Control style={{ width: "25%" }} type="number" maxlength="3" onInput={checkLength} placeholder="CVV"/>
                  </Form.Group>
                  <Button type="submit">Add</Button>
             </Container>
