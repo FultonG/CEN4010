@@ -2,6 +2,9 @@ import React from "react";
 import { Form, Alert, Button, Container } from "react-bootstrap";
 import {Grid, Col, Dropdown, DropdownButton} from "react-bootstrap";
 
+// TODO(celif): Fix integer input accepting +, -, ., floating point numbers, breaking input.
+// https://stackoverflow.com/questions/52777762/html5-input-type-number-not-prevent-plus-minus-symbols
+
 function EditProfileComponent() {
 
     const months = ["January", "February", "March", "April", "May", "June", 
