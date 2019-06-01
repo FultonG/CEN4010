@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../utils/API";
+import API from "../../utils/API";
 import { Form, Alert, Button, Container } from "react-bootstrap";
 
 function CreateAccountForm() {
@@ -12,14 +12,24 @@ function CreateAccountForm() {
     function handleSubmit(event) {
         event.preventDefault();
         const user = {
-            "first": firstName,
-            "last": lastName,
+            "firstName": firstName,
+            "lastName": lastName,
             "email": email,
-            "password": password
+            "password": password,
+            "homeAddress": null,
+            "nickname": null
         }
         API.createAccount(user)
-        .then(res => console.log("Account Created"))
-        .catch(err => setError(true));
+        .then(res => alert("Account Created!"))
+        .catch(err => handleAccountCreationError(err));
+    }
+
+    function handleAccountCreationError(err) {
+        if (err.response && err.response.status === 409) {
+            setError(true);
+        } else {
+            alert("Account creation error - " + err);
+        }
     }
 
     function handlePasswordChange(event) {
@@ -45,7 +55,7 @@ function CreateAccountForm() {
     return (
         <React.Fragment>
             <Container style={{ paddingTop: "20px" }}>
-                {error ? <Alert dismissible variant="danger" onClose={handleDismiss}>There was an error creating your Account</Alert> : null}
+                {error ? <Alert dismissible variant="danger" onClose={handleDismiss}>There already exists a user with that email address!</Alert> : null}
                 <Form onSubmit={e => handleSubmit(e)}>
                     <Form.Group controlId="CreateAccountForm.firstName">
                         <Form.Label>First Name</Form.Label>
@@ -63,7 +73,7 @@ function CreateAccountForm() {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" value={password} onChange={handlePasswordChange} />
                     </Form.Group>
-                    <Button type="submit">Submit form</Button>
+                    <Button type="submit">Register</Button>
                 </Form>
             </Container>
         </React.Fragment>

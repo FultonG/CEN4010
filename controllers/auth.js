@@ -13,23 +13,27 @@ const auth = {
                             expiresIn: '24h' // expires in 24 hours
                         }
                     )
+
+                    if(error) {
+                        cb(500, error);
+                    }
                     if(res) {
                         cb(200, token);
                     }
                     else {
-                        cb(500, error);
+                        cb(401, "Wrong email or password!");
                     }
                     
                 });
             }
             else {
-                cb(500, err);
+                cb(401, "Wrong email or password!");
             }
         });
     },
     createUser: (data, cb) => {
         const collection = mongodbConnection.db().collection("Auth");
-        collection.findOne({ Email: data.email }, (findError, findResult) => {
+        collection.findOne({ email: data.email }, (findError, findResult) => {
             if(!findResult){
                 bcrypt.hash(data.password, 10, (err, hash) => {
                     data.password = hash;
@@ -44,7 +48,7 @@ const auth = {
                 });
             }
             else{
-                cb(500, findError);
+                cb(409, findResult);
             }
         });
     }
