@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+// https://goshakkk.name/array-form-inputs/
+
 class ShippingInfo extends Component {
   constructor(props){
     super(props);
