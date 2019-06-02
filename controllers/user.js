@@ -28,6 +28,19 @@ const user = {
             }
         });
     },
+    updateUser:  (data, cb) => {
+        // Access User collection
+        const collection = mongodbConnection.db().collection("User");
+        // Update User
+        collection.updateOne(data.primaryKeys, data.updates, (error, result) => {
+            if (!error) {
+                cb(200, result);
+            } else {
+                console.log("UPDATE ERROR: " + error);
+                cb(500, error);
+            }
+        });
+    },
     getCreditCardsByUser: (data, cb) => {
         // Access CreditCard collection
         const collection = mongodbConnection.db().collection("CreditCard");
@@ -71,7 +84,7 @@ const user = {
         // Access CreditCard collection
         const collection = mongodbConnection.db().collection("CreditCard");
         // Update Credit card
-        collection.updateOne({ primaryKeys: data.primaryKeys, updates: data.updates }, (error, result) => {
+        collection.updateOne(data.primaryKeys, data.updates, (error, result) => {
             if (!error) {
                 cb(200, result);
             } else {
@@ -123,7 +136,7 @@ const user = {
         // Access ShippingAddress collection
         const collection = mongodbConnection.db().collection("ShippingAddress");
         // Update the shipping address
-        collection.updateOne({ primaryKeys: data.primaryKeys, updates: data.updates}, (updateError, updateResult) => {
+        collection.updateOne(data.primaryKeys, data.updates, (updateError, updateResult) => {
             if (!updateError) {
                 cb(200, updateResult);
             } else {

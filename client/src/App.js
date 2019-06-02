@@ -8,13 +8,28 @@ function App() {
     const [currPage, setCurrPage] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
     const pages = {EDIT_PROFILE: 1};
-  return (
-    <React.Fragment>
-        <NavbarComponent onNewPage={setCurrPage} onLogout={setUserDetails} onLoginSuccessful={setUserDetails}/>
-        {userDetails === null ? <CreateAccountForm/> : null}
-        {userDetails !== null && currPage === pages.EDIT_PROFILE ? <EditProfileComponent/> : null}
-    </React.Fragment>
-  );
+    const navbar = React.createRef();
+
+    function handleNameUpdate(newUserDetails) {
+        navbar.current.updateDisplayName(newUserDetails);
+
+        if (newUserDetails.first_name === userDetails.first_name && newUserDetails.last_name === userDetails.last_name) {
+            alert("Nickname updated!");
+        } else {
+            alert("Name updated!");
+        }
+
+        setUserDetails(newUserDetails);
+    }
+
+    return (
+        <React.Fragment>
+            <NavbarComponent ref={navbar} onNewPage={setCurrPage} onUserLoginLogout={setUserDetails}/>
+            {userDetails === null ? <CreateAccountForm/> : null}
+            {userDetails !== null && currPage === pages.EDIT_PROFILE ?
+                <EditProfileComponent userDetails={userDetails} onNameUpdate={handleNameUpdate} onUserDetailsUpdate={setUserDetails}/> : null}
+        </React.Fragment>
+    );
 }
 
 export default App;
