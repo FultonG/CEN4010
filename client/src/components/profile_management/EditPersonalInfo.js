@@ -56,7 +56,7 @@ class PersonalInfo extends Component {
     return(
       <div className="card">
         <div className="card-header">
-          <b>Edit my Personal Information</b>
+          <b>Edit Personal Information</b>
         </div>
         <div className="card-body">
           <form onSubmit={this.updatePersonalInfo}>

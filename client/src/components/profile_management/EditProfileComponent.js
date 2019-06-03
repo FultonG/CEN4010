@@ -1,9 +1,10 @@
 import React, {useState, useRef, useEffect} from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import {Grid, Col} from "react-bootstrap";
-import EditNicknameInfo from "./EditNicknameInfo";
+import EditNickname from "./EditNickname";
 import EditPersonalInfo from "./EditPersonalInfo";
-import EditShippingInfo from "./EditShippingInfo";
+import EditShippingAddresses from "./EditShippingAddresses";
+import EditCreditCards from "./EditCreditCards";
 
 /**
  Helpful resourceS:
@@ -16,9 +17,6 @@ function EditProfileComponent(props) {
     const [email, setEmail] = useState(props.userDetails.email);
     const [firstName, setFirstName] = useState(props.userDetails.first_name);
     const [lastName, setLastName] = useState(props.userDetails.last_name);
-
-    const months = ["January", "February", "March", "April", "May", "June", 
-                    "July", "August", "September", "October", "November", "December"];
 
     const isFirstRunNickname = useRef(true);
     useEffect(() => {
@@ -38,48 +36,13 @@ function EditProfileComponent(props) {
             last_name: lastName};
     }
 
-    function checkLength(event) {
-       let inString = event.currentTarget.value;
-       let inChar = (inString).charCodeAt(inString.length-1);
-       
-       if (inChar < 48 || inChar > 57) {
-           event.currentTarget.value = inString.slice(0, inString.length-1);
-       }
-       
-       if (inString.length > event.currentTarget.maxLength) {
-            event.currentTarget.value = inString.slice(0, event.currentTarget.maxLength);
-       }
-    }
-
     return (
         <React.Fragment>
             <Container style={{ paddingTop: "20px" }}>
-                <EditNicknameInfo nickname={nickname} email={email} onNicknameUpdate={setNickname}/>
+                <EditNickname nickname={nickname} email={email} onNicknameUpdate={setNickname}/>
                 <EditPersonalInfo/>
-                <EditShippingInfo/>
-                <b>Add a credit card</b>
-                <Form.Group controlId="EditProfileComponent.creditCardNumber">
-                    <Form.Label>Credit Card Number</Form.Label>
-                    <Form.Control type="text" maxLength="16" onInput={checkLength}/>
-                 </Form.Group>
-                 <Form.Label>Expiration Date</Form.Label>
-                 <Form.Row controlId="EditProfileComponent.expirationDate">
-                     <Form.Group as={Col} md="4">
-                        <Form.Control as="select">
-                            {months.map((month) => {
-                                return <option>{month}</option>;
-                             })}                    
-                           </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4">    
-                        <Form.Control type="text" maxLength="4" onInput={checkLength} placeholder="Year"/>
-                    </Form.Group>
-                 </Form.Row>
-                 <Form.Group controlId="EditProfileComponent.CVV">
-                    <Form.Label>Security Code</Form.Label>
-                    <Form.Control style={{ width: "25%" }} type="text" maxLength="3" onInput={checkLength} placeholder="CVV"/>
-                 </Form.Group>
-                 <Button type="submit">Add</Button>
+                <EditShippingAddresses email={email}/>
+                <EditCreditCards/>
             </Container>
         </React.Fragment>
     )

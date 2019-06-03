@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import API from '../../utils/API';
 import { Form, Alert, Button, Container } from "react-bootstrap";
 
-function EditNicknameInfo(props) {
+function EditNickname(props) {
   const [userEmail, setUserEmail] = useState(props.email);
   const [userNickname, setUserNickname] = useState(props.nickname);
 
@@ -38,4 +38,4 @@ function EditNicknameInfo(props) {
     );
 }
 
-export default EditNicknameInfo;
+export default EditNickname;
