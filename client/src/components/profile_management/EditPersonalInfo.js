@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 //https://github.com/FultonG/CEN4010/commit/85f3e4a4407c6e63f0f7ae21587ee2d95b8bc37c
-https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/
+//https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/
 
 // TODO(serafin): Connect the front-end to the back-end.
 class PersonalInfo extends Component {

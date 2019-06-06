@@ -35,7 +35,8 @@ function EditProfileComponent(props) {
             nickname: nickname,
             email: email,
             first_name: firstName,
-            last_name: lastName};
+            last_name: lastName
+        };
     }
 
     function checkLength(event) {
