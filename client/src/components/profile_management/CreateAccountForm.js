@@ -12,13 +12,13 @@ function CreateAccountForm() {
     function handleSubmit(event) {
         event.preventDefault();
         const user = {
-            "firstName": firstName,
-            "lastName": lastName,
+            "first_name": firstName,
+            "last_name": lastName,
             "email": email,
             "password": password,
-            "homeAddress": null,
-            "nickname": null
-        }
+            "home_address": "",
+            "nickname": ""
+        };
         API.createAccount(user)
         .then(res => alert("Account Created!"))
         .catch(err => handleAccountCreationError(err));

@@ -13,5 +13,12 @@ export default {
         return axios.post('/api/user/getUser', data, {headers: {
             'x-access-token': token
         }})
-    }
+    },
+    updateUser: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/user/updateUser', data, {headers: {
+                'x-access-token': token
+            }})
+    },
+
 };
