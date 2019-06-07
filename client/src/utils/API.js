@@ -25,5 +25,6 @@ export default {
         return axios.post('/api/profile_management/getShippingAddressesByUser', data, {headers: {
                 'x-access-token': token
             }});
-    }
+    },
+    // TODO(justin): Add the rest of the mongoDB queries.
 };
