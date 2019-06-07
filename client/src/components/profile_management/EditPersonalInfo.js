@@ -1,82 +1,63 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import API from '../../utils/API';
 
-class PersonalInfo extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      firstname: '',
-      lastname: '',
-      email: '',
-      address: ''
-      
-    };
+//https://github.com/FultonG/CEN4010/commit/85f3e4a4407c6e63f0f7ae21587ee2d95b8bc37c
+//https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/
 
-    this.updateFirstname = this.updateFirstname.bind(this);
-    this.updateLastname = this.updateLastname.bind(this);
-    this.updateEmail = this.updateEmail.bind(this);
-    this.updateAddress = this.updateAddress.bind(this);
-    
+// TODO(serafin): Connect the front-end to the back-end.
+
+//Edit ALL (In this case only First and second name)
+function EditALL(props) {
+  const [userEmail, setUserEmail] = useState(props.email);
+  const [userFistName, setUserFistName] = useState(props.first_name);
+  const [userLastName, setUserLastName] = useState(props.last_name);
+  const [userHomeAddress, setUserHomeAddress] = useState("");
+
+  function updateFirstName(event) {
+    setUserFistName(event.target.value);
   }
 
-  // UPDATE THE STATE WHEN USER TYPES INTO THE FIELDS
-  updateFirstname(evt){
-    this.setState({
-      firstname: evt.target.value
-    });
+  function updateLastName(event) {
+    setUserLastName(event.target.value);
   }
-  updateLastname(evt){
-    this.setState({
-      lastname: evt.target.value
-    });
-  }
-  updateEmail(evt){
-    this.setState({
-      email: evt.target.value
-    });
-  }
-  updateAddress(evt){
-    this.setState({
-      address: evt.target.value
-    });
-  }
- 
-  
-  // UPDATE AJAX REQUEST FUNCTION
-  updatePersonalInfo(evt){
-   
-    alert('Changes Saved');
-  }
-  componentDidMount() {
-    
+
+  function submitALL(event) {
+    event.preventDefault();
+    const newPersonalInfo = {primaryKeys: {email: userEmail}, updates: {$set: {"first_name": userFistName,"last_name": userLastName,"email": userEmail,"home_address": userHomeAddress}}};
+    API.updateUser(newPersonalInfo)
+        .then(() => props.onNewPersonalInfo(
+          newPersonalInfo.updates.$set.first_name,
+          newPersonalInfo.updates.$set.last_name,
+          newPersonalInfo.updates.$set.email,
+          newPersonalInfo.updates.$set.home_address))
+        .catch(err => alert(err));
   }
 
 
-  render() {
     return(
       <div className="card">
         <div className="card-header">
           <b>Edit Personal Information</b>
         </div>
         <div className="card-body">
-          <form onSubmit={this.updatePersonalInfo}>
+          <form onSubmit={submitALL}>
             <div className="form-row">
               <div className="form-group col">
-                <label htmlFor="userFirstName">First Name:</label>
-                <input id="userFirstName" className="form-control" type="text" placeholder=" " value={this.state.firstname} onChange={this.updateFirstname}/>
+                <label htmlFor="userFistName">First Name:</label>
+                <input id="userFistName" className="form-control" type="text" placeholder=" " value={userFistName} onChange={updateFirstName}/>
               </div>
               <div className="form-group col">
                 <label htmlFor="userLastName">Last Name:</label>
-                <input id="userLastName" className="form-control" type="text" placeholder=" " value={this.state.lastname} onChange={this.updateLastname}/>
+                <input id="userLastName" className="form-control" type="text" placeholder=" " value={userLastName} onChange={updateLastName}/>
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="userEmail">Email:</label>
-              <input id="userEmail" className="form-control" type="text" placeholder="" value={this.state.email} onChange={this.updateEmail}/>
+              <input id="userEmail" className="form-control" type="text" placeholder="" value={""} onChange={""}/>
             </div>
             <div className="form-group">
               <label htmlFor="userAddress">Address:</label>
-              <input  id="userAddress" className="form-control" type="text" placeholder=" " value={this.state.address} onChange={this.updateAddress}/>
+              <input  id="userAddress" className="form-control" type="text" placeholder=" " value={""} onChange={""}/>
             </div>
                        
               
@@ -85,7 +66,8 @@ class PersonalInfo extends Component {
         </div>
       </div>
     );
-  }
 }
 
-export default PersonalInfo;
+ 
+
+export default EditALL;
