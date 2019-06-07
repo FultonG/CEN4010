@@ -41,6 +41,12 @@ function EditALL(props) {
         .catch(err => alert(err));
   }
 
+  function checkAlpha(event) {
+        let alphaNum = /^[^0-9*|\/,#-%.?!":<>[\]{}`\\()';@^&~+_=$]+$/;
+        if (!alphaNum.test(event.key)) {
+            event.preventDefault();
+        }
+  }
 
     return(
       <div className="card">
@@ -52,20 +58,20 @@ function EditALL(props) {
             <div className="form-row">
               <div className="form-group col">
                 <label htmlFor="userFistName">First Name:</label>
-                <input id="userFistName" className="form-control" type="text" placeholder=" " value={userFistName} onChange={updateFirstName}/>
+                <input id="userFistName" className="form-control" type="text" placeholder=" " value={userFistName} onKeyPress={checkAlpha} onChange={updateFirstName}/>
               </div>
               <div className="form-group col">
                 <label htmlFor="userLastName">Last Name:</label>
-                <input id="userLastName" className="form-control" type="text" placeholder=" " value={userLastName} onChange={updateLastName}/>
+                <input id="userLastName" className="form-control" type="text" placeholder=" " value={userLastName} onKeyPress={checkAlpha} onChange={updateLastName}/>
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="userEmail">Email:</label>
-              <input id="userEmail" className="form-control" type="text" placeholder="" value={userEmail} onChange={updateEmail}/>
+              <input id="userEmail" className="form-control" type="email" placeholder="" value={userEmail} onChange={updateEmail}/>
             </div>
             <div className="form-group">
-              <label htmlFor="userAddress">Address:</label>
-              <input  id="userAddress" className="form-control" type="text" placeholder=" " value={userHomeAddress} onChange={updateHomeAddress}/>
+              <label htmlFor="userAddress">Home Address:</label>
+              <input id="userAddress" className="form-control" type="text" placeholder=" " value={userHomeAddress} onChange={updateHomeAddress}/>
             </div>
                        
               
