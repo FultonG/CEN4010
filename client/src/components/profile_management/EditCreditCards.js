@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button, Col, Form} from "react-bootstrap";
 
+// Stick to database diagram: https://drive.google.com/file/d/1SsKnQoe0B_wKTRp6rKocK9oaolqMd1OT/view?usp=sharing
 class EditCreditCards extends Component {
     constructor(props){
         super(props);
