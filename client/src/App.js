@@ -15,8 +15,6 @@ function App() {
         setUserDetails(newUserDetails);
     }
 
-
-    
     return (
         <React.Fragment>
             <NavbarComponent ref={navbar} onNewPage={setCurrPage} onUserLoginLogout={setUserDetails}/>

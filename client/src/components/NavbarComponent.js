@@ -7,26 +7,26 @@ class NavbarComponent extends Component {
     constructor(props) {
         super(props);
         this.userLoggedIn = false;
-        this.userDisplayName = "";
+        this.state = {userDisplayName: ""};
         this.pages = {EDIT_PROFILE: 1};
 
         this.logout = this.logout.bind(this);
-        this.updateDisplayName = this.updateDisplayName.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.updateDisplayName = this.updateDisplayName.bind(this);
     }
 
     logout() {
         this.userLoggedIn = false;
-        this.userDisplayName = "";
+        this.setState({userDisplayName: ""});
         this.props.onUserLoginLogout(null);
     }
 
     updateDisplayName(user) {
-        if (user.nickname) {
-            this.userDisplayName = user.nickname;
+        if (user.nickname && user.nickname !== this.state.userDisplayName) {
+            this.setState({userDisplayName: user.nickname},() => this.forceUpdate());
         }
-        else {
-            this.userDisplayName = user.first_name + " " + user.last_name;
+        else if (this.state.user !== user.first_name + " " + user.last_name) {
+            this.setState({userDisplayName: user.first_name + " " + user.last_name},() => this.forceUpdate());
         }
     }
 
@@ -53,7 +53,7 @@ class NavbarComponent extends Component {
                                 <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        <b>Hello, {this.userDisplayName}!</b>
+                        <b>Hello, {this.state.userDisplayName}!</b>
                     </React.Fragment>}
             </Navbar>
         );
