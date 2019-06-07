@@ -48,7 +48,7 @@ function EditProfileComponent(props) {
         <React.Fragment>
             <Container style={{ paddingTop: "20px" }}>
                 <EditNickname nickname={nickname} email={email} onNicknameUpdate={handleNewNickname}/>
-                <EditPersonalInfo first_name={firstName} last_name={lastName} email={email} onNewPersonalInfo={setPersonalInfo}/>
+                <EditPersonalInfo first_name={firstName} last_name={lastName} email={email} home_address={homeAddress} onNewPersonalInfo={setPersonalInfo}/>
                 <EditShippingAddresses email={email}/>
                 <EditCreditCards/>
             </Container>

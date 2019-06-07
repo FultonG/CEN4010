@@ -11,7 +11,7 @@ function EditALL(props) {
   const [userEmail, setUserEmail] = useState(props.email);
   const [userFistName, setUserFistName] = useState(props.first_name);
   const [userLastName, setUserLastName] = useState(props.last_name);
-  const [userHomeAddress, setUserHomeAddress] = useState("");
+  const [userHomeAddress, setUserHomeAddress] = useState(props.home_address);
 
   function updateFirstName(event) {
     setUserFistName(event.target.value);
@@ -19,6 +19,14 @@ function EditALL(props) {
 
   function updateLastName(event) {
     setUserLastName(event.target.value);
+  }
+
+  function updateEmail(event) {
+    setUserEmail(event.target.value);
+  }
+
+  function updateHomeAddress(event) {
+    setUserHomeAddress(event.target.value);
   }
 
   function submitALL(event) {
@@ -53,11 +61,11 @@ function EditALL(props) {
             </div>
             <div className="form-group">
               <label htmlFor="userEmail">Email:</label>
-              <input id="userEmail" className="form-control" type="text" placeholder="" value={""} onChange={""}/>
+              <input id="userEmail" className="form-control" type="text" placeholder="" value={userEmail} onChange={updateEmail}/>
             </div>
             <div className="form-group">
               <label htmlFor="userAddress">Address:</label>
-              <input  id="userAddress" className="form-control" type="text" placeholder=" " value={""} onChange={""}/>
+              <input  id="userAddress" className="form-control" type="text" placeholder=" " value={userHomeAddress} onChange={updateHomeAddress}/>
             </div>
                        
               
