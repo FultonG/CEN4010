@@ -29,6 +29,16 @@ function EditProfileComponent(props) {
 
         props.onNameUpdate(getUserDetails());
     }, [nickname]); // Only re-run the effect if nickname changes
+    
+    const personalInfoFieldUpdatedCount = useState(0);
+    useEffect(() => {
+        if (personalInfoFieldUpdatedCount.current) {
+            personalInfoFieldUpdatedCount.current = false;
+            return;
+        }
+
+        props.onNameUpdate(getUserDetails());
+    }, [nickname]); // Only re-run the effect if nickname changes
 
     function getUserDetails() {
         return {
@@ -56,7 +66,7 @@ function EditProfileComponent(props) {
         <React.Fragment>
             <Container style={{ paddingTop: "20px" }}>
                 <EditNicknameInfo nickname={nickname} email={email} onNicknameUpdate={setNickname}/>
-                <EditPersonalInfo/>
+                <EditPersonalInfo first_name={firstName} last_name={lastName} email={email} onFirstNameUpdate={setFirstName} onLastNameUpdate={setLastName}/>
                 <EditShippingInfo/>
                 <b>Add a credit card</b>
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">

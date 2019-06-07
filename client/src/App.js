@@ -15,13 +15,13 @@ function App() {
 
         if (newUserDetails.first_name === userDetails.first_name && newUserDetails.last_name === userDetails.last_name) {
             alert("Nickname updated!");
-        } else {
-            alert("Name updated!");
-        }
+        } 
 
         setUserDetails(newUserDetails);
     }
 
+
+    
     return (
         <React.Fragment>
             <NavbarComponent ref={navbar} onNewPage={setCurrPage} onUserLoginLogout={setUserDetails}/>
