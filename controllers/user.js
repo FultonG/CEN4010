@@ -96,7 +96,7 @@ const user = {
     getShippingAddressesByUser: (data, cb) => {
         // Access ShippingAddress collection
         const collection = mongodbConnection.db().collection("ShippingAddress");
-        // Find shipping address by email + address (primary key)
+        // Find shipping address by email
         collection.find({ email: data}, (findError, findResults) => {
             if(findResults){
                 cb(200, findResults);
