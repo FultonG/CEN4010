@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import API from '../../utils/API';
-import { Form, Alert, Button, Container } from "react-bootstrap";
 
 function EditNickname(props) {
   const [userEmail, setUserEmail] = useState(props.email);

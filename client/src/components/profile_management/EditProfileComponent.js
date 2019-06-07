@@ -17,30 +17,38 @@ function EditProfileComponent(props) {
     const [email, setEmail] = useState(props.userDetails.email);
     const [firstName, setFirstName] = useState(props.userDetails.first_name);
     const [lastName, setLastName] = useState(props.userDetails.last_name);
+    const [homeAddress, setHomeAddress] = useState(props.userDetails.home_address);
 
-    const isFirstRunNickname = useRef(true);
-    useEffect(() => {
-        if (isFirstRunNickname.current) {
-            isFirstRunNickname.current = false;
-            return;
-        }
+    function setPersonalInfo(newFirstName, newLastName, newEmail, newHomeAddress) {
+        setFirstName(newFirstName);
+        setLastName(newLastName);
+        setEmail(newEmail);
+        setHomeAddress(newHomeAddress);
+        props.onNewUserDetails(getUserDetails());
+        alert("Personal Info updated!");
+    }
 
-        props.onNameUpdate(getUserDetails());
-    }, [nickname]); // Only re-run the effect if nickname changes
+    function handleNewNickname(newNickname) {
+        setNickname(newNickname);
+        props.onNewUserDetails(getUserDetails());
+        alert("Nickname updated!");
+    }
 
     function getUserDetails() {
         return {
             nickname: nickname,
             email: email,
             first_name: firstName,
-            last_name: lastName};
+            last_name: lastName,
+            home_address: homeAddress
+        };
     }
 
     return (
         <React.Fragment>
             <Container style={{ paddingTop: "20px" }}>
-                <EditNickname nickname={nickname} email={email} onNicknameUpdate={setNickname}/>
-                <EditPersonalInfo/>
+                <EditNickname nickname={nickname} email={email} onNicknameUpdate={handleNewNickname}/>
+                <EditPersonalInfo first_name={firstName} last_name={lastName} email={email} onNewPersonalInfo={setPersonalInfo}/>
                 <EditShippingAddresses email={email}/>
                 <EditCreditCards/>
             </Container>

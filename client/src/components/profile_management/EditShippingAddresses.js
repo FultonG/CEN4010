@@ -17,6 +17,7 @@ class EditShippingAddresses extends Component {
   }
 
   componentDidMount(){
+    /**
     API.getShippingAddressesByUser(this.email)
         .then(res => {
           this.setState({
@@ -24,7 +25,7 @@ class EditShippingAddresses extends Component {
           });
           console.log(this.addresses)
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err));*/
   }
 
   // UPDATE THE STATE WHEN USER TYPES INTO THE FIELDS
