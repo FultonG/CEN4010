@@ -1,18 +1,39 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import {Button, Col, Form} from "react-bootstrap";
 
 // Stick to database diagram: https://drive.google.com/file/d/1SsKnQoe0B_wKTRp6rKocK9oaolqMd1OT/view?usp=sharing
-class EditCreditCards extends Component {
-    constructor(props){
-        super(props);
+function EditCreditCards(props) {
+    const [userEmail, setUserEmail] = useState(props.email);
+    const [creditCardNumber, setCreditCardNumber] = useState(props.creditCardNumber);
+    const [cvv, setCvv] = useState(props.cvv);
+    const [expirationMonth, setExpirationMonth] = useState(props.expirationMonth);
+    const [expirationYear, setExpirationYear] = useState(props.ExpirationYear);
 
-        this.months = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"];
 
-        this.checkLength = this.checkLength.bind(this);
+    const months = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+
+    function updateCreditCardNumber(event) {
+        setCreditCardNumber(event.target.value);
+    }
+    
+    function updateCvv(event) {
+        setCvv(event.target.value);
     }
 
-    checkLength(event) {
+    function updateExpirationMonth(event) {
+        setExpirationMonth(event.target.value);
+    }
+
+    function updateExpirationYear(event) {
+        setExpirationYear(event.target.value);
+    }
+
+    function submitNewCreditCard(event) {
+        // TODO
+    }
+
+    function checkLength(event) {
         let inString = event.currentTarget.value;
         let inChar = (inString).charCodeAt(inString.length-1);
 
@@ -24,8 +45,6 @@ class EditCreditCards extends Component {
             event.currentTarget.value = inString.slice(0, event.currentTarget.maxLength);
         }
     }
-
-    render() {
         return(
             <div className="card">
             <div className="card-header">
@@ -34,30 +53,29 @@ class EditCreditCards extends Component {
             <div className="card-body">
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">
                     <Form.Label> Credit Card Number</Form.Label>
-                    <Form.Control type="text" maxLength="16" onInput={this.checkLength}/>
+                    <Form.Control type="text" maxLength="16" onInput={checkLength} value={creditCardNumber} onChange={updateCreditCardNumber}/>
                 </Form.Group>
                 <Form.Label>Expiration Date</Form.Label>
                 <Form.Row controlId="EditProfileComponent.expirationDate">
                     <Form.Group as={Col} md="4">
-                        <Form.Control as="select">
-                            {this.months.map((month) => {
+                        <Form.Control as="select" value={expirationMonth} onChange={updateExpirationMonth}> 
+                            {months.map((month) => {
                                 return <option>{month}</option>;
                             })}
                         </Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} md="4">
-                        <Form.Control type="text" maxLength="4" onInput={this.checkLength} placeholder="Year"/>
+                        <Form.Control type="text" maxLength="4" onInput={checkLength} value={expirationYear} onChange={updateExpirationYear} placeholder="Year"/>
                     </Form.Group>
                 </Form.Row>
                 <Form.Group controlId="EditProfileComponent.CVV">
                     <Form.Label>Security Code</Form.Label>
-                    <Form.Control style={{ width: "25%" }} type="text" maxLength="3" onInput={this.checkLength} placeholder="CVV"/>
+                    <Form.Control style={{ width: "25%" }} type="text" maxLength="3" onInput={checkLength} value={cvv} onChange={updateCvv} placeholder="CVV"/>
                 </Form.Group>
                 <Button type="submit">Add</Button>
             </div>
         </div>
         );
-    }
 }
 
 export default EditCreditCards;
