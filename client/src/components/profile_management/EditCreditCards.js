@@ -27,11 +27,13 @@ class EditCreditCards extends Component {
 
     render() {
         return(
-            <React.Fragment>
-                <b>TODO: Edit Credit Cards - </b>
-                <b>Add a credit card</b>
+            <div className="card">
+            <div className="card-header">
+            <b>Edit Credit Cards</b>
+            </div>
+            <div className="card-body">
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">
-                    <Form.Label>Credit Card Number</Form.Label>
+                    <Form.Label> Credit Card Number</Form.Label>
                     <Form.Control type="text" maxLength="16" onInput={this.checkLength}/>
                 </Form.Group>
                 <Form.Label>Expiration Date</Form.Label>
@@ -52,7 +54,8 @@ class EditCreditCards extends Component {
                     <Form.Control style={{ width: "25%" }} type="text" maxLength="3" onInput={this.checkLength} placeholder="CVV"/>
                 </Form.Group>
                 <Button type="submit">Add</Button>
-            </React.Fragment>
+            </div>
+        </div>
         );
     }
 }
