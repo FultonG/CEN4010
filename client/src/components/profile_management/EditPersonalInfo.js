@@ -21,10 +21,6 @@ function EditALL(props) {
     setUserLastName(event.target.value);
   }
 
-  function updateEmail(event) {
-    setUserEmail(event.target.value);
-  }
-
   function updateHomeAddress(event) {
     setUserHomeAddress(event.target.value);
   }
@@ -36,7 +32,6 @@ function EditALL(props) {
         .then(() => props.onNewPersonalInfo(
           newPersonalInfo.updates.$set.first_name,
           newPersonalInfo.updates.$set.last_name,
-          newPersonalInfo.updates.$set.email,
           newPersonalInfo.updates.$set.home_address))
         .catch(err => alert(err));
   }
@@ -67,7 +62,7 @@ function EditALL(props) {
             </div>
             <div className="form-group">
               <label htmlFor="userEmail">Email:</label>
-              <input id="userEmail" className="form-control" type="email" placeholder="" value={userEmail} onChange={updateEmail}/>
+              <input id="userEmail" className="form-control" type="email" placeholder="" value={userEmail} onChange={userEmail} readonly="readonly" />
             </div>
             <div className="form-group">
               <label htmlFor="userAddress">Home Address:</label>
