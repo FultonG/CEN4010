@@ -28,6 +28,36 @@ const user = {
             }
         });
     },
+    updateUserEmail: (data, cb) => {
+        const creditCardCollection = mongodbConnection.db().collection("CreditCard");
+
+        // Update User
+        creditCardCollection.updateMany(data.primaryKeys, data.updates, (creditCardLevelErr) => {
+            if (!creditCardLevelErr) {
+                const shippingAddressesCollection = mongodbConnection.db().collection("ShippingAddress");
+
+                shippingAddressesCollection.updateMany(data.primaryKeys, data.updates, (shippingAddressErr) => {
+                    if (!shippingAddressErr) {
+                        const userCollection = mongodbConnection.db().collection("User");
+                        userCollection.updateOne(data.primaryKeys, data.updates, (userLevelErr, result) => {
+                            if (!userLevelErr) {
+                                cb(200, result);
+                            } else {
+                                console.log("User Email UPDATE ERROR at EMAIL level: " + userLevelErr);
+                                cb(500, userLevelErr);
+                            }
+                        });
+                    } else {
+                        console.log("User Email UPDATE ERROR at SHIPPING_ADDRESS level: " + shippingAddressErr);
+                        cb(500, shippingAddressErr);
+                    }
+                });
+            } else {
+                console.log("User Email UPDATE ERROR at Credit Card level: " + creditCardLevelErr);
+                cb(500, creditCardLevelErr);
+            }
+        });
+    },
     updateUser:  (data, cb) => {
         // Access User collection
         const collection = mongodbConnection.db().collection("User");

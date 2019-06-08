@@ -18,7 +18,13 @@ export default {
         let token = localStorage.getItem("auth_token");
         return axios.post('/api/profile_management/updateUser', data, {headers: {
                 'x-access-token': token
-            }})
+            }});
+    },
+    updateUserEmail: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateUserEmail', data, {headers: {
+                'x-access-token': token
+            }});
     },
     getShippingAddressesByUser: function (data) {
         let token = localStorage.getItem("auth_token");
