@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const user = require("../../controllers/user.js");
 
-
 router.post("/getUser", (req, res) => {
     user.getUser(req.body, (status, data = "ok") => res.status(status).send(data));
+});
+
+router.post("/updateUserEmail", (req, res) => {
+    user.updateUserEmail(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
 router.post("/updateUser", (req, res) => {

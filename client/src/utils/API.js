@@ -10,15 +10,27 @@ export default {
     },
     getUser: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/user/getUser', data, {headers: {
+        return axios.post('/api/profile_management/getUser', data, {headers: {
             'x-access-token': token
         }})
     },
     updateUser: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/user/updateUser', data, {headers: {
+        return axios.post('/api/profile_management/updateUser', data, {headers: {
                 'x-access-token': token
-            }})
+            }});
     },
-
+    updateUserEmail: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateUserEmail', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    getShippingAddressesByUser: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/getShippingAddressesByUser', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    // TODO(justin): Add the rest of the mongoDB queries.
 };

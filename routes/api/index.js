@@ -6,6 +6,6 @@ const usersRoute = require('./user');
 
 router.use('/auth', authRoute);
 router.use("/book", auth.checkToken, bookRoute);
-router.use("/user", auth.checkToken, usersRoute);
+router.use("/profile_management", auth.checkToken, usersRoute);
 
 module.exports = router;
