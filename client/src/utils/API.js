@@ -8,11 +8,18 @@ export default {
     createAccount: function(data){
         return axios.post('/api/auth/create', data)
     },
+    // user.js
     getUser: function(data) {
         let token = localStorage.getItem("auth_token");
         return axios.post('/api/profile_management/getUser', data, {headers: {
             'x-access-token': token
         }})
+    },
+    updateUserEmail: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateUserEmail', data, {headers: {
+                'x-access-token': token
+            }});
     },
     updateUser: function(data) {
         let token = localStorage.getItem("auth_token");
@@ -20,9 +27,27 @@ export default {
                 'x-access-token': token
             }});
     },
-    updateUserEmail: function(data) {
+    getCreditCardsByUser: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/updateUserEmail', data, {headers: {
+        return axios.post('/api/profile_management/getCreditCardsByUser', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    addCreditCard: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/addCreditCard', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    removeCreditCard: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/removeCreditCard', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    updateCreditCard: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateCreditCard', data, {headers: {
                 'x-access-token': token
             }});
     },
@@ -32,5 +57,24 @@ export default {
                 'x-access-token': token
             }});
     },
-    // TODO(justin): Add the rest of the mongoDB queries.
+    addShippingAddress: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/addShippingAddress', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    removeShippingAddress: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/removeShippingAddress', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    updateShippingAddress: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateShippingAddress', data, {headers: {
+                'x-access-token': token
+            }});
+    }
+    //books.js
+    
 };
