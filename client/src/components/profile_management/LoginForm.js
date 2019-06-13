@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
 import { Form, Alert, Button, Container } from "react-bootstrap";
+import {Redirect} from "react-router-dom";
 
 function LoginForm(props) {
     const [loginFailed, setLoginFailed] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
     function handleLogin(event) {
         event.preventDefault();
@@ -29,7 +31,10 @@ function LoginForm(props) {
     function handleLoginResponse(response, email) {
         localStorage.setItem("auth_token", response.data);
         API.getUser({email: email})
-            .then(res => props.onLogin(res.data))
+            .then(res => {
+                setRedirect(true);
+                props.handleAuth(true);
+            })
             .catch(err => alert("Login Error - " + err));
     }
 
@@ -47,6 +52,7 @@ function LoginForm(props) {
 
     return (
         <React.Fragment>
+            {redirect? <Redirect to="/editProfile"/>: null}
             <Container style={{ paddingTop: "20px" }}>
                 {loginFailed ? <Alert dismissible variant="danger" onClose={handleDismiss}>Incorrect Email or Password</Alert> : null}
                 <Form inline onSubmit={e => handleLogin(e)}>

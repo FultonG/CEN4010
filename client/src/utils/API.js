@@ -32,5 +32,17 @@ export default {
                 'x-access-token': token
             }});
     },
+    addShippingAddress: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/addShippingAddress', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    deleteShippingAddress: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/deleteShippingAddress', data, {headers: {
+                'x-access-token': token
+            }});
+    }
     // TODO(justin): Add the rest of the mongoDB queries.
 };

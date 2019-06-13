@@ -1,4 +1,5 @@
 const mongodbConnection = require("../dbconfig/connection.js");
+const { ObjectID } = require('mongodb');
 
 /**
 Some helpful resources!
@@ -127,7 +128,7 @@ const user = {
         // Access ShippingAddress collection
         const collection = mongodbConnection.db().collection("ShippingAddress");
         // Find shipping address by email
-        collection.find({ email: data}, (findError, findResults) => {
+        collection.find({ email: data.email}).toArray( (findError, findResults) => {
             if(findResults){
                 cb(200, findResults);
             }
@@ -153,7 +154,7 @@ const user = {
         // Access ShippingAddress collection
         const collection = mongodbConnection.db().collection("ShippingAddress");
         // Delete shipping address from the ShippingAddress collection
-        collection.deleteOne(data, (deleteError, deleteResult) => {
+        collection.deleteOne({_id: new ObjectID(data._id)}, (deleteError, deleteResult) => {
             if (!deleteError) {
                 cb(200, deleteResult);
             } else {
