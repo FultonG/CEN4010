@@ -36,13 +36,11 @@ function EditProfileComponent(props) {
         setLastName(newLastName);
         setEmail(newEmail);
         setHomeAddress(newHomeAddress);
-        props.onNewUserDetails(getUserDetails());
         alert("Personal Info updated!");
     }
 
     function handleNewNickname(newNickname) {
         setNickname(newNickname);
-        props.onNewUserDetails(getUserDetails());
         alert("Nickname updated!");
     }
 
