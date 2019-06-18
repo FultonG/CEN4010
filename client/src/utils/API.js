@@ -75,6 +75,37 @@ export default {
                 'x-access-token': token
             }});
     }
+    /*,
     //books.js
-    
+    getAllBooks: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/getAllBooks', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    getBook: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/getBook', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    createBook: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/createBook', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    updateBook: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateBook', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    deleteBook: function(data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/deleteBook', data, {headers: {
+                'x-access-token': token
+            }});
+    }
+    */
 };

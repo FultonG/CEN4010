@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const books = require("../../controllers/books.js");
 
-
 router.get("/", (req, res) => {
     books.getAllBooks((status, data = "ok") => res.status(status).send(data));
 });
