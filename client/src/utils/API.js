@@ -79,31 +79,31 @@ export default {
     //books.js
     getAllBooks: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/getAllBooks', data, {headers: {
+        return axios.post('/api/book/getAllBooks', data, {headers: {
                 'x-access-token': token
             }});
     },
     getBook: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/getBook', data, {headers: {
+        return axios.post('/api/book/getBook', data, {headers: {
                 'x-access-token': token
             }});
     },
     createBook: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/createBook', data, {headers: {
+        return axios.post('/api/book/createBook', data, {headers: {
                 'x-access-token': token
             }});
     },
     updateBook: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/updateBook', data, {headers: {
+        return axios.post('/api/book/updateBook', data, {headers: {
                 'x-access-token': token
             }});
     },
     deleteBook: function(data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/deleteBook', data, {headers: {
+        return axios.post('/api/book/deleteBook', data, {headers: {
                 'x-access-token': token
             }});
     }
