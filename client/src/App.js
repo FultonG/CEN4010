@@ -18,7 +18,7 @@ function App() {
     return (
         <Router>
             <NavbarComponent/>
-            <Route path="/register" component={CreateAccountForm}></Route>
+            {userDetails === null ? <CreateAccountForm/> : null}
             <PrivateRoute path="/editProfile" component={()=> <EditProfileComponent userDetails={Auth.getProfile()}></EditProfileComponent>}></PrivateRoute>
         </Router>
     );
