@@ -12,11 +12,7 @@ export default {
     isTokenExpired: function(token) {
         try {
             const decoded = decode(token,  {header: true });
-            if (decoded.exp < Date.now() / 1000) {
-                return true;
-            }
-            else
-                return false;
+            return decoded.exp < Date.now() / 1000;
         }
         catch (err) {
             return false;
@@ -25,5 +21,5 @@ export default {
     getProfile: function() {
         // Using jwt-decode npm package to decode the token
         return decode(localStorage.getItem("auth_token"));
-    }
+    },
 }

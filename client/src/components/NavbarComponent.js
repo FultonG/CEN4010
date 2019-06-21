@@ -8,18 +8,17 @@ import API from "../utils/API";
 
 const NavbarComponent = () => {
     const [redirect, setRedirect] = useState(false);
-    const [authenticated, setAuthenticated] = useState(AuthService.isAuthenticated())
+    const [authenticated, setAuthenticated] = useState(AuthService.isAuthenticated());
 
     function logout(){
-        localStorage.removeItem("auth_token")
-        setAuthenticated(false)
+        localStorage.removeItem("auth_token");
+        setAuthenticated(false);
         setRedirect(true);
     }
 
-
     return (
         <Navbar bg="primary" expand="lg">
-            {redirect? <Redirect to="/"/>: null}
+            {redirect? <Redirect to="/register"/>: null}
             {!authenticated ? <LoginForm handleAuth={setAuthenticated}/> :
                 <React.Fragment>
                     <Dropdown>
@@ -36,6 +35,6 @@ const NavbarComponent = () => {
                 </React.Fragment>}
         </Navbar>
     );
-}
+};
 
 export default NavbarComponent;

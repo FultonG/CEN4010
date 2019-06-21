@@ -52,7 +52,7 @@ function LoginForm(props) {
 
     return (
         <React.Fragment>
-            {redirect? <Redirect to="/editProfile"/>: null}
+            {redirect? <Redirect to="/"/>: null}
             <Container style={{ paddingTop: "20px" }}>
                 {loginFailed ? <Alert dismissible variant="danger" onClose={handleDismiss}>Incorrect Email or Password</Alert> : null}
                 <Form inline onSubmit={e => handleLogin(e)}>
