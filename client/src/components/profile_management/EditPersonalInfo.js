@@ -75,7 +75,7 @@ function EditALL(props) {
   }
 
   function checkAlpha(event) {
-        let alphaNum = /^[^0-9*|\/,#-%.?!":<>[\]{}`\\()';@^&~+_=$]+$/;
+        let alphaNum = /^[^0-9*|/,#-%.?!":<>[\]{}`\\()';@^&~+_=$]+$/;
         if (!alphaNum.test(event.key)) {
             event.preventDefault();
         }

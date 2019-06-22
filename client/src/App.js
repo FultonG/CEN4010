@@ -2,26 +2,25 @@ import React, { useState } from "react";
 import CreateAccountForm from './components/profile_management/CreateAccountForm';
 import NavbarComponent from "./components/NavbarComponent";
 import EditProfileComponent from "./components/profile_management/EditProfileComponent";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Auth from "./utils/AuthService"
+import PrivateRoute from "./components/PrivateRoute";
+import LoginForm from "./components/profile_management/LoginForm";
 
 function App() {
     // Null until we make the default page.
-    const [currPage, setCurrPage] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
-    const pages = {EDIT_PROFILE: 1};
-    const navbar = React.createRef();
 
-    function handleNewUserDetails(newUserDetails) {
-        navbar.current.updateDisplayName(newUserDetails);
-        setUserDetails(newUserDetails);
+    function handleSetUserDetails(user){
+        setUserDetails(user);
     }
 
     return (
-        <React.Fragment>
-            <NavbarComponent ref={navbar} onNewPage={setCurrPage} onUserLoginLogout={setUserDetails}/>
-            {userDetails === null ? <CreateAccountForm/> : null}
-            {userDetails !== null && currPage === pages.EDIT_PROFILE ?
-                <EditProfileComponent userDetails={userDetails} onNewUserDetails={handleNewUserDetails}/> : null}
-        </React.Fragment>
+        <Router>
+            <NavbarComponent/>
+            <Route path="/register" component={CreateAccountForm}></Route>
+            <PrivateRoute path="/editProfile" component={()=> <EditProfileComponent userDetails={Auth.getProfile()}></EditProfileComponent>}></PrivateRoute>
+        </Router>
     );
 }
 
