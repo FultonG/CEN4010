@@ -15,7 +15,7 @@ import API from "../../utils/API";
 
 function EditProfileComponent(props) {
     const [nickname, setNickname] = useState("");
-    const [email, setEmail] = useState(props.userDetails.username);
+    const [email, setEmail] = useState(props.email);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [homeAddress, setHomeAddress] = useState("");

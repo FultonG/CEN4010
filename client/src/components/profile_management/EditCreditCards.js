@@ -33,7 +33,7 @@ function EditCreditCards(props) {
         // TODO
     }
 
-    function checkIfEmpty(event) {
+    function checkIfEmpty() {
         if (!creditCardNumber || !expirationYear || !cvv) {
             setFormCheck(false);
         }
@@ -58,39 +58,39 @@ function EditCreditCards(props) {
         }
     }
 
-        // Ensure that our input fields are not undefined or empty
-        useEffect(() => {checkIfEmpty()});
-        return(
-            <div className="card">
-            <div className="card-header">
-            <b>Edit Credit Cards</b>
-            </div>
-            <div className="card-body">
-                <Form.Group controlId="EditProfileComponent.creditCardNumber">
-                    <Form.Label> Credit Card Number</Form.Label>
-                    <Form.Control type="text" maxLength="16" onInput={checkLength} value={creditCardNumber} onChange={updateCreditCardNumber}/>
-                </Form.Group>
-                <Form.Label>Expiration Date</Form.Label>
-                <Form.Row controlId="EditProfileComponent.expirationDate">
-                    <Form.Group as={Col} md="4">
-                        <Form.Control as="select" value={expirationMonth} onChange={updateExpirationMonth}> 
-                            {months.map((month) => {
-                                return <option>{month}</option>;
-                            })}
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4">
-                        <Form.Control type="text" maxLength="4" onInput={checkLength} value={expirationYear} onChange={updateExpirationYear} placeholder="Year"/>
-                    </Form.Group>
-                </Form.Row>
-                <Form.Group controlId="EditProfileComponent.CVV">
-                    <Form.Label>Security Code</Form.Label>
-                    <Form.Control style={{ width: "25%" }} type="text" maxLength="3" onInput={checkLength} value={cvv} onChange={updateCvv} placeholder="CVV"/>
-                </Form.Group>
-                <Button type="submit" disabled={!formCheck}>Add</Button>
-            </div>
+    // Ensure that our input fields are not undefined or empty
+    useEffect(() => {checkIfEmpty()});
+    return(
+        <div className="card">
+        <div className="card-header">
+        <b>Edit Credit Cards</b>
         </div>
-        );
+        <div className="card-body">
+            <Form.Group controlId="EditProfileComponent.creditCardNumber">
+                <Form.Label> Credit Card Number</Form.Label>
+                <Form.Control type="text" maxLength="16" onInput={checkLength} value={creditCardNumber} onChange={updateCreditCardNumber}/>
+            </Form.Group>
+            <Form.Label>Expiration Date</Form.Label>
+            <Form.Row controlId="EditProfileComponent.expirationDate">
+                <Form.Group as={Col} md="4">
+                    <Form.Control as="select" value={expirationMonth} onChange={updateExpirationMonth}>
+                        {months.map((month) => {
+                            return <option>{month}</option>;
+                        })}
+                    </Form.Control>
+                </Form.Group>
+                <Form.Group as={Col} md="4">
+                    <Form.Control type="text" maxLength="4" onInput={checkLength} value={expirationYear} onChange={updateExpirationYear} placeholder="Year"/>
+                </Form.Group>
+            </Form.Row>
+            <Form.Group controlId="EditProfileComponent.CVV">
+                <Form.Label>Security Code</Form.Label>
+                <Form.Control style={{ width: "25%" }} type="text" maxLength="3" onInput={checkLength} value={cvv} onChange={updateCvv} placeholder="CVV"/>
+            </Form.Group>
+            <Button type="submit" disabled={!formCheck}>Add</Button>
+        </div>
+    </div>
+    );
 }
 
 export default EditCreditCards;
