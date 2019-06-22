@@ -50,9 +50,9 @@ export default {
                 'x-access-token': token
             }});
     },
-    deleteCreditCard: function (data) {
+    removeCreditCard: function (data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/deleteCreditCard', data, {headers: {
+        return axios.post('/api/profile_management/removeCreditCard', data, {headers: {
                 'x-access-token': token
             }});
     },
@@ -65,6 +65,12 @@ export default {
     getCreditCardsByUser: function (data) {
         let token = localStorage.getItem("auth_token");
         return axios.post('/api/profile_management/getCreditCardsByUser', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    updateCreditCard: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateCreditCard', data, {headers: {
                 'x-access-token': token
             }});
     }

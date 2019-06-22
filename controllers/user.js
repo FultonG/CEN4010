@@ -73,15 +73,16 @@ const user = {
         });
     },
     getCreditCardsByUser: (data, cb) => {
+        console.log(data);
         // Access CreditCard collection
         const collection = mongodbConnection.db().collection("CreditCard");
         // Find credit cards by user_email(foreign key)
-        collection.find({ email: data.email }, (findError, findResults) => {
+        collection.find({ email: data.email }).toArray( (findError, findResults) => {
             if(findResults){
                 cb(200, findResults);
             }
             else{
-                cb(404, findError);
+                cb(404, "CREDIT CARDS NOT FOUND");
             }
         });
     },
@@ -102,7 +103,7 @@ const user = {
         // Access CreditCard collection
         const collection = mongodbConnection.db().collection("CreditCard");
         // Delete credit card from CreditCard collection
-        collection.deleteOne(data, (deleteError, deleteResult) => {
+        collection.deleteOne({email: data.email, credit_card_num: data.credit_card_num}, (deleteError, deleteResult) => {
             if (!deleteError) {
                 cb(200, deleteResult);
             } else {

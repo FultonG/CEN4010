@@ -108,7 +108,7 @@ function CreditCardsList(props) {
     }
 
     function handleDelete(index) {
-        API.deleteCreditCard(creditCards[index]).then(() =>{
+        API.removeCreditCard(trueCreditCards[index]).then(() =>{
             updateTrueCreditCards();
         }).catch(err => console.log(err));
     }
@@ -122,8 +122,8 @@ function CreditCardsList(props) {
                     "expiration_month": creditCards[index].expiration_month}}};
         API.updateCreditCard(creditCardUpdate).then(() => {
             updateTrueCreditCards();
-            alert("Shipping Address updated!");
-        }).catch(err => {console.log("Error updating shipping address: " + err)})
+            alert("Credit Card updated!");
+        }).catch(err => {console.log("Error updating credit card: " + err)})
     }
 
     function handleAdd(event) {
@@ -181,6 +181,7 @@ function CreditCardsList(props) {
                 ))}
             </Card>
             <Form onSubmit={handleAdd}>
+                <b>NEW CREDIT CARD:</b>
                 <Form.Group controlId="EditProfileComponent.creditCardNumber">
                     <Form.Label> Credit Card Number</Form.Label>
                     <Form.Control type="text" maxLength="16" onInput={checkLength} value={creditCardNumber} onChange={updateCreditCardNumber}/>
