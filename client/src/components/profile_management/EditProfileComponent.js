@@ -15,7 +15,7 @@ import API from "../../utils/API";
 
 function EditProfileComponent(props) {
     const [nickname, setNickname] = useState("");
-    const [email, setEmail] = useState(props.email);
+    const [email, setEmail] = useState(props.userEmail);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [homeAddress, setHomeAddress] = useState("");
@@ -62,7 +62,7 @@ function EditProfileComponent(props) {
                         <EditNickname nickname={nickname} email={email} onNicknameUpdate={handleNewNickname} />
                         <EditPersonalInfo first_name={firstName} last_name={lastName} email={email} home_address={homeAddress} onNewPersonalInfo={setPersonalInfo} />
                         <EditShippingAddresses email={email} />
-                        <EditCreditCards />
+                        <EditCreditCards email={email} />
                     </React.Fragment>
                     : <Spinner animation="border" variant="primary" />}
             </Container>

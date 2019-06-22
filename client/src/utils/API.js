@@ -61,6 +61,11 @@ export default {
         return axios.post('/api/profile_management/addCreditCard', data, {headers: {
                 'x-access-token': token
             }});
+    },
+    getCreditCardsByUser: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/getCreditCardsByUser', data, {headers: {
+                'x-access-token': token
+            }});
     }
-    // TODO(justin): Add the rest of the mongoDB queries.
 };

@@ -5,7 +5,6 @@ import EditProfileComponent from "./components/profile_management/EditProfileCom
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Auth from "./utils/AuthService"
 import PrivateRoute from "./components/PrivateRoute";
-import LoginForm from "./components/profile_management/LoginForm";
 
 function App() {
     // Null until we make the default page.
@@ -18,8 +17,8 @@ function App() {
     return (
         <Router>
             <NavbarComponent/>
-            <Route path="/register" component={CreateAccountForm}></Route>
-            <PrivateRoute path="/editProfile" component={()=> <EditProfileComponent userDetails={Auth.getProfile()}></EditProfileComponent>}></PrivateRoute>
+            <Route path="/register" component={CreateAccountForm}/>
+            <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
         </Router>
     );
 }

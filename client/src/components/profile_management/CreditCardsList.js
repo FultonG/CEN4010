@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Card, Button, Container, ListGroup, ButtonGroup, Form} from "react-bootstrap";
-import {Button, Col, Form} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import API from "../../utils/API";
 
 function CreditCardsList(props) {
@@ -40,7 +38,7 @@ function CreditCardsList(props) {
         if (!creditCardNumber || !expirationYear || !CVV) {
             setFormCheck(false);
         }
-        else if (creditCardNumber.length < 1 || expirationYear.length < 1 || cvv.length < 1) {
+        else if (creditCardNumber.length < 1 || expirationYear.length < 1 || CVV.length < 1) {
             setFormCheck(false);
         }
         else {
@@ -130,7 +128,8 @@ function CreditCardsList(props) {
 
     function handleAdd(event) {
         event.preventDefault();
-        API.addCreditCard({ email: userEmail,
+        API.addCreditCard({
+            email: userEmail,
             credit_card_num: creditCardNumber,
             expiration_month: expirationMonth,
             expiration_year: expirationYear,
