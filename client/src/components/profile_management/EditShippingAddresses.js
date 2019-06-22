@@ -1,68 +1,22 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import API from '../../utils/API';
+import ShippingAddressList from './ShippingAddressList';
+import { Card, Form, Button } from 'react-bootstrap';
 
 // Stick to database diagram: https://drive.google.com/file/d/1SsKnQoe0B_wKTRp6rKocK9oaolqMd1OT/view?usp=sharing
-class EditShippingAddresses extends Component {
-  constructor(props){
-    super(props);
+const EditShippingAddresses = (props) => {
+  const [email] = useState(props.email);
 
-    this.state= {
-      newAddress: '',
-      addresses: [{
-        address: ''
-      }]
-    };
-
-    this.email = props.email;
-    this.updateAddress = this.updateAddress.bind(this);
-  }
-
-  componentDidMount(){
-    /**
-    API.getShippingAddressesByUser(this.email)
-        .then(res => {
-          this.setState({
-            addresses: res.data
-          });
-          console.log(this.addresses)
-        })
-        .catch(err => console.log(err));*/
-  }
-
-  // UPDATE THE STATE WHEN USER TYPES INTO THE FIELDS
-  updateAddress(evt){
-    this.setState({
-      newAddress: evt.target.value,
-      addresses: this.state.addresses
-    });
-  }
- 
-  
-  // UPDATE AJAX REQUEST FUNCTION
-  updatePersonalInfo(evt){
-   
-    alert('Changes Saved');
-  }
-
-
-  render() {
-    return(
-      <div className="card">
-        <div className="card-header">
-          <b>Edit Shipping Addresses</b>
-        </div>
-        <div className="card-body">
-          <form onSubmit={this.updatePersonalInfo}>
-            <div className="form-group">
-              <label htmlFor="userAddress">Address:</label>
-              <input  id="userAddress" className="form-control" type="text" placeholder=" " value={this.state.newAddress} onChange={this.updateAddress}/>
-            </div>
-            <button className="btn btn-primary float-right" type="submit">Save Changes</button>
-          </form>
-        </div>
-      </div>
-    );
-  }
-}
+  return (
+    <Card>
+      <Card.Header>
+        <b>Edit Shipping Addresses</b>
+      </Card.Header>
+      <Card.Body>
+        <ShippingAddressList email={email}/>
+      </Card.Body>
+    </Card>
+  );
+};
 
 export default EditShippingAddresses;

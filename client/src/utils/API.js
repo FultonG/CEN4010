@@ -63,9 +63,9 @@ export default {
                 'x-access-token': token
             }});
     },
-    removeShippingAddress: function (data) {
+    deleteShippingAddress: function (data) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/profile_management/removeShippingAddress', data, {headers: {
+        return axios.post('/api/profile_management/deleteShippingAddress', data, {headers: {
                 'x-access-token': token
             }});
     },
