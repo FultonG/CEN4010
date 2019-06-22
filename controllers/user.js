@@ -130,6 +130,7 @@ const user = {
         // Find shipping address by email
         collection.find({ email: data.email}).toArray( (findError, findResults) => {
             if(findResults){
+                // console.log(findResults);
                 cb(200, findResults);
             }
             else{

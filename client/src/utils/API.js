@@ -43,6 +43,12 @@ export default {
         return axios.post('/api/profile_management/deleteShippingAddress', data, {headers: {
                 'x-access-token': token
             }});
+    },
+    updateShippingAddress: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/updateShippingAddress', data, {headers: {
+                'x-access-token': token
+            }});
     }
     // TODO(justin): Add the rest of the mongoDB queries.
 };

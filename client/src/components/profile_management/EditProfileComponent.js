@@ -22,7 +22,7 @@ function EditProfileComponent(props) {
     const [renderChildren, setRenderChildren] = useState(false);
 
     useEffect(() => {
-        API.getUser({ email }).then(res => {
+        API.getUser({ email: email }).then(res => {
             setNickname(res.data.nickname);
             setFirstName(res.data.first_name);
             setLastName(res.data.last_name);
