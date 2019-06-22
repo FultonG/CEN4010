@@ -49,6 +49,19 @@ export default {
         return axios.post('/api/profile_management/updateShippingAddress', data, {headers: {
                 'x-access-token': token
             }});
-    }
+    },
+    deleteCreditCard: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/deleteCreditCard', data, {headers: {
+                'x-access-token': token
+            }});
+    },
+    addCreditCard: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/profile_management/addCreditCard', data, {headers: {
+                'x-access-token': token
+            }});
+
+        
     // TODO(justin): Add the rest of the mongoDB queries.
 };
