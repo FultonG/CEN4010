@@ -74,8 +74,7 @@ export default {
         return axios.post('/api/profile_management/updateShippingAddress', data, {headers: {
                 'x-access-token': token
             }});
-    }
-    /*,
+    },
     //books.js
     getAllBooks: function(data) {
         let token = localStorage.getItem("auth_token");
@@ -107,5 +106,4 @@ export default {
                 'x-access-token': token
             }});
     }
-    */
 };
