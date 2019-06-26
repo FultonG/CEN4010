@@ -73,5 +73,20 @@ export default {
         return axios.post('/api/profile_management/updateCreditCard', data, {headers: {
                 'x-access-token': token
             }});
+    },
+    createBook: function (data) {
+        return axios.post('/api/book/createBook', data);
+    },
+    deleteBook: function (data) {
+        return axios.post('/api/book/deleteBook', data);
+    },
+    getBook: function (data) {
+        return axios.post('/api/book/getBook', data);
+    },
+    updateBook: function (data) {
+        return axios.post('/api/book/updateBook', data);
+    },
+    getBooksByPage: function (data) {
+        return axios.post('/api/book/getBooksByPage', data);
     }
 };
