@@ -1,44 +1,40 @@
-import React, { useState } from "react";
-import Navbar from 'react-bootstrap/Navbar'
+import React, { Component, useState, useEffect } from "react";
+import Navbar from 'react-bootstrap/Navbar';
 import LoginForm from "./profile_management/LoginForm";
-import {Dropdown} from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
+import { Link, Redirect } from "react-router-dom";
+import AuthService from "../utils/AuthService"
+import API from "../utils/API";
 
-function NavbarComponent(props) {
-    const [name, setName] = useState("");
-    const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const pages = {EDIT_PROFILE: 1};
+const NavbarComponent = () => {
+    const [redirect, setRedirect] = useState(false);
+    const [authenticated, setAuthenticated] = useState(AuthService.isAuthenticated());
 
-    function logout() {
-        setUserLoggedIn(false);
-        setName("");
-        props.onLogout(null);
-    }
-
-    function setUserName(user) {
-        setName(user.firstName + " " + user.lastName);
-        setUserLoggedIn(true);
-        props.onLoginSuccessful(user);
+    function logout(){
+        localStorage.removeItem("auth_token");
+        setAuthenticated(false);
+        setRedirect(true);
     }
 
     return (
         <Navbar bg="primary" expand="lg">
-            {!userLoggedIn ? <LoginForm onLogin={setUserName}/> :
+            {redirect? <Redirect to="/register"/>: null}
+            {!authenticated ? <LoginForm handleAuth={setAuthenticated}/> :
                 <React.Fragment>
                     <Dropdown>
                         <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                             Menu
-                        </Dropdown.Toggle>
-
+                            </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => props.onNewPage(pages.EDIT_PROFILE)}>Edit Profile</Dropdown.Item>
-                            <Dropdown.Divider/>
+                            <Dropdown.Item as={Link} to="/editProfile">Edit Profile</Dropdown.Item>
+                            <Dropdown.Divider />
                             <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                    <b>Hello, {name}!</b>
+                    <b>Hello! {AuthService.getProfile().username}</b>
                 </React.Fragment>}
         </Navbar>
-    )
-}
+    );
+};
 
 export default NavbarComponent;
