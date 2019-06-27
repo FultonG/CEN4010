@@ -111,6 +111,7 @@ function EditALL(props) {
             <button className="btn btn-primary float-right" type="submit">Save Changes</button>
           </form>
         </div>
+        <blockquote class="imgur-embed-pub" lang="en" data-id="1lujzsO"><a href="//imgur.com/1lujzsO">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
       </div>
     );
 }
