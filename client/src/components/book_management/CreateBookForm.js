@@ -13,7 +13,7 @@ function CreateBookForm() {
     const [bookPrice, setPrice] = useState("");
     const [bookCover_url, setCover_url] = useState("");
     const [bookAuthor, setAuthor] = useState("");
-    const [bookAutor_bio, setAutor_bio] = useState("");
+    const [bookAuthorBio, setAuthorBio] = useState("");
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -26,10 +26,10 @@ function CreateBookForm() {
             price: bookPrice,
             cover_url: bookCover_url,
             author: bookAuthor,
-            autor_bio: bookAutor_bio
+            author_bio: bookAuthorBio
         };
         API.createBook(Book)
-        .then(res => alert("Book Created!"))
+        .then(() => alert("Book Created!"))
         .catch(err => handleAccountCreationError(err));
     }
 
@@ -37,7 +37,7 @@ function CreateBookForm() {
         if (err.response && err.response.status === 409) {
             setError(true);
         } else {
-            alert("Book creation error!!!... - " + err);
+            alert("Book creation error: " + err);
         }
     }
         
@@ -74,20 +74,14 @@ function CreateBookForm() {
     }
 
     function handleAuthorBioChange(event) {
-        setAutor_bio(event.currentTarget.value);
+        setAuthorBio(event.currentTarget.value);
     }
-
-    function handleDismiss(){
-        setError(false);
-    }
-
     return (
         <div className="card">
         <div className="card-header">
           <b>Create Book</b>
         </div>
             <Container style={{ paddingTop: "20px" }}>
-                {error ? <Alert dismissible variant="danger" onClose={handleDismiss}>There already exists a Book with that id!</Alert> : null}
                 <Form onSubmit={e => handleSubmit(e)}>
                     <Form.Group controlId="CreateAccountForm.bookTitle">
                         <Form.Label>Title</Form.Label>
@@ -121,11 +115,11 @@ function CreateBookForm() {
                         <Form.Label>Author</Form.Label>
                         <Form.Control type="text" value={bookAuthor} onChange={handleAuthorChange} />
                     </Form.Group>
-                    <Form.Group controlId="CreateAccountForm.bookAutor_bio">
+                    <Form.Group controlId="CreateAccountForm.bookAuthorBio">
                         <Form.Label>Author biography</Form.Label>
-                        <Form.Control type="text" value={bookAutor_bio} onChange={handleAuthorBioChange} />
+                        <Form.Control type="text" value={bookAuthorBio} onChange={handleAuthorBioChange} />
                     </Form.Group>
-                    <Button type="submit">Register</Button>
+                    <Button type="submit">Add</Button>
                 </Form>
             </Container>
         </div>

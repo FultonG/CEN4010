@@ -5,7 +5,7 @@ import EditProfileComponent from "./components/profile_management/EditProfileCom
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Auth from "./utils/AuthService"
 import PrivateRoute from "./components/PrivateRoute";
-import CreateBookForm from "./components/Books_management/CreateBookForm";
+import CreateBookForm from "./components/book_management/CreateBookForm";
 
 function App() {
     // Null until we make the default page.

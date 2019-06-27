@@ -9,7 +9,7 @@ router.get("/getBook", (req, res) => {
     books.getBook(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
-router.put("/createBook", (req, res) => {
+router.post("/createBook", (req, res) => {
     books.createBook(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
@@ -17,7 +17,7 @@ router.post("/updateBook", (req, res) => {
     books.updateBook(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
-router.delete("/deleteBook", (req, res) => {
+router.post("/deleteBook", (req, res) => {
     books.deleteBook(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
