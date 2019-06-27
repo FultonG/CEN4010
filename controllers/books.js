@@ -5,7 +5,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
             const collection = mongodbConnection.db().collection("Book");
             collection.insertOne(data, function (err, result) {
                 if (!err) {
-                    cb(200, result);
+                    cb(200, result )
                 } else {
                     console.log(err);
                     cb(500, err);
