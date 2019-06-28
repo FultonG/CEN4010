@@ -20,7 +20,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
         },
         getBooksByPage: (page, cb) => {
             const collection = mongodbConnection.db().collection("Book");
-            collection.find().skip(5*(page - 1)).limit(5).toArray((err, result) => {
+            collection.find().skip(10*(page - 1)).limit(10).toArray((err, result) => {
                 if (!err) {
                     cb(200, result)
                 }
