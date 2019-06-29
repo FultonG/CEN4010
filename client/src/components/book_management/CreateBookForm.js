@@ -31,7 +31,6 @@ function CreateBookForm() {
         API.createBook(Book)
         .then(() => alert("Book Created!"))
         .catch(err => handleAccountCreationError(err));
-        
     }
 
     function handleAccountCreationError(err) {
@@ -41,11 +40,11 @@ function CreateBookForm() {
             alert("Book creation error: " + err);
         }
     }
-        
+
     function handleTittleChange(event) {
         setTitle(event.currentTarget.value);
     }
-    
+
     function handleDescriptionChange(event) {
         setDescription(event.currentTarget.value);
     }
@@ -77,66 +76,54 @@ function CreateBookForm() {
     function handleAuthorBioChange(event) {
         setAuthorBio(event.currentTarget.value);
     }
-    
     return (
         <div className="card">
         <div className="card-header">
-          <p>Add Book</p>
+          <b>Create Book</b>
         </div>
             <Container style={{ paddingTop: "20px" }}>
                 <Form onSubmit={e => handleSubmit(e)}>
-				<Form inline>
-                    <Form.Group controlId="CreateBookForm.bookTitle" >
-                        <Form.Label >Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Form.Label>
+                    <Form.Group controlId="CreateAccountForm.bookTitle">
+                        <Form.Label>Title</Form.Label>
                         <Form.Control type="text" value={bookTitle} onChange={handleTittleChange} />
-					</Form.Group >&nbsp;&nbsp;&nbsp;
-					<Form.Group controlId="CreateBookForm.bookAuthor">
-                        <Form.Label>Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Form.Label>
-                        <Form.Control type="text" value={bookAuthor} onChange={handleAuthorChange} />
-                    </Form.Group>&nbsp;&nbsp;&nbsp;
-					<Form.Group controlId="CreateBookForm.bookGenre">
-                        <Form.Label>Genre&nbsp;</Form.Label>
+                    </Form.Group>
+                    <Form.Group controlId="CreateAccountForm.bookDescription">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control type="text" value={bookDescription} onChange={handleDescriptionChange} />
+                    </Form.Group>
+                    <Form.Group controlId="CreateAccountForm.bookGenre">
+                        <Form.Label>Genre</Form.Label>
                         <Form.Control type="text" value={bookGenre} onChange={handleGenreChange} />
-                    </Form.Group>&nbsp;&nbsp;&nbsp;
-				</Form>
-				<Form>
-					&nbsp;
-					&nbsp;
-				</Form>
-				<Form inline>
-				<Form.Group controlId="CreateBookForm.bookPublisher">
-                        <Form.Label>Publisher&nbsp;</Form.Label>
+                    </Form.Group>
+                    <Form.Group controlId="CreateAccountForm.bookPublisher">
+                        <Form.Label>Publisher</Form.Label>
                         <Form.Control type="text" value={bookPublisher} onChange={handlePublisherChange} />
-                    </Form.Group>&nbsp;&nbsp;&nbsp;
-                    <Form.Group controlId="CreateBookForm.bookPublish_date">
-                        <Form.Label>Publisher date&nbsp;</Form.Label>
+                    </Form.Group>
+                    <Form.Group controlId="CreateAccountForm.bookPublish_date">
+                        <Form.Label>Publisher date</Form.Label>
                         <Form.Control type="text" value={bookPublish_date} onChange={handlePublisherDateChange} />
-                    </Form.Group>&nbsp;&nbsp;&nbsp;
-					<Form.Group controlId="CreateBookForm.bookPrice">
-                        <Form.Label>Price&nbsp;&nbsp;&nbsp;</Form.Label>
+                    </Form.Group>
+                    <Form.Group controlId="CreateAccountForm.bookPrice">
+                        <Form.Label>Price</Form.Label>
                         <Form.Control type="text" value={bookPrice} onChange={handlePriceChange} />
-                    </Form.Group>&nbsp;&nbsp;&nbsp;
-				</Form>
-				    <Form>
-						&nbsp;
-						&nbsp;
-					</Form>
-					<Form.Group controlId="CreateBookForm.bookCover_url">
+                    </Form.Group>
+                    <Form.Group controlId="CreateAccountForm.bookCover_url">
                         <Form.Label>Cover url</Form.Label>
                         <Form.Control type="text" value={bookCover_url} onChange={handleCoverURLChange} />
                     </Form.Group>
-                    <Form.Group controlId="CreateBookForm.bookDescription">
-                        <Form.Label>Description</Form.Label>
-                        <textarea class="form-control" value={bookDescription} onChange={handleDescriptionChange}  rows="3"></textarea>
+                    <Form.Group controlId="CreateAccountForm.bookAuthor">
+                        <Form.Label>Author</Form.Label>
+                        <Form.Control type="text" value={bookAuthor} onChange={handleAuthorChange} />
                     </Form.Group>
-                    <Form.Group controlId="CreateBookForm.bookAuthorBio">
+                    <Form.Group controlId="CreateAccountForm.bookAuthorBio">
                         <Form.Label>Author biography</Form.Label>
-                        <textarea class="form-control" value={bookAuthorBio} onChange={handleAuthorBioChange} rows="3"></textarea>
+                        <Form.Control type="text" value={bookAuthorBio} onChange={handleAuthorBioChange} />
                     </Form.Group>
-                    <Button type="submit" >Add</Button>
+                    <Button type="submit">Add</Button>
                 </Form>
             </Container>
         </div>
     )
 }
+
 export default CreateBookForm;

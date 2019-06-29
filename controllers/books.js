@@ -25,6 +25,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                     cb(200, result)
                 }
                 else {
+                    console.log(err);
                     cb(500, err);
                 }
             });

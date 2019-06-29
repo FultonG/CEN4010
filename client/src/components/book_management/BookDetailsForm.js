@@ -23,9 +23,10 @@ function BookDetailsForm(props) {
     }, []);
 
     function updatetruebooks() {
+        console.log("Updating books");
         API.getBooksByPage(1)
         .then(res => {
-        console.log(res.data);
+            console.log(res.data);
             setTrueBooks(res.data);
             setBooks(res.data);
         })
@@ -52,7 +53,7 @@ function BookDetailsForm(props) {
                     </div>
                   </div>
                 </div>
-                <div className="Autor_Biography"  >Autor biography:<p > {books.autor_bio} </p>
+                <div className="Autor_Biography"  >Autor biography:<p > {books.author_bio} </p>
                     </div>
               </div >
             }
