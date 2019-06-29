@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Auth from "./utils/AuthService"
 import PrivateRoute from "./components/PrivateRoute";
 import CreateBookForm from "./components/book_management/CreateBookForm";
+import ViewBook from "./components/book_management/ViewBook";
 
 function App() {
     // Null until we make the default page.
@@ -20,6 +21,7 @@ function App() {
             <NavbarComponent/>
             <Route path="/register" component={CreateAccountForm}/>
             <Route path="/CreateBookForm" component={CreateBookForm}/>
+            <Route path="/viewBook" component={ViewBook}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
         </Router>
     );
