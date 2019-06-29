@@ -7,6 +7,7 @@ import Auth from "./utils/AuthService"
 import PrivateRoute from "./components/PrivateRoute";
 import CreateBookForm from "./components/book_management/CreateBookForm";
 import ViewBook from "./components/book_management/ViewBook";
+import BookDetailsForm from "./components/book_management/BookDetailsForm";
 
 function App() {
     // Null until we make the default page.
@@ -22,6 +23,7 @@ function App() {
             <Route path="/register" component={CreateAccountForm}/>
             <Route path="/CreateBookForm" component={CreateBookForm}/>
             <Route path="/viewBook" component={ViewBook}/>
+            <Route path="/BookDetailsForm" component={BookDetailsForm}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
         </Router>
     );
