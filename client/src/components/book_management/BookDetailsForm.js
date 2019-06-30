@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useState, useEffect} from "react";
+import './Book.css';
 import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
 import API from "../../utils/API";
@@ -34,7 +35,7 @@ function BookDetailsForm(props) {
                  <div className="description">
                   <img id="book-img" src={books.cover_url} alt="Book" />
                   <div className="book-info">
-                    <h2> {books.title} </h2>
+                    <h3> {books.title} </h3>
                     <p> By {books.author} </p>
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
