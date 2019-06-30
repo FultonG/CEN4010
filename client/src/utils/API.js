@@ -88,5 +88,11 @@ export default {
     },
     getBooksByPage: function (data) {
         return axios.post('/api/book/getBooksByPage', data);
+    },
+    getWishLists: function (data) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist', data, {headers: {
+            'x-access-token': token
+        }});
     }
 };

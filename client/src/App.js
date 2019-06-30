@@ -8,22 +8,31 @@ import PrivateRoute from "./components/PrivateRoute";
 import CreateBookForm from "./components/book_management/CreateBookForm";
 import ViewBook from "./components/book_management/ViewBook";
 import BookDetailsForm from "./components/book_management/BookDetailsForm";
+import WishList from "./components/WishList/WishList";
 
 function App() {
     // Null until we make the default page.
     const [userDetails, setUserDetails] = useState(null);
+    const [wishList, setWishList] = useState([]);
 
     function handleSetUserDetails(user){
         setUserDetails(user);
     }
 
+    function handleWishListChange(book){
+        console.log(book);
+        setWishList([...wishList, book]);
+    }
+
     return (
         <Router>
-            <NavbarComponent/>
+            <NavbarComponent wishList={wishList}/>
             <Route path="/register" component={CreateAccountForm}/>
             <Route path="/CreateBookForm" component={CreateBookForm}/>
-            <Route path="/BookDetailsForm" component={BookDetailsForm}/>
+            <Route path="/viewBook" component={ViewBook}/>
+            <Route path="/BookDetailsForm" component={() => <BookDetailsForm wishListChange={handleWishListChange} ></BookDetailsForm>}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
+            <PrivateRoute path="/WishList" component={() => <WishList userEmail={Auth.getProfile().username}/>}/>
         </Router>
     );
 }

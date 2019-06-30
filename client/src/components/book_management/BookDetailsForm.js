@@ -40,14 +40,17 @@ function BookDetailsForm(props) {
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
                     <p > Genre: {books.genre} </p>
-                    <div className="descrption"> <p>Description: {books.description} </p>
+                    <div className="description"> <p>Description: {books.description} </p>
                     </div>
                   </div>
                 </div>
-                <div className="Autor_Biography"  >Autor biography:<p > {books.author_bio} </p>
+                <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
                     </div>
               </div >
               <div style={{paddingTop: "3%"}}>
+                  <Button variant="info" onClick={() => props.wishListChange(books)}>
+                      Add to wishlist
+                  </Button>
                     <p>Rate this book</p>
                     <div>
                     <div style={{display: 'inline-block', position: 'relative'}} className="rating-stars">
