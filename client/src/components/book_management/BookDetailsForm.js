@@ -1,22 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useState, useEffect} from "react";
 import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
+import StarRatingComponent from 'react-star-rating-component';
 import API from "../../utils/API";
 
 function BookDetailsForm(props) {
     const [truebooks, setTrueBooks] = useState([]);
     const [books, setBooks] = useState([]);
-    const [formCheck, setFormCheck] = useState(false);
-    const [bookID]  = useState(props._id);
-    const [bookTitle, setTitle] = useState("");
-    const [bookDescription, setDescription] = useState("");
-    const [bookGenre, setGenre] = useState("");
-    const [bookPublisher, setPublisher] = useState("");
-    const [bookPublish_date, setPublish_date] = useState("");
-    const [bookPrice, setPrice] = useState("");
-    const [bookCover_url, setCover_url] = useState("");
-    const [bookAuthor, setAuthor] = useState("");
-    const [bookAuthorBio, setAuthorBio] = useState("");
 
     useEffect(() => {
         updatetruebooks();
@@ -41,11 +31,11 @@ function BookDetailsForm(props) {
           <div className="card">
           <div className="book">
               <div>
-                <h1> {books.title} </h1>
-                <div className="description">
-                  <img id="book-img" src={books.bookCover_url} alt="Book" />
+                 <div className="description">
+                  <img id="book-img" src={books.cover_url} alt="Book" />
                   <div className="book-info">
-                    <h3> By {books.author} </h3>
+                    <h2> {books.title} </h2>
+                    <p> By {books.author} </p>
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
                     <p > Genre: {books.genre} </p>
@@ -56,8 +46,7 @@ function BookDetailsForm(props) {
                 <div className="Autor_Biography"  >Autor biography:<p > {books.author_bio} </p>
                     </div>
               </div >
-            }
-          </div>
+            </div>
           </div>
           </ListGroup.Item>
           </ListGroup>
