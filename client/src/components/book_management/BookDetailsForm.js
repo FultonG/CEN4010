@@ -39,27 +39,26 @@ function BookDetailsForm(props) {
                     <a href="url">By {books.author}</a>
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
-                    <p > Genre: {books.genre} </p>
-                    <div className="description"> <p>Description: {books.description} </p>
-                    </div>
+                    <p> Genre: {books.genre} </p>
+                    <p> Description: {books.description} </p>
+                    <Button variant="primary" size="sm" onClick={() => props.wishListChange(books)}>
+                      Add to wishlist
+                    </Button>
                   </div>
                 </div>
                 <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
                     </div>
               </div >
-              <div style={{paddingTop: "3%"}}>
-                  <Button variant="info" onClick={() => props.wishListChange(books)}>
-                      Add to wishlist
-                  </Button>
+              <div style={{paddingTop: "1%"}}>
                     <p>Rate this book</p>
                     <div>
                     <div style={{display: 'inline-block', position: 'relative'}} className="rating-stars">
                         <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
                     </div>
                     <p>Tell us what you think</p>
-                    <textarea rows="4" cols="50"></textarea>  
-                    <div style={{paddingTop: "1%"}}>
-                    <Button type="submit">Submit</Button>
+                    <textarea rows="3" cols="50" ></textarea>  
+                    <div style={{paddingTop: "1%" }}>
+                    <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                     </div>
                     </div>
                 </div>     
