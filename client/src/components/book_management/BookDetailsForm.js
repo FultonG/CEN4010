@@ -33,10 +33,10 @@ function BookDetailsForm(props) {
           <div className="book">
               <div>
                  <div className="description">
-                  <img id="book-img" src={books.cover_url} alt="Book" />
+                  <img class="img" id="book-img" src={books.cover_url} alt="Book" />
                   <div className="book-info">
                     <h3> {books.title} </h3>
-                    <p> By {books.author} </p>
+                    <a href="url">By {books.author}</a>
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
                     <p > Genre: {books.genre} </p>
@@ -50,8 +50,8 @@ function BookDetailsForm(props) {
               <div style={{paddingTop: "3%"}}>
                     <p>Rate this book</p>
                     <div>
-                    <div className="rating-stars">
-                        <StarRatingComponent starCount={5}></StarRatingComponent>
+                    <div style={{display: 'inline-block', position: 'relative'}} className="rating-stars">
+                        <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
                     </div>
                     <p>Tell us what you think</p>
                     <textarea rows="4" cols="50"></textarea>  

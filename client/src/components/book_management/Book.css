@@ -37,11 +37,7 @@
     font-weight: bold;
   }
 
-  s {
-    text-align: left;
-    font-weight: bold;
-  }
-  
+ 
   i {
     display: block;
     margin: 0 auto;
@@ -59,7 +55,21 @@
   }
 
   .rating-stars {
-    margin-left: 12px;
+    margin-left: 8px;
     font-size: 18px;
   }
+
+  .img:hover{
+  color: #424242; 
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  opacity: 1;
+  transform: scale(1.55);
+  -ms-transform: scale(1.55); /* IE 9 */
+  -webkit-transform: scale(1.55); /* Safari and Chrome */
+
+}
   
