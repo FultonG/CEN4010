@@ -80,8 +80,8 @@ export default {
     deleteBook: function (data) {
         return axios.post('/api/book/deleteBook', data);
     },
-    getBookByAuthor: function (data) {
-        return axios.post('/api/book/getBookByAuthor', data);
+    getBook: function (data) {
+        return axios.post('/api/book/getBook', data);
     },
     updateBook: function (data) {
         return axios.post('/api/book/updateBook', data);

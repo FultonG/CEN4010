@@ -12,16 +12,10 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 }
             });
         },
-        getBookByAuthor: (data, cb) => {
+        getBook: (id, cb) => {
             const collection = mongodbConnection.db().collection("Book");
-            collection.find({author: data.author}).skip(10*(data.page - 1)).limit(10).toArray((err, result) => {
-                if (!err) {
-                    cb(200, result)
-                }
-                else {
-                    console.log(err);
-                    cb(500, err);
-                }
+            collection.findOne({ _id: new ObjectId(id) }, (err, result) => {
+                !err ? cb(200, result) : cb(500, err);
             });
         },
         getBooksByPage: (page, cb) => {
