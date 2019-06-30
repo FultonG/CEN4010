@@ -47,6 +47,19 @@ function BookDetailsForm(props) {
                 <div className="Autor_Biography"  >Autor biography:<p > {books.author_bio} </p>
                     </div>
               </div >
+              <div style={{paddingTop: "3%"}}>
+                    <p>Rate this book</p>
+                    <div>
+                    <div className="rating-stars">
+                        <StarRatingComponent starCount={5}></StarRatingComponent>
+                    </div>
+                    <p>Tell us what you think</p>
+                    <textarea rows="4" cols="50"></textarea>  
+                    <div style={{paddingTop: "1%"}}>
+                    <Button type="submit">Submit</Button>
+                    </div>
+                    </div>
+                </div>     
             </div>
           </div>
           </ListGroup.Item>

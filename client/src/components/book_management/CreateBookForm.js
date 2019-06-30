@@ -79,7 +79,7 @@ function CreateBookForm() {
     return (
         <div className="card">
         <div className="card-header">
-          <b>Create Book</b>
+          <b>Add Book</b>
         </div>
             <Container style={{ paddingTop: "20px" }}>
                 <Form onSubmit={e => handleSubmit(e)}>

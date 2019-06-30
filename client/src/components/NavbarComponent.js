@@ -32,8 +32,6 @@ const NavbarComponent = () => {
                             <Dropdown.Divider />
                             <Dropdown.Item as={Link} to="/BookDetailsForm">Books Details</Dropdown.Item>
                             <Dropdown.Divider />
-                            <Dropdown.Item as={Link} to="/viewBook">Example Book</Dropdown.Item>
-                            <Dropdown.Divider />
                             <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>

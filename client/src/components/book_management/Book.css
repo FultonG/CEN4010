@@ -36,6 +36,11 @@
     text-align: left;
     font-weight: bold;
   }
+
+  s {
+    text-align: left;
+    font-weight: bold;
+  }
   
   i {
     display: block;
@@ -53,4 +58,8 @@
   
   }
 
+  .rating-stars {
+    margin-left: 12px;
+    font-size: 18px;
+  }
   
