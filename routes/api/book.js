@@ -5,7 +5,7 @@ router.post("/getBooksByPage", (req, res) => {
     books.getBooksByPage(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
-router.get("/getBookByAuthor", (req, res) => {
+router.post("/getBookByAuthor", (req, res) => {
     books.getBookByAuthor(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
