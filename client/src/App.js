@@ -22,7 +22,6 @@ function App() {
             <NavbarComponent/>
             <Route path="/register" component={CreateAccountForm}/>
             <Route path="/CreateBookForm" component={CreateBookForm}/>
-            <Route path="/viewBook" component={ViewBook}/>
             <Route path="/BookDetailsForm" component={BookDetailsForm}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
         </Router>
