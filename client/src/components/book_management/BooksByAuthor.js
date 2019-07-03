@@ -5,29 +5,29 @@ import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
 import API from "../../utils/API";
 
-function BookDetailsForm(props) {
-    const [truebooks, setTrueBooks] = useState([]);
-    const [books, setBooks] = useState([]);
+function BooksByAuthor(props) {
+    const [trueAuthor, setTrueAuthor] = useState([]);
+    const [Authors, setAuthors] = useState([]);
     const [bookAuthor]  = useState(props.author);
-
+    
     useEffect(() => {
-        updatetruebooks();
+        updateTrueAuthor();
     }, []);
 
-    function updatetruebooks() {
-        console.log("Updating books");
-        API.getBooksByPage({page: 1})
+    function updateTrueAuthor() {
+        console.log("Updating Authors");
+        API.getBookByAuthor({author:bookAuthor, page: 1})
         .then(res => {
             console.log(res.data);
-            setTrueBooks(res.data);
-            setBooks(res.data);
+            setTrueAuthor(res.data);
+            setAuthors(res.data);
         })
         .catch(err => console.log(err));
     }
 
         return (
           <React.Fragment>  
-          {books.map((books, index) => (  
+          {Authors.map((books, index) => (  
               <ListGroup key={index}>
               <ListGroup.Item key={index}>
           <div className="card">
@@ -37,7 +37,7 @@ function BookDetailsForm(props) {
                   <img class="img" id="book-img" src={books.cover_url} alt="Book" />
                   <div className="book-info">
                     <h3> {books.title} </h3>
-                    <a href="<BooksByAuthor author={bookAuthor}/>">By {books.author}</a>
+                    <a href="url">By {books.author}</a>
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
                     <p> Genre: {books.genre} </p>
@@ -73,4 +73,4 @@ function BookDetailsForm(props) {
       
     }
 
-export default BookDetailsForm;
+export default BooksByAuthor;
