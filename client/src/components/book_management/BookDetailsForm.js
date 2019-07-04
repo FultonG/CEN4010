@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useState, useEffect} from "react";
+import {BrowserRouter as Router, Link, Route, Switch,  } from 'react-router-dom';
 import './Book.css';
 import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
@@ -9,6 +10,7 @@ function BookDetailsForm(props) {
     const [truebooks, setTrueBooks] = useState([]);
     const [books, setBooks] = useState([]);
     const [bookAuthor]  = useState(props.author);
+    console.log(bookAuthor)
 
     useEffect(() => {
         updatetruebooks();
@@ -34,10 +36,10 @@ function BookDetailsForm(props) {
           <div className="book">
               <div>
                  <div className="description">
-                  <img class="img" id="book-img" src={books.cover_url} alt="Book" />
+                 <img class="img" id="book-img" src={books.cover_url} alt="Book" />
                   <div className="book-info">
                     <h3> {books.title} </h3>
-                    <a href="<BooksByAuthor author={bookAuthor}/>">By {books.author}</a>
+                    <Link to={{pathname: '/BooksByAuthor', state: { author: books.author}}}>By {books.author}</Link>
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
                     <p> Genre: {books.genre} </p>

@@ -4,11 +4,14 @@ import './Book.css';
 import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
 import API from "../../utils/API";
+import {BrowserRouter as Router, Link, Route, Switch,  } from 'react-router-dom';
 
 function BooksByAuthor(props) {
     const [trueAuthor, setTrueAuthor] = useState([]);
     const [Authors, setAuthors] = useState([]);
     const [bookAuthor]  = useState(props.author);
+    console.log(props)
+
     
     useEffect(() => {
         updateTrueAuthor();
@@ -37,7 +40,7 @@ function BooksByAuthor(props) {
                   <img class="img" id="book-img" src={books.cover_url} alt="Book" />
                   <div className="book-info">
                     <h3> {books.title} </h3>
-                    <a href="url">By {books.author}</a>
+                    <p> By {books.author}</p>
                     <p> Publisher: {books.publisher} </p>
                     <p> Price: {books.price} </p>
                     <p> Genre: {books.genre} </p>
