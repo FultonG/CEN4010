@@ -59,23 +59,25 @@ function BooksByAuthor(props) {
                     </Button>
                   </div>
                   </section>
-                </div>
+                  </div>
                 <section>
                 <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
                     </div>
                 </section>
-              </div >
-              <div style={{paddingTop: "1%"}}>
-                    <p>Rate this book</p>
+              </div>
+              <div >
+                    <center>Rate this book</center> 
                     <div>
-                    <div style={{display: 'inline-block', position: 'relative'}} className="rating-stars">
+                    <center className="rating-stars">
                         <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
-                    </div>
-                    <p>Tell us what you think</p>
-                    <textarea rows="3" cols="50" ></textarea>  
+                    </center>
+                    <center>Tell us what you think</center> 
+                    <center>
+                     <textarea rows="3" cols="50" ></textarea>  
                     <div style={{paddingTop: "1%" }}>
                     <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                     </div>
+                    </center>
                     </div>
                 </div>     
             </div>
@@ -87,5 +89,6 @@ function BooksByAuthor(props) {
         );
       
     }
+
 
 export default BooksByAuthor;

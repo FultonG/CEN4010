@@ -14,10 +14,14 @@
     padding-right: 5em;
   }
   
-  h1, h2 {
+  h1 {
     margin: 0;
     padding-top: 1em;
     margin-bottom: 1em;
+    text-align: center;
+  }
+
+  h2 {
     text-align: center;
   }
 
@@ -30,6 +34,10 @@
 
   p {
     text-align: left;
+  }
+
+  #p1{
+    text-align: center;
   }
 
   b {
@@ -55,8 +63,9 @@
   }
 
   .rating-stars {
-    margin-left: 8px;
-    font-size: 18px;
+    margin-left: 0;
+    font-size:20px ;
+    width:92%;
   }
 
   
