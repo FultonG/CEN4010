@@ -4,6 +4,7 @@ import './Book.css';
 import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
 import API from "../../utils/API";
+import ModalImage from "react-modal-image";
 import {BrowserRouter as Router, Link, Route, Switch,  } from 'react-router-dom';
 
 function BooksByAuthor(props) {
@@ -37,7 +38,15 @@ function BooksByAuthor(props) {
           <div className="book">
               <div>
                  <div className="description">
-                  <img class="img" id="book-img" src={books.cover_url} alt="Book" />
+                 <section>  
+                 <ModalImage 
+                    small={books.cover_url}
+                    medium={books.cover_url}
+                    hideZoom={true}
+                    alt={books.title}
+                  />
+                 </section>
+                 <section>
                   <div className="book-info">
                     <h3> {books.title} </h3>
                     <p> By {books.author}</p>
@@ -49,9 +58,12 @@ function BooksByAuthor(props) {
                       Add to wishlist
                     </Button>
                   </div>
+                  </section>
                 </div>
+                <section>
                 <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
                     </div>
+                </section>
               </div >
               <div style={{paddingTop: "1%"}}>
                     <p>Rate this book</p>

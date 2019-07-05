@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Link, Route, Switch,  } from 'react-router-dom'
 import './Book.css';
 import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
+import ModalImage from "react-modal-image";
 import API from "../../utils/API";
 
 function BookDetailsForm(props) {
@@ -27,6 +28,7 @@ function BookDetailsForm(props) {
         .catch(err => console.log(err));
     }
 
+    
         return (
           <React.Fragment>  
           {books.map((books, index) => (  
@@ -34,9 +36,19 @@ function BookDetailsForm(props) {
               <ListGroup.Item key={index}>
           <div className="card">
           <div className="book">
-              <div>
+              <div >
                  <div className="description">
-                 <img class="img" id="book-img" src={books.cover_url} alt="Book" />
+                 <section>
+                   <div align="center">
+                 <ModalImage 
+                    small={books.cover_url}
+                    medium={books.cover_url}
+                    hideZoom={true}
+                    alt={books.title}
+                  />
+                    </div>
+                 </section>
+                 <section>
                   <div className="book-info">
                     <h3> {books.title} </h3>
                     <Link to={{pathname: '/BooksByAuthor', state: { author: books.author}}}>By {books.author}</Link>
@@ -48,10 +60,13 @@ function BookDetailsForm(props) {
                       Add to wishlist
                     </Button>
                   </div>
+                  </section>
                 </div>
+                <section>
                 <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
                     </div>
-              </div >
+                </section>
+              </div>
               <div style={{paddingTop: "1%"}}>
                     <p>Rate this book</p>
                     <div>

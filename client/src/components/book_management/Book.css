@@ -59,19 +59,41 @@
     font-size: 18px;
   }
 
-  .img:hover{
-  color: #424242; 
-  -webkit-transition: all .3s ease-in;
-  -moz-transition: all .3s ease-in;
-  -ms-transition: all .3s ease-in;
-  -o-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-  opacity: 1;
-  transform: scale(1.55);
-  -ms-transform: scale(1.55); /* IE 9 */
-  -webkit-transform: scale(1.55); /* Safari and Chrome */
+  
 
+/* Image */
+
+img {
+  width: 35%;
+  height: 80%;
+ 
+  
+}
+
+img:hover {
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, .9);
+  overflow: visible;
+}
+
+img:focus {
+  /** Default lightbox to hidden */
+  display: block;
+  /** Position and style */
+	position: fixed;
+	z-index: 999;
+	width: 40%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+  left: 0;
+  right: 25%;
+  bottom: 0;
+  background-color: rgb(41, 40, 40)
 }
 
 
-  
+
+
+
+
+
