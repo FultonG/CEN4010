@@ -45,12 +45,14 @@ class BooksByAuthor extends React.Component {
                                 <div>
                                     <div className="description">
                                         <section>
+                                          <div align="center">
                                             <ModalImage
                                                 small={books.cover_url}
                                                 medium={books.cover_url}
                                                 hideZoom={true}
                                                 alt={books.title}
                                             />
+                                          </div>
                                         </section>
                                         <section>
                                             <div className="book-info">
