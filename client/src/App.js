@@ -7,6 +7,7 @@ import Auth from "./utils/AuthService"
 import PrivateRoute from "./components/PrivateRoute";
 import CreateBookForm from "./components/book_management/CreateBookForm";
 import BookDetailsForm from "./components/book_management/BookDetailsForm";
+import BooksByAuthor from "./components/book_management/BooksByAuthor";
 import WishList from "./components/WishList/WishList";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <NavbarComponent wishList={wishList}/>
             <Route path="/register" component={CreateAccountForm}/>
             <Route path="/CreateBookForm" component={CreateBookForm}/>
+            <Route path="/BooksByAuthor" component={BooksByAuthor}/>
             <Route path="/BookDetailsForm" component={() => <BookDetailsForm wishListChange={handleWishListChange} ></BookDetailsForm>}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
             <PrivateRoute path="/WishList" component={() => <WishList userEmail={Auth.getProfile().username}/>}/>

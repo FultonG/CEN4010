@@ -1,13 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useState, useEffect} from "react";
+import {BrowserRouter as Router, Link, Route, Switch,  } from 'react-router-dom';
 import './Book.css';
 import {Card, Col, Button, ListGroup, ButtonGroup, Form} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
+import ModalImage from "react-modal-image";
 import API from "../../utils/API";
 
 function BookDetailsForm(props) {
     const [truebooks, setTrueBooks] = useState([]);
     const [books, setBooks] = useState([]);
+    const [bookAuthor]  = useState(props.author);
+    console.log(bookAuthor)
 
     useEffect(() => {
         updatetruebooks();
@@ -15,7 +19,7 @@ function BookDetailsForm(props) {
 
     function updatetruebooks() {
         console.log("Updating books");
-        API.getBooksByPage(1)
+        API.getBooksByPage({page: 1})
         .then(res => {
             console.log(res.data);
             setTrueBooks(res.data);
@@ -24,52 +28,69 @@ function BookDetailsForm(props) {
         .catch(err => console.log(err));
     }
 
+    
         return (
           <React.Fragment>  
-          {books.map((books, index) => (  
-              <ListGroup key={index}>
-              <ListGroup.Item key={index}>
-          <div className="card">
-          <div className="book">
-              <div>
-                 <div className="description">
-                  <img class="img" id="book-img" src={books.cover_url} alt="Book" />
-                  <div className="book-info">
-                    <h3> {books.title} </h3>
-                    <a href="url">By {books.author}</a>
-                    <p> Publisher: {books.publisher} </p>
-                    <p> Price: {books.price} </p>
-                    <p> Genre: {books.genre} </p>
-                    <p> Description: {books.description} </p>
-                    <Button variant="primary" size="sm" onClick={() => props.wishListChange(books)}>
-                      Add to wishlist
-                    </Button>
-                  </div>
-                </div>
-                <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
-                    </div>
-              </div >
-              <div style={{paddingTop: "1%"}}>
-                    <p>Rate this book</p>
-                    <div>
-                    <div style={{display: 'inline-block', position: 'relative'}} className="rating-stars">
-                        <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
-                    </div>
-                    <p>Tell us what you think</p>
-                    <textarea rows="3" cols="50" ></textarea>  
-                    <div style={{paddingTop: "1%" }}>
-                    <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
-                    </div>
-                    </div>
-                </div>     
-            </div>
-          </div>
-          </ListGroup.Item>
-          </ListGroup>
-          ))}
+            {books.map((books, index) => (  
+                <ListGroup key={index}>
+                    <ListGroup.Item key={index}>
+                        <div className="card">
+                           <div className="book">
+                              <div >
+                                <div className="description">
+                                    <section>
+                                      <div align="center">
+                                        <ModalImage 
+                                            small={books.cover_url}
+                                            medium={books.cover_url}
+                                            hideZoom={true}
+                                            alt={books.title}
+                                        />
+                                      </div>
+                                    </section>
+                                    <section>
+                                        <div className="book-info">
+                                          <h3> {books.title} </h3>
+                                          <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>By {books.author}</Link>
+                                          <p> Publisher: {books.publisher} </p>
+                                          <p> Price: {books.price} </p>
+                                          <p> Genre: {books.genre} </p>
+                                          <p> Description: {books.description} </p>
+                                          <Button variant="primary" size="sm"
+                                                  onClick={() => props.wishListChange(books)}>
+                                              Add to wishlist
+                                          </Button>
+                                        </div>
+                                    </section>
+                              </div>
+                              <section>
+                                  <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
+                                  </div>
+                              </section>
+                              </div>
+                              <div >
+                                  <center>Rate this book</center> 
+                                    <div>
+                                      <center className="rating-stars">
+                                        <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
+                                      </center>
+                                      <center>Tell us what you think</center> 
+                                      <center>
+                                        <textarea rows="3" cols="50" ></textarea>  
+                                          <div style={{paddingTop: "1%" }}>
+                                            <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
+                                          </div>
+                                      </center>
+                                    </div>
+                              </div>     
+                            </div>
+                          </div>
+                    </ListGroup.Item>
+               </ListGroup>
+            ))}
         </React.Fragment>   
-        );
+      );
       
-    }
+}
 
 export default BookDetailsForm;
