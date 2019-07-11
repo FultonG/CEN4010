@@ -30,7 +30,7 @@ function App() {
             <Route path="/register" component={CreateAccountForm}/>
             <Route path="/CreateBookForm" component={CreateBookForm}/>
             <Route path="/BooksByAuthor" component={BooksByAuthor}/>
-            <Route path="/BookDetailsForm" component={() => <BookDetailsForm wishListChange={handleWishListChange} ></BookDetailsForm>}/>
+            <Route path="/BookDetailsForm" component={() => <BookDetailsForm userEmail={Auth.getProfile().username} wishListChange={handleWishListChange} ></ BookDetailsForm>}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
             <PrivateRoute path="/WishList" component={() => <WishList userEmail={Auth.getProfile().username}/>}/>
         </Router>

@@ -8,13 +8,15 @@ import ModalImage from "react-modal-image";
 import API from "../../utils/API";
 
 function BookDetailsForm(props) {
+    const [email] = useState(props.userEmail);
     const [truebooks, setTrueBooks] = useState([]);
     const [books, setBooks] = useState([]);
     const [bookAuthor]  = useState(props.author);
+    const [reviewNickname, setReviewNickname] = useState(defaultReviewName);
     console.log(bookAuthor)
 
     useEffect(() => {
-        updatetruebooks();
+        updatetruebooks();   
     }, []);
 
     function updatetruebooks() {
@@ -28,7 +30,28 @@ function BookDetailsForm(props) {
         .catch(err => console.log(err));
     }
 
-    
+    function setReviewName(event) {
+        let ifChecked = event.currentTarget.checked;
+        API.getUser({email: email})
+        .then (res => {
+            if(ifChecked) {
+                setReviewNickname((res.data).nickname);
+            }
+            else {
+                setReviewNickname((res.data).first_name.concat(' ', (res.data).last_name));
+            }
+        })
+        .catch(err => console.log(err));
+    }
+
+    function defaultReviewName() {
+        API.getUser({email: email})
+        .then (res => {
+            setReviewNickname((res.data).first_name.concat(' ', (res.data).last_name));
+        })
+        .catch(err => console.log(err));
+    }
+
         return (
           <React.Fragment>  
             {books.map((books, index) => (  
@@ -68,20 +91,27 @@ function BookDetailsForm(props) {
                                   </div>
                               </section>
                               </div>
-                              <div >
-                                  <center>Rate this book</center> 
-                                    <div>
-                                      <center className="rating-stars">
+                              <div className="write-review">
+                                  <center>
+                                    <h5>Rate this book</h5>
+                                  </center> 
+                                  <div>
+                                     <center>
+                                        <Form.Check type={'checkbox'} label="Use Nickname?" onChange={setReviewName}/>
+                                     </center>
+                                     <center className="review-name"> How you will appear to other customers: </center>
+                                     <center className="review-name">{reviewNickname}</center>
+                                     <center className="rating-stars">
                                         <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
-                                      </center>
-                                      <center>Tell us what you think</center> 
-                                      <center>
-                                        <textarea rows="3" cols="50" ></textarea>  
-                                          <div style={{paddingTop: "1%" }}>
-                                            <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
-                                          </div>
-                                      </center>
-                                    </div>
+                                     </center>
+                                     <center>Tell us what you think</center> 
+                                     <center>
+                                       <textarea rows="3" cols="50" ></textarea>  
+                                         <div style={{paddingTop: "1%" }}>
+                                           <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
+                                         </div>
+                                     </center>
+                                  </div>
                               </div>     
                             </div>
                           </div>
