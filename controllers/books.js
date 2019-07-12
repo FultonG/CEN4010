@@ -58,9 +58,32 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 else {
                     cb(404, findError);
                 }
-        });
-    },
-
+             });
+         },
+        updateBookAverageRating: (id, cb) => {
+            const purchaseCollection = mongodbConnection.db().collection("Purchase");
+            const avgRating = purchaseCollection.find({ _id: new ObjectId(id) }).toArray((err, result) => {
+                if (!err) {
+                    const ratingSum = 0;
+                    
+                    result.forEach((rating) => {
+                        ratingSum += rating;
+                    });
+                    
+                    const avgRating = ratingSum / result.length;
+                    
+                    const bookCollection = mongodbConnection.db().collection("Book");
+                    bookCollection.updateOne({ _id: new ObjectId(id) },
+                        { $set: {"avg_rating", avgRating} }, function (err, result) {
+                            !err ? cb(200, result) : cb(500, err);
+                        });
+                }
+                else {
+                    console.log(err);
+                    cb(500, err);
+                }
+            });
+        },
     };
 
 module.exports = books;
