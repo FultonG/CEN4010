@@ -99,6 +99,6 @@ export default {
         return axios.post('/api/book/getBook', id);
     },
     updateBookAverageRating: function (id) {
-        return axios.post('/api/book/updateBookAverageRating');
+        return axios.post('/api/book/updateBookAverageRating', id);
     };
 };
