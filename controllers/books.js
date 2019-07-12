@@ -48,7 +48,19 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 { $set: data.updates }, function (err, result) {
                     !err ? cb(200, result) : cb(500, err);
                 });
-        }
+        },
+        getBook: (id, cb) => {
+            const collection = mongodbConnection.db().collection("User");
+            collection.findOne({ _id: new ObjectId(id) }, (findError, findResult) => {
+                if (findResult) {
+                    cb(200, findResult);
+                }
+                else {
+                    cb(404, findError);
+                }
+        });
+    },
+
     };
 
 module.exports = books;
