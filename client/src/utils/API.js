@@ -97,5 +97,8 @@ export default {
     },
     getBook: function (id) {
         return axios.post('/api/book/getBook', id);
-    }
+    },
+    updateBookAverageRating: function (id) {
+        return axios.post('/api/book/updateBookAverageRating');
+    };
 };
