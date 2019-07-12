@@ -100,5 +100,8 @@ export default {
     },
     updateBookAverageRating: function (id) {
         return axios.post('/api/book/updateBookAverageRating', id);
+    },
+    addPurchase: function (userEmail, bookId) {
+        return axios.post('/api/purchase/addPurchase', {userEmail: userEmail, bookId: bookId});
     }
 };
