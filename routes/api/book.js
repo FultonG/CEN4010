@@ -21,6 +21,10 @@ router.post("/updateBook", (req, res) => {
     books.updateBook(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
+router.post("/updateBookAverageRating", (req, res) => {
+    books.updateBookAverageRating(req.body, (status, data = "ok") => res.status(status).send(data));
+});
+
 router.post("/deleteBook", (req, res) => {
     books.deleteBook(req.body, (status, data = "ok") => res.status(status).send(data));
 });
