@@ -74,7 +74,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                     
                     const bookCollection = mongodbConnection.db().collection("Book");
                     bookCollection.updateOne({ _id: new ObjectId(id) },
-                        { $set: {"avg_rating", avgRating} }, function (err, result) {
+                        { $set: {"avg_rating": avgRating} }, function (err, result) {
                             !err ? cb(200, result) : cb(500, err);
                         });
                 }
