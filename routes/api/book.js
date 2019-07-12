@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const books = require("../../controllers/books.js");
 
+router.post("/getBook", (req, res) => {
+    books.getBooks(req.body,(status, data = "ok") => res.status(status).send(data));
+});
+
 router.post("/getBooksByPage", (req, res) => {
     books.getBooksByPage(req.body,(status, data = "ok") => res.status(status).send(data));
 });
@@ -15,6 +19,10 @@ router.post("/createBook", (req, res) => {
 
 router.post("/updateBook", (req, res) => {
     books.updateBook(req.body, (status, data = "ok") => res.status(status).send(data));
+});
+
+router.post("/updateBookAverageRating", (req, res) => {
+    books.updateBookAverageRating(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
 router.post("/deleteBook", (req, res) => {

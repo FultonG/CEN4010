@@ -94,5 +94,42 @@ export default {
         return axios.post('/api/wishlist', data, {headers: {
             'x-access-token': token
         }});
-    }
+    },
+    getBook: function (id) {
+        return axios.post('/api/book/getBook', id);
+    },
+    updateBookAverageRating: function (id) {
+        return axios.post('/api/book/updateBookAverageRating', id);
+    },
+    addPurchase: function (userEmail, bookId, quantity) {
+        return axios.post('/api/purchase/addPurchase', {user_email: userEmail, book_id: bookId, quantity: quantity});
+    },
+    updateRating: function (userEmail, bookId, rating) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"rating": rating}}
+                          });
+    },
+    updateComment: function (userEmail, bookId, comment) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"comment": comment}}
+                          });
+    },
+   updateNickname: function (userEmail, bookId, nickname) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"nickname": nickname}}
+                          });
+    },
+   updateQuantity: function (userEmail, bookId, quantity) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"quantity": quantity}}
+                          });
+    },
 };
