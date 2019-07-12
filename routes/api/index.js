@@ -4,7 +4,7 @@ const authRoute = require('./auth');
 const bookRoute = require('./book');
 const usersRoute = require('./user');
 const wishList = require('./wishlist');
-const purchaseRoute = requre('./purchase');
+const purchaseRoute = require('./purchase');
 
 router.use('/auth', authRoute);
 router.use("/book", bookRoute);
