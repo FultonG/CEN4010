@@ -94,5 +94,8 @@ export default {
         return axios.post('/api/wishlist', data, {headers: {
             'x-access-token': token
         }});
+    },
+    getBook: function (id) {
+        return axios.post('/api/book/getBook', id);
     }
 };
