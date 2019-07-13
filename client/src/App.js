@@ -9,6 +9,7 @@ import CreateBookForm from "./components/book_management/CreateBookForm";
 import BookDetailsForm from "./components/book_management/BookDetailsForm";
 import BooksByAuthor from "./components/book_management/BooksByAuthor";
 import WishList from "./components/WishList/WishList";
+import API from "./utils/API";
 
 function App() {
     // Null until we make the default page.
@@ -20,7 +21,7 @@ function App() {
     }
 
     function handleWishListChange(book){
-        console.log(book);
+        API.addBookToWishList(Auth.getProfile().username, 1, book).then(res=> console.log(res)).catch(err => console.log(err))
         setWishList([...wishList, book]);
     }
 

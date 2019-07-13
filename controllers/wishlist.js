@@ -1,4 +1,5 @@
 const mongodbConnection = require("../dbconfig/connection.js");
+const {ObjectId} = require('mongodb');
 
 const wishlist = {
     getWishLists: (primaryKey, cb) => {
@@ -26,6 +27,18 @@ const wishlist = {
     removeWishlist: (primaryKeys, cb) => {
         const collection = mongodbConnection.db().collection("WishList");
         collection.removeOne(primaryKeys, (removeError, removeResult) => {
+            if (!removeError) {
+                cb(200, removeResult);
+            } else {
+                console.log(removeError);
+                cb(500, removeError);
+            }
+        });
+    },
+    removeBookFromWishlist: (data, cb) => {
+        console.log("what", data.email);
+        const collection = mongodbConnection.db().collection("WishList");
+        collection.updateOne({email: data.email, wishListId: data.wishListId}, {$pull: {books: data.book}}, (removeError, removeResult) => {
             if (!removeError) {
                 cb(200, removeResult);
             } else {
