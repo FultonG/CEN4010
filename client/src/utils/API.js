@@ -89,11 +89,40 @@ export default {
     getBooksByPage: function (data) {
         return axios.post('/api/book/getBooksByPage', data);
     },
-    getWishLists: function (data) {
+    getWishLists: function (userEmail) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/wishlist', data, {headers: {
+        return axios.post('/api/wishlist', userEmail, {headers: {
             'x-access-token': token
         }});
+    },
+    renameWishlist: function (userEmail, wishlistName, newWishlistName) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/renameWishlist', {primaryKeys: {user_email: userEmail, name: wishlistName},
+            updates: {$set: {name: newWishlistName}}}, {headers: {
+                'x-access-token': token
+            }});
+    },
+    addWishList: function (userEmail, wishlistName, wishlistBooks) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/addWishlist', {user_email: userEmail, name: wishlistName, books: wishlistBooks }, {headers: {
+                'x-access-token': token
+            }});
+    },
+    addBookToWishList: function (userEmail, wishlistName, bookToAdd) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/addToWishList', {primaryKeys: {user_email: userEmail, name: wishlistName},
+            book: bookToAdd}, {headers: {
+                'x-access-token': token
+            }});
+    },
+    removeWishlist: function (userEmail, wishlistName) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/removeWishlist', {user_email: userEmail, name: wishlistName}, {headers: {
+                'x-access-token': token
+            }});
+    },
+    removeBookFromWishlist: function () {
+        // TODO(fulton): this
     },
     getBook: function (id) {
         return axios.post('/api/book/getBook', id);
