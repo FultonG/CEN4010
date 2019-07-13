@@ -138,4 +138,17 @@ export default {
             updates: {$set: {"quantity": quantity}}
                           });
     },
+    addToCart: function (userEmail, bookId, quantity) {
+          return axios.post('/api/purchase/addToCart', {user_email: userEmail, book_id: bookId, quantity: quantity});
+    },
+    updateCartBookQuantiy: function (userEmail, bookId, quantity) {
+                return axios.post('/api/purchase/updateCartBookQuantiy', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"quantity": quantity}}
+                          });
+    },
+    removeFromCart: function (userEmauk, bookId) {
+        return axios.post('/api/purchase/removeFromCart', {user_email: userEmail, book_id: bookId});
+    }
 };
