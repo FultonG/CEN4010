@@ -3,7 +3,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
     purchase = {
         addPurchase: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.insertOne({user_email: data.user_email, book_id: new ObjectId(data.book_id), quantity: data.quantity}, function (err, result) {
+            collection.insertOne(data, function (err, result) {
                 if (!err) {
                     cb(200, result )
                 } else {
@@ -12,9 +12,9 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 }
             });
         },
-        getPurchase: (primaryKeys, cb) => {
+        getPurchase: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.findOne(primaryKeys, function (err, result) {
+            collection.findOne({user_email: data.email, book_id: data._id}, function (err, result) {
                 if (!err) {
                     cb(200, result )
                 } else {
@@ -25,9 +25,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
         },
         getPurchases: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-
-            const primaryKey = 'book_id' in data ? {book_id : new ObjectId(data.book_id)} : data;
-            collection.find(primaryKey).toArray( (findError, findResult) => {
+            collection.find({user_email: data.email, book_id: data._id}).toArray( (findError, findResult) => {
                 if (findResult) {
                     cb(200, findResult);
                 }
@@ -39,8 +37,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
         },
         updatePurchase: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.updateOne(
-                { user_email: data.primaryKeys.user_email, book_id: new ObjectId(data.primaryKeys.book_id) },
+            collection.updateOne({ _id: new ObjectId(data.primaryKeys) },
                 { $set: data.updates }, function (err, result) {
                     !err ? cb(200, result) : cb(500, err);
                 });
