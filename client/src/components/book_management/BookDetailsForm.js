@@ -12,6 +12,7 @@ function BookDetailsForm(props) {
     const [truebooks, setTrueBooks] = useState([]);
     const [books, setBooks] = useState([]);
     const [bookAuthor]  = useState(props.author);
+    const [ifPurchased, setIfPurchased] = useState(false);
     const [reviewNickname, setReviewNickname] = useState(defaultReviewName);
     console.log(bookAuthor)
 
@@ -108,7 +109,7 @@ function BookDetailsForm(props) {
                                      <center>
                                        <textarea rows="3" cols="50" ></textarea>  
                                          <div style={{paddingTop: "1%" }}>
-                                           <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
+                                           <Button variant="primary" disabled={!ifPurchased} size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                                          </div>
                                      </center>
                                   </div>
