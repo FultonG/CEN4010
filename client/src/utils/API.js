@@ -141,8 +141,8 @@ export default {
     addToCart: function (userEmail, bookId, quantity) {
           return axios.post('/api/cart/addToCart', {user_email: userEmail, book_id: bookId, quantity: quantity});
     },
-    updateCartBookQuantiy: function (userEmail, bookId, quantity) {
-                return axios.post('/api/cart/updateCartBookQuantiy', 
+    updateCartBookQuantity: function (userEmail, bookId, quantity) {
+                return axios.post('/api/cart/updateCart',
                           {
             primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
             updates: {$set: {"quantity": quantity}}
