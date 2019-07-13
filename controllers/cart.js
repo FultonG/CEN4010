@@ -14,7 +14,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
         },
         removeFromCart: (data, cb) => {
           const collection = mongodbConnection.db().collection("ShoppingCart");
-          collection.deleteOne(data, (deleteError, deleteResult) => {
+          collection.deleteOne({user_email: data.user_email, book_id: new ObjectId(data.book_id)}, (deleteError, deleteResult) => {
             if (!deleteError) {
                 cb(200, deleteResult);
             } else {
