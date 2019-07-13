@@ -104,6 +104,12 @@ export default {
     addPurchase: function (userEmail, bookId, quantity) {
         return axios.post('/api/purchase/addPurchase', {user_email: userEmail, book_id: bookId, quantity: quantity});
     },
+    getPurchase: function (userEmail, bookId) {
+        return axios.post('/api/purchase/getPurchase', {user_email: userEmail, book_id: bookId});
+    },
+    getPurchases: function (userEmail, bookId) {
+        return axios.post('/api/purchase/getPurchases', {user_email: userEmail, book_id: bookId});
+    },
     updateRating: function (userEmail, bookId, rating) {
         return axios.post('/api/purchase/updatePurchase', 
                           {
@@ -132,4 +138,20 @@ export default {
             updates: {$set: {"quantity": quantity}}
                           });
     },
+    addToCart: function (userEmail, bookId, quantity) {
+          return axios.post('/api/cart/addToCart', {user_email: userEmail, book_id: bookId, quantity: quantity});
+    },
+    updateCartBookQuantiy: function (userEmail, bookId, quantity) {
+                return axios.post('/api/cart/updateCartBookQuantiy', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"quantity": quantity}}
+                          });
+    },
+    removeFromCart: function (userEmail, bookId) {
+        return axios.post('/api/cart/removeFromCart', {user_email: userEmail, book_id: bookId});
+    },
+    getCartForUser: function (userEmail) {
+        return axios.post('/api/cart/getCartForUser', userEmail);
+    }
 };

@@ -12,6 +12,29 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 }
             });
         },
+        getPurchase: (data, cb) => {
+            const collection = mongodbConnection.db().collection("Purchase");
+            collection.findOne({user_email: data.email, book_id: data._id}, function (err, result) {
+                if (!err) {
+                    cb(200, result )
+                } else {
+                    console.log(err);
+                    cb(500, err);
+                }
+            });
+        },
+        getPurchases: (data, cb) => {
+            const collection = mongodbConnection.db().collection("Purchase");
+            collection.find({user_email: data.email, book_id: data._id}).toArray( (findError, findResult) => {
+                if (findResult) {
+                    cb(200, findResult);
+                }
+                else {
+                    console.log(err);
+                    cb(404, findError);
+                }
+            });
+        },
         updatePurchase: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
             collection.updateOne({ _id: new ObjectId(data.primaryKeys) },
