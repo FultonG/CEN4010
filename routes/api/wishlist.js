@@ -17,8 +17,9 @@ router.post("/renameWishlist", (req, res) => {
     wishlist.renameWishlist(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
-// TODO(fulton): Remove book from wishlist.
-
+router.post("/removeBookFromWishlist", (req, res) =>{
+    wishlist.removeBookFromWishlist(req.body, (status, data = "ok") => res.status(status).send(data));
+});
 router.post("/", (req, res) => {
     wishlist.getWishLists(req.body, (status, data = "ok") => res.status(status).send(data));
 });

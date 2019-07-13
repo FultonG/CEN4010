@@ -43,7 +43,7 @@ const NavbarComponent = (props) => {
                     <b>Hello! {AuthService.getProfile().username}</b>
                     </Nav>
                     <Nav className="mr-2">
-                    {props.wishList.length > 0 ? <Link to="/WishList"><Button variant="light">Wishlist ({props.wishList.length})</Button></Link> : null}
+                    {props.wishList.length > 0 ? <Link to="/WishList"><Button variant="light">Recently Added to Wishlist ({props.wishList.length})</Button></Link> : null}
                 </Nav>
                 </React.Fragment>}
         </Navbar>
