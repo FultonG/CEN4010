@@ -97,11 +97,11 @@ function BookDetailsForm(props) {
                                     <h5>Rate this book</h5>
                                   </center> 
                                   <div>
+                                     <center className="review-name"> How you will appear to other customers: </center>
+                                     <center className="review-name">{reviewNickname}</center>
                                      <center>
                                         <Form.Check type={'checkbox'} label="Use Nickname?" onChange={setReviewName}/>
                                      </center>
-                                     <center className="review-name"> How you will appear to other customers: </center>
-                                     <center className="review-name">{reviewNickname}</center>
                                      <center className="rating-stars">
                                         <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
                                      </center>
