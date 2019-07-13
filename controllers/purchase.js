@@ -14,7 +14,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
         },
         getPurchase: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.findOne({user_email: email, book_id: data._id}, function (err, result) {
+            collection.findOne({user_email: data.email, book_id: data._id}, function (err, result) {
                 if (!err) {
                     cb(200, result )
                 } else {
@@ -25,7 +25,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
         },
         getPurchases: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.find({user_email: email, book_id: data._id}).toArray( (findError, findResult) => {
+            collection.find({user_email: data.email, book_id: data._id}).toArray( (findError, findResult) => {
                 if (findResult) {
                     cb(200, findResult);
                 }
