@@ -104,11 +104,14 @@ export default {
     addPurchase: function (userEmail, bookId, quantity) {
         return axios.post('/api/purchase/addPurchase', {user_email: userEmail, book_id: bookId, quantity: quantity});
     },
-    getPurchase: function (userEmail, bookId) {
+    getBookPurchaseForUser: function (userEmail, bookId) {
         return axios.post('/api/purchase/getPurchase', {user_email: userEmail, book_id: bookId});
     },
-    getPurchases: function (userEmail, bookId) {
-        return axios.post('/api/purchase/getPurchases', {user_email: userEmail, book_id: bookId});
+    getPurchasesByUser: function (userEmail) {
+        return axios.post('/api/purchase/getPurchases', {user_email: userEmail});
+    },
+    getPurchasesByBook: function (bookId) {
+        return axios.post('/api/purchase/getPurchases', {book_id: bookId});
     },
     updateRating: function (userEmail, bookId, rating) {
         return axios.post('/api/purchase/updatePurchase', 
