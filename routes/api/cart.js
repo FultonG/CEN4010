@@ -14,7 +14,7 @@ router.post("/removeFromCart", (req, res) => {
 });
 
 router.post("/getCartForUser", (req, res) => {
-    cart.geetCartForUser(req.body,(status, data = "ok") => res.status(status).send(data));
+    cart.getCartForUser(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
 module.exports = router;
