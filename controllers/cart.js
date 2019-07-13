@@ -21,6 +21,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 console.log(deleteError);
                 cb(500, deleteError);
             }
+          });
         },
         getCartForUser: (email, cb) => {
             const collection = mongodbConnection.db().collection("ShoppingCart");
@@ -34,7 +35,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 }
             });
         },
-        updateCartBookQuantiy: (data, cb) => {
+        updateCart: (data, cb) => {
             const collection = mongodbConnection.db().collection("ShoppingCart");
             collection.updateOne(data.primaryKeys, data.updates, function (err, result) {
                     !err ? cb(200, result) : cb(500, err);

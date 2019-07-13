@@ -5,8 +5,8 @@ router.post("/addToCart", (req, res) => {
     cart.addToCart(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
-router.post("/updateCartBookQuantiy", (req, res) => {
-    cart.updateCartBookQuantiy(req.body,(status, data = "ok") => res.status(status).send(data));
+router.post("/updateCart", (req, res) => {
+    cart.updateCart(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
 router.post("/removeFromCart", (req, res) => {

@@ -69,27 +69,6 @@ class BooksByAuthor extends React.Component {
                                             </div>
                                         </section>
                                     </div>
-                                    <section>
-                                        <div className="Author_Biography">Author biography:<p> {books.author_bio} </p>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div>
-                                    <center>Rate this book</center>
-                                    <div>
-                                        <center className="rating-stars">
-                                            <StarRatingComponent name={"Rate this book"}
-                                                                 starCount={5}></StarRatingComponent>
-                                        </center>
-                                        <center>Tell us what you think</center>
-                                        <center>
-                                            <textarea rows="3" cols="50"></textarea>
-                                            <div style={{paddingTop: "1%"}}>
-                                                <Button variant="primary" size="sm"
-                                                        type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
-                                            </div>
-                                        </center>
-                                    </div>
                                 </div>
                             </div>
                         </div>

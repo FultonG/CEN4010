@@ -12,6 +12,7 @@ function BookDetailsForm(props) {
     const [truebooks, setTrueBooks] = useState([]);
     const [books, setBooks] = useState([]);
     const [bookAuthor]  = useState(props.author);
+    const [bookID]  = useState(props.book_id);
     const [ifPurchased, setIfPurchased] = useState(false);
     const [reviewNickname, setReviewNickname] = useState(defaultReviewName);
     console.log(bookAuthor)
@@ -79,6 +80,7 @@ function BookDetailsForm(props) {
                                           <p> Publisher: {books.publisher} </p>
                                           <p> Price: {books.price} </p>
                                           <p> Genre: {books.genre} </p>
+                                          <p> Rating: (average rating go here!...) </p>
                                           <p> Description: {books.description} </p>
                                           <Button variant="primary" size="sm"
                                                   onClick={() => props.wishListChange(books)}>
@@ -97,11 +99,11 @@ function BookDetailsForm(props) {
                                     <h5>Rate this book</h5>
                                   </center> 
                                   <div>
+                                     <center className="review-name"> How you will appear to other customers: </center>
+                                     <center className="review-name">{reviewNickname}</center>
                                      <center>
                                         <Form.Check type={'checkbox'} label="Use Nickname?" onChange={setReviewName}/>
                                      </center>
-                                     <center className="review-name"> How you will appear to other customers: </center>
-                                     <center className="review-name">{reviewNickname}</center>
                                      <center className="rating-stars">
                                         <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
                                      </center>
