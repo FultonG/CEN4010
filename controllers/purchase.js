@@ -3,7 +3,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
     purchase = {
         addPurchase: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.insertOne(data, function (err, result) {
+            collection.insertOne({user_email: data.user_email, book_id: new ObjectId(data.book_id), quantity: data.quantity}, function (err, result) {
                 if (!err) {
                     cb(200, result )
                 } else {
@@ -23,8 +23,10 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 }
             });
         },
-        getPurchases: (primaryKey, cb) => {
+        getPurchases: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
+
+            const primaryKey = 'book_id' in data ? {book_id : new ObjectId(data.book_id)} : data;
             collection.find(primaryKey).toArray( (findError, findResult) => {
                 if (findResult) {
                     cb(200, findResult);
