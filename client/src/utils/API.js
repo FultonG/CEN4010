@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default {
-    // Gets all Campaign names
     login: function (data) {
         return axios.post('/api/auth', data);
     },
@@ -73,5 +72,117 @@ export default {
         return axios.post('/api/profile_management/updateCreditCard', data, {headers: {
                 'x-access-token': token
             }});
+    },
+    createBook: function (data) {
+        return axios.post('/api/book/createBook', data);
+    },
+    deleteBook: function (data) {
+        return axios.post('/api/book/deleteBook', data);
+    },
+    getBookByAuthor: function (data) {
+        return axios.post('/api/book/getBookByAuthor', data);
+    },
+    updateBook: function (data) {
+        return axios.post('/api/book/updateBook', data);
+    },
+    getBooksByPage: function (data) {
+        return axios.post('/api/book/getBooksByPage', data);
+    },
+    getWishLists: function (userEmail) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist', userEmail, {headers: {
+            'x-access-token': token
+        }});
+    },
+    renameWishlist: function (userEmail, wishListId, newWishlistName) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/renameWishlist', {primaryKeys: {email: userEmail, wishListId},
+            updates: {$set: {name: newWishlistName}}}, {headers: {
+                'x-access-token': token
+            }});
+    },
+    addWishList: function (userEmail, wishListId, wishlistBooks) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/addWishlist', {email: userEmail, wishListId, books: wishlistBooks }, {headers: {
+                'x-access-token': token
+            }});
+    },
+    addBookToWishList: function (userEmail, wishListId, bookToAdd) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/addBookToWishlist', {primaryKeys: {email: userEmail, wishListId},
+            book: bookToAdd}, {headers: {
+                'x-access-token': token
+            }});
+    },
+    removeWishlist: function (userEmail, wishListId) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/removeWishlist', {email: userEmail, wishListId}, {headers: {
+                'x-access-token': token
+            }});
+    },
+    removeBookFromWishlist: function (email, wishListId, book) {
+        let token = localStorage.getItem("auth_token");
+        return axios.post('/api/wishlist/removeBookFromWishlist', {email, wishListId, book}, {headers: {
+                'x-access-token': token
+            }});
+    },
+    getBook: function (id) {
+        return axios.post('/api/book/getBook', id);
+    },
+    updateBookAverageRating: function (id) {
+        return axios.post('/api/book/updateBookAverageRating', id);
+    },
+    addPurchase: function (userEmail, bookId, quantity) {
+        return axios.post('/api/purchase/addPurchase', {user_email: userEmail, book_id: bookId, quantity: quantity});
+    },
+    getPurchase: function (userEmail, bookId) {
+        return axios.post('/api/purchase/getPurchase', {user_email: userEmail, book_id: bookId});
+    },
+    getPurchases: function (userEmail, bookId) {
+        return axios.post('/api/purchase/getPurchases', {user_email: userEmail, book_id: bookId});
+    },
+    updateRating: function (userEmail, bookId, rating) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"rating": rating}}
+                          });
+    },
+    updateComment: function (userEmail, bookId, comment) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"comment": comment}}
+                          });
+    },
+   updateNickname: function (userEmail, bookId, nickname) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"nickname": nickname}}
+                          });
+    },
+   updateQuantity: function (userEmail, bookId, quantity) {
+        return axios.post('/api/purchase/updatePurchase', 
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"quantity": quantity}}
+                          });
+    },
+    addToCart: function (userEmail, bookId, quantity) {
+          return axios.post('/api/cart/addToCart', {user_email: userEmail, book_id: bookId, quantity: quantity});
+    },
+    updateCartBookQuantity: function (userEmail, bookId, quantity) {
+                return axios.post('/api/cart/updateCart',
+                          {
+            primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
+            updates: {$set: {"quantity": quantity}}
+                          });
+    },
+    removeFromCart: function (userEmail, bookId) {
+        return axios.post('/api/cart/removeFromCart', {user_email: userEmail, book_id: bookId});
+    },
+    getCartForUser: function (userEmail) {
+        return axios.post('/api/cart/getCartForUser', userEmail);
     }
 };

@@ -111,6 +111,7 @@ function EditALL(props) {
             <button className="btn btn-primary float-right" type="submit">Save Changes</button>
           </form>
         </div>
+        
       </div>
     );
 }
