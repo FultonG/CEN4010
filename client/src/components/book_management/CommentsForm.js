@@ -6,9 +6,17 @@ function CommentsForm(props) {
     
     return (
         <Container>
-            <Row>
-                comments go here!
-            </Row>
+              <div class="card">
+                <div class="card-header">
+                  nickname
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <p>Comments go here!...</p>
+                    <footer class="blockquote-footer">rating number here</footer>
+                  </blockquote>
+                </div>
+              </div>
         </Container>
     )
 }
