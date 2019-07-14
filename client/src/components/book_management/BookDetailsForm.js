@@ -18,7 +18,7 @@ function BookDetailsForm(props) {
     console.log(bookAuthor)
 
     useEffect(() => {
-        updatetruebooks();   
+        updatetruebooks();
     }, []);
 
     function updatetruebooks() {
@@ -55,8 +55,8 @@ function BookDetailsForm(props) {
     }
 
         return (
-          <React.Fragment>  
-            {books.map((books, index) => (  
+          <React.Fragment>
+            {books.map((books, index) => (
                 <ListGroup key={index}>
                     <ListGroup.Item key={index}>
                         <div className="card">
@@ -65,7 +65,7 @@ function BookDetailsForm(props) {
                                 <div className="description">
                                     <section>
                                       <div align="center">
-                                        <ModalImage 
+                                        <ModalImage
                                             small={books.cover_url}
                                             medium={books.cover_url}
                                             hideZoom={true}
@@ -86,6 +86,9 @@ function BookDetailsForm(props) {
                                                   onClick={() => props.wishListChange(books)}>
                                               Add to wishlist
                                           </Button>
+                                          <Button variant="primary" size="sm">
+                                              Shopping Cart
+                                          </Button>
                                         </div>
                                     </section>
                               </div>
@@ -97,7 +100,7 @@ function BookDetailsForm(props) {
                               <div className="write-review">
                                   <center>
                                     <h5>Rate this book</h5>
-                                  </center> 
+                                  </center>
                                   <div>
                                      <center className="review-name"> How you will appear to other customers: </center>
                                      <center className="review-name">{reviewNickname}</center>
@@ -107,23 +110,22 @@ function BookDetailsForm(props) {
                                      <center className="rating-stars">
                                         <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
                                      </center>
-                                     <center>Tell us what you think</center> 
+                                     <center>Tell us what you think</center>
                                      <center>
-                                       <textarea rows="3" cols="50" ></textarea>  
+                                       <textarea rows="3" cols="50" ></textarea>
                                          <div style={{paddingTop: "1%" }}>
                                            <Button variant="primary" disabled={!ifPurchased} size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                                          </div>
                                      </center>
                                   </div>
-                              </div>     
+                              </div>
                             </div>
                           </div>
                     </ListGroup.Item>
                </ListGroup>
             ))}
-        </React.Fragment>   
+        </React.Fragment>
       );
-      
 }
 
 export default BookDetailsForm;
