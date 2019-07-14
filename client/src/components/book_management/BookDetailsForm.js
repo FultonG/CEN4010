@@ -111,7 +111,10 @@ function BookDetailsForm(props) {
                                      <center>
                                        <textarea rows="3" cols="50" ></textarea>  
                                          <div style={{paddingTop: "1%" }}>
-                                           <Button variant="primary" disabled={!ifPurchased} size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
+                                           <Button variant="primary" disabled={!ifPurchased} size="sm" type="submit">&nbsp;&nbsp;Submit comment&nbsp;&nbsp;</Button>
+                                         </div>
+                                         <div style={{paddingTop: "1%" }}>
+                                         <Link to={{pathname: '/CommentsForm'}}>Show all Comments</Link>
                                          </div>
                                      </center>
                                   </div>
