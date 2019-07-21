@@ -43,8 +43,9 @@ const mongodbConnection = require("../dbconfig/connection.js"),
             });
         },
         getBook: (id, cb) => {
-            const collection = mongodbConnection.db().collection("User");
-            collection.findOne({ _id: new ObjectId(id) }, (findError, findResult) => {
+            const collection = mongodbConnection.db().collection("Book");
+            let myID = new ObjectId(id._id);
+            collection.findOne({ _id: myID }, (findError, findResult) => {
                 if (findResult) {
                     cb(200, findResult);
                 }
@@ -52,6 +53,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                     cb(404, findError);
                 }
              });
+             
          },
         updateBookAverageRating: (id, cb) => {
             const purchaseCollection = mongodbConnection.db().collection("Purchase");
