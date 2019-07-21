@@ -2,7 +2,7 @@ const router = require('express').Router();
 const books = require("../../controllers/books.js");
 
 router.post("/getBook", (req, res) => {
-    books.getBooks(req.body,(status, data = "ok") => res.status(status).send(data));
+    books.getBook(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
 router.post("/getBooksByPage", (req, res) => {
