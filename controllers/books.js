@@ -42,13 +42,6 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 !err ? cb(200, result) : cb(500, err);
             });
         },
-        updateBook: (data, cb) => {
-            const collection = mongodbConnection.db().collection("Book");
-            collection.updateOne({ _id: new ObjectId(data.primaryKeys) },
-                { $set: data.updates }, function (err, result) {
-                    !err ? cb(200, result) : cb(500, err);
-                });
-        },
         getBook: (id, cb) => {
             const collection = mongodbConnection.db().collection("User");
             collection.findOne({ _id: new ObjectId(id) }, (findError, findResult) => {
