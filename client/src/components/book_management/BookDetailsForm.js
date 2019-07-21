@@ -55,7 +55,7 @@ function BookDetailsForm(props) {
                                           <h3> {books.title} </h3>
                                           <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>By {books.author}</Link>
                                           <p> Publisher: {books.publisher} </p>
-                                          <p> Price: {email} </p>
+                                          <p> Price: {books.price} </p>
                                           <p> Genre: {books.genre} </p>
                                           <p> Rating: (average rating go here!...) </p>
                                           <p> Description: {books.description} </p>
