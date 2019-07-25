@@ -62,10 +62,6 @@ class BooksByAuthor extends React.Component {
                                                 <p> Price: {books.price} </p>
                                                 <p> Genre: {books.genre} </p>
                                                 <p> Description: {books.description} </p>
-                                                <Button variant="primary" size="sm"
-                                                        onClick={() => {}}>
-                                                    Add to wishlist
-                                                </Button>
                                             </div>
                                         </section>
                                     </div>

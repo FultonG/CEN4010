@@ -2,7 +2,7 @@ const router = require('express').Router();
 const books = require("../../controllers/books.js");
 
 router.post("/getBook", (req, res) => {
-    books.getBooks(req.body,(status, data = "ok") => res.status(status).send(data));
+    books.getBook(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
 router.post("/getBooksByPage", (req, res) => {
@@ -15,10 +15,6 @@ router.post("/getBookByAuthor", (req, res) => {
 
 router.post("/createBook", (req, res) => {
     books.createBook(req.body, (status, data = "ok") => res.status(status).send(data));
-});
-
-router.post("/updateBook", (req, res) => {
-    books.updateBook(req.body, (status, data = "ok") => res.status(status).send(data));
 });
 
 router.post("/updateBookAverageRating", (req, res) => {

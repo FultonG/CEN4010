@@ -7,7 +7,9 @@ import Auth from "./utils/AuthService"
 import PrivateRoute from "./components/PrivateRoute";
 import CreateBookForm from "./components/book_management/CreateBookForm";
 import BookDetailsForm from "./components/book_management/BookDetailsForm";
+import MoreBookDetails from "./components/book_management/MoreBookDetails";
 import BooksByAuthor from "./components/book_management/BooksByAuthor";
+import CommentsForm from "./components/book_management/CommentsForm";
 import WishList from "./components/WishList/WishList";
 import cart from "./components/ShoppingCart/cart";
 import API from "./utils/API";
@@ -33,7 +35,9 @@ function App() {
             <Route path="/CreateBookForm" component={CreateBookForm}/>
             <Route path="/BooksByAuthor" component={BooksByAuthor}/>
             <Route path="/cart" component={cart}/>
+            <Route path="/CommentsForm" component={CommentsForm}/>
             <Route path="/BookDetailsForm" component={() => <BookDetailsForm userEmail={Auth.getProfile().username} wishListChange={handleWishListChange} ></ BookDetailsForm>}/>
+            <Route path="/MoreBookDetails" component={MoreBookDetails}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
             <PrivateRoute path="/WishList" component={() => <WishList userEmail={Auth.getProfile().username}/>}/>
         </Router>
