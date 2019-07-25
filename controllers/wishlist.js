@@ -36,6 +36,7 @@ const wishlist = {
         });
     },
     removeBookFromWishlist: (data, cb) => {
+        console.log("what", data.email);
         const collection = mongodbConnection.db().collection("WishList");
         collection.updateOne({email: data.email, wishListId: data.wishListId}, {$pull: {books: data.book}}, (removeError, removeResult) => {
             if (!removeError) {

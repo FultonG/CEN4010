@@ -37,21 +37,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
         },
         updatePurchase: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.updateOne({ _id: data.primaryKeys },
-                { $set: data.updates }, function (err, result) {
-                    !err ? cb(200, result) : cb(500, err);
-                });
-        },
-        updateComment: (data, cb) => {
-            const collection = mongodbConnection.db().collection("Purchase");
-            collection.updateOne({ _id: data.primaryKeys },
-                { $set: data.updates }, function (err, result) {
-                    !err ? cb(200, result) : cb(500, err);
-                });
-        },
-        updateRating: (data, cb) => {
-            const collection = mongodbConnection.db().collection("Purchase");
-            collection.updateOne({ _id: data.primaryKeys },
+            collection.updateOne({ _id: new ObjectId(data.primaryKeys) },
                 { $set: data.updates }, function (err, result) {
                     !err ? cb(200, result) : cb(500, err);
                 });

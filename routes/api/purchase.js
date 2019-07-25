@@ -17,13 +17,4 @@ router.post("/updatePurchase", (req, res) => {
     purchase.updatePurchase(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
-router.post("/updateComment", (req, res) => {
-    purchase.updateComment(req.body,(status, data = "ok") => res.status(status).send(data));
-});
-
-router.post("/updateRating", (req, res) => {
-    purchase.updateRating(req.body,(status, data = "ok") => res.status(status).send(data));
-});
-
-
 module.exports = router;
