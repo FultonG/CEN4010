@@ -82,9 +82,6 @@ export default {
     getBookByAuthor: function (data) {
         return axios.post('/api/book/getBookByAuthor', data);
     },
-    updateBook: function (data) {
-        return axios.post('/api/book/updateBook', data);
-    },
     getBooksByPage: function (data) {
         return axios.post('/api/book/getBooksByPage', data);
     },
