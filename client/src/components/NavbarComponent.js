@@ -35,7 +35,7 @@ const NavbarComponent = (props) => {
                             <Dropdown.Divider />
                             <Dropdown.Item as={Link} to="/BookDetailsForm">Books Details</Dropdown.Item>
                             <Dropdown.Divider />
-                            <Dropdown.Item as={Link} to="/cart">Shopping Cart</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/Cart">Shopping Cart</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                         </Dropdown.Menu>
