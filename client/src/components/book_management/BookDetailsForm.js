@@ -59,11 +59,12 @@ function BookDetailsForm(props) {
                                           <p> Genre: {books.genre} </p>
                                           <p> Rating: (average rating go here!...) </p>
                                           <p> Description: {books.description} </p>
-                                          <p><Link to={{pathname: '/MoreBookDetails', state: { email: email, bookID: books._id }}}>View More Details</Link></p>
                                           <Button variant="primary" size="sm"
                                                   onClick={() => props.wishListChange(books)}>
                                               Add to wishlist
                                           </Button>
+                                          <p><Link to={{pathname: '/MoreBookDetails', state: { email: email, bookID: books._id }}}>More Details about "{books.title}".</Link></p>
+                                          
 
                                         </div>
                                     </section>
