@@ -161,11 +161,12 @@ class MoreBookDetails extends React.Component {
                                                 <p> Description: {this.state.books.description} </p>
                                             </div>
                                         </section>
+                                        </div>
                                       <section>
-                                  <div className="Author_Biography"  >Author biography:<p > {this.state.books.author_bio} </p>
-                                  </div>
+                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<p > {this.state.books.author_bio} </p>
+                                  </p>
                               </section>
-                              </div>
+                              
                               <Form onSubmit={this.handleSubmit.bind(this)}>
                               <div className="write-review" >
                                   <center>
@@ -186,16 +187,22 @@ class MoreBookDetails extends React.Component {
                                          <div style={{paddingTop: "1%" }}>
                                            <Button disabled={!this.state.ifPurchased} variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                                          </div>
-                                <center style={{paddingTop: "1%" }}> 
-                                <h4>Rated by {this.state.reviewNickname}</h4>
-                                <div class="comment">
-                                <h6 class="font-weight-normal"> Rated book a: {this.state.starRating} </h6>
-                                <h6 class="font-weight-normal"> {this.state.reviewNickname}'s comment: </h6> 
-                                <Col sm={5}>{this.state.comment}</Col>
-                                </div>
-                                     </center>
-
-                                </center>  
+                                            <center style={{paddingTop: "1%" }}> 
+                                                  <Container>
+                                                        <div class="card">
+                                                          <p class="card-header">
+                                                          Comment by {this.state.reviewNickname}
+                                                          </p>
+                                                          <div class="card-body">
+                                                            <blockquote class="blockquote mb-0">
+                                                              <p>{this.state.comment}</p>
+                                                              <footer class="blockquote-footer">Rate given by {this.state.reviewNickname} is: {this.state.starRating}</footer>
+                                                            </blockquote>
+                                                          </div>
+                                                        </div>
+                                                  </Container>
+                                            </center>
+                                     </center>  
                                   </div>
                               </div>
 
