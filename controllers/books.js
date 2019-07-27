@@ -12,6 +12,18 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 }
             });
         },
+        getAllBooks: (data, cb) => {
+            const collection = mongodbConnection.db().collection("Book");
+            collection.find({}).toArray((err, result) => {
+                if (!err) {
+                    cb(200, result)
+                }
+                else {
+                    console.log(err);
+                    cb(500, err);
+                }
+            });
+        },
         getBookByAuthor: (data, cb) => {
             const collection = mongodbConnection.db().collection("Book");
             collection.find({author: data.author}).skip(10*(data.page - 1)).limit(10).toArray((err, result) => {
