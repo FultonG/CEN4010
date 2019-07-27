@@ -15,7 +15,7 @@ const cart = {
     },
     removeFromCart: (data, cb) => {
         const collection = mongodbConnection.db().collection("ShoppingCart");
-        collection.deleteOne(data, (deleteError, deleteResult) => {
+        collection.deleteOne(data.book_id, (deleteError, deleteResult) => {
         if (!deleteError) {
             cb(200, deleteResult);
         } else {
