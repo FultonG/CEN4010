@@ -79,6 +79,9 @@ export default {
     deleteBook: function (data) {
         return axios.post('/api/book/deleteBook', data);
     },
+    getAllBooks: function () {
+        return axios.post('/api/book/getAllBooks', {});
+    },
     getBookByAuthor: function (data) {
         return axios.post('/api/book/getBookByAuthor', data);
     },
