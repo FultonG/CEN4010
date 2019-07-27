@@ -52,15 +52,14 @@ function BookDetailsForm(props) {
                                         <div className="book-info">
                                           <h3> {books.title} </h3>
                                           <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>&nbsp;&nbsp;&nbsp;&nbsp;By {books.author}</Link>
-                                          <p> Publisher: {books.publisher} </p>
-                                          <p> Price: {books.price} </p>
-                                          <p> Genre: {books.genre} </p>
-                                          <p> Rating: {} </p>
-                                          <p> Description: {books.description} </p>
-                                          <Button variant="primary" size="sm"
-                                                  onClick={() => props.shoppingCartChange(books)}>
-                                              Add to Shopping Cart
-                                          </Button>
+                                          <p> <strong>Publisher:</strong> {books.publisher} </p>
+                                          <p> <strong>Price:</strong> {books.price} </p>
+                                          <p> <strong>Genre:</strong> {books.genre} </p>
+                                          <p> <strong>Description:</strong><i> {books.description} </i></p>
+                                          &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
+                                                                    onClick={() => props.shoppingCartChange(books)}>
+                                                                Add to Shopping Cart
+                                                            </Button>
                                           &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
                                                                 onClick={() => props.wishListChange(books)}>
                                                                   Add to wishlist
@@ -70,7 +69,7 @@ function BookDetailsForm(props) {
                                     </section>
                               </div>
                               <section >
-                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<span> {books.author_bio} </span>
+                                  <p className="Author_Biography"  ><strong>Author biography:</strong><span><i> {books.author_bio} </i></span>
                                   </p>
                               </section>
                               </div>
