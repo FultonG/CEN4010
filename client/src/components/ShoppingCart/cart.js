@@ -14,7 +14,7 @@ function Cart(props) {
     }, [])
 
     function handleBookDelete(book){
-        API.removeFromCart(props.userEmail, { bookId: book }).then(res => {
+        API.removeFromCart(props.userEmail, { book_id: book }).then(res => {
             API.getCartForUser({ email: props.userEmail }).then(res => {
                 setItems(res.data);
                 console.log(res.data);
@@ -43,7 +43,7 @@ function Cart(props) {
                             <Card.Body>
                                 <Card.Title>{books.book.title}</Card.Title>
                                 <Card.Text>{books.book.description}</Card.Text>
-                                <Button onClick={() => handleBookDelete(books.book.bookID)}>Remove From Shopping Cart</Button>
+                                <Button onClick={() => handleBookDelete(books.book.book_id)}>Remove From Shopping Cart</Button>
                             </Card.Body>
                         </Card>
                     </Col>
