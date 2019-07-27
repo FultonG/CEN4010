@@ -17,7 +17,7 @@ function BookDetailsForm(props) {
     console.log(bookAuthor)
 
     useEffect(() => {
-        updatetruebooks();   
+        updatetruebooks();
     }, []);
 
     function updatetruebooks() {
@@ -32,8 +32,8 @@ function BookDetailsForm(props) {
     }
 
         return (
-          <React.Fragment>  
-            {books.map((books, index) => (  
+          <React.Fragment>
+            {books.map((books, index) => (
                 <ListGroup key={index}>
                     <ListGroup.Item key={index}>
                         <div className="card">
@@ -42,7 +42,7 @@ function BookDetailsForm(props) {
                                 <div className="description">
                                     <section>
                                       <div align="center">
-                                        <ModalImage 
+                                        <ModalImage
                                             small={books.cover_url}
                                             medium={books.cover_url}
                                             hideZoom={true}
@@ -59,13 +59,15 @@ function BookDetailsForm(props) {
                                           <p> Genre: {books.genre} </p>
                                           <p> Rating: {} </p>
                                           <p> Description: {books.description} </p>
+                                          <Button variant="primary" size="sm"
+                                                  onClick={() => props.shoppingCartChange(books.book_id)}>
+                                              Shopping Cart
+                                          </Button>
                                           &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
                                                                 onClick={() => props.wishListChange(books)}>
                                                                   Add to wishlist
                                                             </Button>
                                           <p><Link to={{pathname: '/MoreBookDetails', state: { email: email, bookID: books._id }}}>More Details about "{books.title}".</Link></p>
-                                          
-
                                         </div>
                                     </section>
                               </div>
@@ -80,9 +82,8 @@ function BookDetailsForm(props) {
                     </ListGroup.Item>
                </ListGroup>
             ))}
-        </React.Fragment>   
+        </React.Fragment>
       );
-      
 }
 
 export default BookDetailsForm;

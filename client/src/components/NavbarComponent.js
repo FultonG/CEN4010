@@ -17,7 +17,7 @@ const NavbarComponent = (props) => {
         setAuthenticated(false);
         setRedirect(true);
     }
-   
+
     return (
         <Navbar bg="primary" expand="lg">
             {redirect? <Redirect to="/register"/>: null}
@@ -34,6 +34,8 @@ const NavbarComponent = (props) => {
                             <Dropdown.Item as={Link} to="/CreateBookForm">Add Book</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item as={Link} to="/BookDetailsForm">Books Details</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item as={Link} to="/Cart">Shopping Cart</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item as={Link} to="/Wishlist">Wishlist</Dropdown.Item>
                             <Dropdown.Divider />
