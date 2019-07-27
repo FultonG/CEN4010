@@ -179,7 +179,7 @@ class MoreBookDetails extends React.Component {
                                      <center className="review-name"> How you will appear to other customers: </center>
                                      <center className="review-name">{this.state.reviewNickname}</center>
                                      <center className="rating-stars">
-                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                         &nbsp;
                                          <StarRatingComponent  name={"Rate this book" } value={this.starRating} onStarClick={this.onStarClick.bind(this)} starCount={5} ></StarRatingComponent>
                                      </center>
                                      <center>Tell us what you think</center> 
