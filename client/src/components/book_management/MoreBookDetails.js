@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from 'react-dom';
 import './Book.css';
-import {Card, Col, Button, ListGroup, ButtonGroup, Form, Container} from "react-bootstrap";
+import {Card, Row, Col, Button, ListGroup, ButtonGroup, Form, Container} from "react-bootstrap";
 import StarRatingComponent from 'react-star-rating-component';
 import API from "../../utils/API";
 import ModalImage from "react-modal-image";
@@ -12,6 +12,7 @@ class MoreBookDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            ifPurchased: true,
             books: [],
             reviewNickname: '',
             comment: '',
@@ -133,7 +134,8 @@ class MoreBookDetails extends React.Component {
 
 
     render() {
-       return <React.Fragment>
+    	return(
+       			<React.Fragment>
                         <div className="card">
                             <div className="book">
                                 <div>
@@ -159,47 +161,58 @@ class MoreBookDetails extends React.Component {
                                                 <p> Description: {this.state.books.description} </p>
                                             </div>
                                         </section>
-                                        <div className="write-review">
+                                        </div>
+                                      <section>
+                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<p > {this.state.books.author_bio} </p>
+                                  </p>
+                              </section>
+                              
+                              <Form onSubmit={this.handleSubmit.bind(this)}>
+                              <div className="write-review" >
                                   <center>
                                     <h5>Rate this book</h5>
                                   </center> 
-                                  <Form onSubmit={this.handleSubmit.bind(this)}>
-                                  <Form.Group controlId="SubmitReview">
-                                  <div  style={{paddingBottom: "1%"}}>
+                                  <div>
+                                     <center>
+                                       <Form.Check type={'checkbox'} label="Be Anonymous?" onChange={this.setReviewName.bind(this)}/>
+                                     </center>
                                      <center className="review-name"> How you will appear to other customers: </center>
                                      <center className="review-name">{this.state.reviewNickname}</center>
-                                     <center>
-                                        <Form.Check type={'checkbox'} label="Be Anonymous?" onChange={this.setReviewName.bind(this)}/>
-                                     </center>
                                      <center className="rating-stars">
                                         <StarRatingComponent  name={"Rate this book" } value={this.starRating} onStarClick={this.onStarClick.bind(this)} starCount={5} ></StarRatingComponent>
                                      </center>
                                      <center>Tell us what you think</center> 
                                      <center>
-                                       <textarea class="form-control" onInput={this.setComment.bind(this)} value={this.comment} rows="5"></textarea>
+                                       <textarea maxLength="500" rows="4" cols="55" onInput={this.setComment.bind(this)} value={this.comment} ></textarea>  
                                          <div style={{paddingTop: "1%" }}>
-                                           <Button variant="primary" size="sm" type="submit">&nbsp;&nbsp;Submit comment&nbsp;&nbsp;</Button>
+                                           <Button disabled={!this.state.ifPurchased} variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                                          </div>
-                                         <div style={{paddingTop: "1%" }}>
-                                         </div>
-                                     </center>
+                                            <center style={{paddingTop: "1%" }}> 
+                                                  <Container>
+                                                        <div class="card">
+                                                          <p class="card-header">
+                                                          Comment by {this.state.reviewNickname}
+                                                          </p>
+                                                          <div class="card-body">
+                                                            <blockquote class="blockquote mb-0">
+                                                              <p>{this.state.comment}</p>
+                                                              <footer class="blockquote-footer">Rate given by {this.state.reviewNickname} is: {this.state.starRating}</footer>
+                                                            </blockquote>
+                                                          </div>
+                                                        </div>
+                                                  </Container>
+                                            </center>
+                                     </center>  
                                   </div>
-                                  </Form.Group>
-                                  </Form>
-                                <div>         
-                                <center>  
-                                <h3>Rated by {this.state.reviewNickname}</h3>
-                                <p> Rated book a: {this.state.starRating} </p>
-                                <p> {this.state.reviewNickname}'s comment: </p> 
-                                <p>{this.state.comment}</p>
-                                </center>  
-                                </div>
-                                </div>     
-                                    </div>
-                                </div>
+                              </div>
+
+                              </Form>
+
+                              </div>   
                             </div>
-                        </div>
-        </React.Fragment>;
+                          </div>
+        </React.Fragment>
+        )  
     }
       
     }

@@ -53,27 +53,27 @@ function BookDetailsForm(props) {
                                     <section>
                                         <div className="book-info">
                                           <h3> {books.title} </h3>
-                                          <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>By {books.author}</Link>
+                                          <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>&nbsp;&nbsp;&nbsp;&nbsp;By {books.author}</Link>
                                           <p> Publisher: {books.publisher} </p>
                                           <p> Price: {books.price} </p>
                                           <p> Genre: {books.genre} </p>
-                                          <p> Rating: (average rating go here!...) </p>
+                                          <p> Rating: {} </p>
                                           <p> Description: {books.description} </p>
-                                          <p><Link to={{pathname: '/MoreBookDetails', state: { email: email, bookID: books._id }}}>View More Details</Link></p>
-                                          <Button variant="primary" size="sm"
-                                                  onClick={() => props.wishListChange(books)}>
-                                              Add to wishlist
-                                          </Button>
                                           <Button variant="primary" size="sm"
                                                   onClick={() => props.shoppingCartChange(books.book_id)}>
                                               Shopping Cart
                                           </Button>
+                                          &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
+                                                                onClick={() => props.wishListChange(books)}>
+                                                                  Add to wishlist
+                                                            </Button>
+                                          <p><Link to={{pathname: '/MoreBookDetails', state: { email: email, bookID: books._id }}}>More Details about "{books.title}".</Link></p>
                                         </div>
                                     </section>
                               </div>
-                              <section>
-                                  <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
-                                  </div>
+                              <section >
+                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<p> {books.author_bio} </p>
+                                  </p>
                               </section>
                               </div>
                               

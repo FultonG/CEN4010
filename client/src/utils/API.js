@@ -79,6 +79,9 @@ export default {
     deleteBook: function (data) {
         return axios.post('/api/book/deleteBook', data);
     },
+    getAllBooks: function () {
+        return axios.post('/api/book/getAllBooks', {});
+    },
     getBookByAuthor: function (data) {
         return axios.post('/api/book/getBookByAuthor', data);
     },
@@ -93,14 +96,13 @@ export default {
     },
     renameWishlist: function (userEmail, wishListId, newWishlistName) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/wishlist/renameWishlist', {primaryKeys: {email: userEmail, wishListId},
-            updates: {$set: {name: newWishlistName}}}, {headers: {
+        return axios.post('/api/wishlist/renameWishlist', {email: userEmail, wishListId, name: newWishlistName}, {headers: {
                 'x-access-token': token
             }});
     },
     addWishList: function (userEmail, wishListId, wishlistBooks) {
         let token = localStorage.getItem("auth_token");
-        return axios.post('/api/wishlist/addWishlist', {email: userEmail, wishListId, books: wishlistBooks }, {headers: {
+        return axios.post('/api/wishlist/addWishlist', {email: userEmail, wishListId, name: `New Wishlist #${wishListId}`,books: wishlistBooks }, {headers: {
                 'x-access-token': token
             }});
     },

@@ -66,19 +66,12 @@ const wishlist = {
     },
     renameWishlist: (data, cb) => {
         const collection = mongodbConnection.db().collection("WishList");
-        collection.findOne(data.updates.$set.name, (findError, findResult) => {
-            if (findResult == null) {
-                collection.updateOne(data, (updateError, updateResult) => {
-                    if (!updateError) {
-                        cb(200, updateResult);
-                    } else {
-                        console.log(updateError);
-                        cb(500, updateError);
-                    }
-                });
+        collection.updateOne({email: data.email, wishListId: data.wishListId}, {$set: {name: data.name}}, (err, res) =>{
+            if (!err) {
+                cb(200, res);
             } else {
-                console.log(findResult);
-                cb(409, findResult);
+                console.log(err);
+                cb(500, err);
             }
         });
     }
