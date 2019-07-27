@@ -168,8 +168,8 @@ export default {
             updates: {$set: {"quantity": quantity}}
                           });
     },
-    addToCart: function (userEmail, bookId, quantity) {
-          return axios.post('/api/cart/addToCart', {user_email: userEmail, book_id: bookId, quantity: quantity});
+    addToCart: function (email, bookId, quantity) {
+          return axios.post('/api/cart/addToCart', {email, book: bookId, quantity: quantity});
     },
     updateCartBookQuantity: function (userEmail, bookId, quantity) {
                 return axios.post('/api/cart/updateCart',

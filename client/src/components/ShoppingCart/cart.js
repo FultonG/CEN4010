@@ -8,6 +8,7 @@ function Cart(props) {
     useEffect(() => {
         API.getCartForUser({ email: props.userEmail }).then(res => {
             setItems(res.data);
+            console.log(res.data);
         })
             .catch(err => console.log(err));
     }, [])
@@ -15,15 +16,21 @@ function Cart(props) {
     return (
         <Container>
             <h2>Shopping Cart</h2>
+            {items.length === 0? 
+            <Row className="justify-content-md-center">
+                <h4>Your Cart is Empty!</h4>
+            </Row>: null}
             <Row>
                 {items.map((books, index) => (
-                    <Card key = {index}>
-                        <Card.Img variant="top" src={books.book.cover_url} />
-                        <Card.Body>
-                            <Card.Title>{books.book.title}</Card.Title>
-                            <Card.Text>{books.book.description}</Card.Text>
-                        </Card.Body>
-                    </Card>
+                     <Col md={4}>
+                        <Card key = {index}>
+                            <Card.Img variant="top" src={books.book.cover_url} />
+                            <Card.Body>
+                                <Card.Title>{books.book.title}</Card.Title>
+                                <Card.Text>{books.book.description}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 ))}
             </Row>
         </Container>

@@ -30,7 +30,7 @@ function App() {
     }
 
     function handleShoppingCartChange(book){
-        API.addToCart(Auth.getProfile().userEmail, book, 1).then(res=> console.log(res)).catch(err => console.log(err))
+        API.addToCart(Auth.getProfile().username, book, 1).then(res=> console.log(res)).catch(err => console.log(err))
         setShoppingCart([...shoppingCart, book]);
     }
 

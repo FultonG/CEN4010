@@ -14,14 +14,12 @@ function BookDetailsForm(props) {
     const [bookAuthor]  = useState(props.author);
     const [bookID]  = useState(props.book_id);
     const [ifPurchased, setIfPurchased] = useState(false);
-    console.log(bookAuthor)
 
     useEffect(() => {
         updatetruebooks();
     }, []);
 
     function updatetruebooks() {
-        console.log("Updating books");
         API.getBooksByPage({page: 1})
         .then(res => {
             console.log(res.data);
@@ -60,8 +58,8 @@ function BookDetailsForm(props) {
                                           <p> Rating: {} </p>
                                           <p> Description: {books.description} </p>
                                           <Button variant="primary" size="sm"
-                                                  onClick={() => props.shoppingCartChange(books.book_id)}>
-                                              Shopping Cart
+                                                  onClick={() => props.shoppingCartChange(books)}>
+                                              Add to Shopping Cart
                                           </Button>
                                           &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
                                                                 onClick={() => props.wishListChange(books)}>
@@ -72,7 +70,7 @@ function BookDetailsForm(props) {
                                     </section>
                               </div>
                               <section >
-                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<p> {books.author_bio} </p>
+                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<span> {books.author_bio} </span>
                                   </p>
                               </section>
                               </div>
