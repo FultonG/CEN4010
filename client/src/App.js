@@ -18,6 +18,7 @@ function App() {
     // Null until we make the default page.
     const [userDetails, setUserDetails] = useState(null);
     const [wishList, setWishList] = useState([]);
+    const [shoppingCart, setShoppingCart] = useState([]);
 
     function handleSetUserDetails(user){
         setUserDetails(user);
@@ -28,15 +29,20 @@ function App() {
         setWishList([...wishList, book]);
     }
 
+    function handleShoppingCartChange(book){
+        API.addToCart(Auth.getProfile().userEmail, book, 1).then(res=> console.log(res)).catch(err => console.log(err))
+        setShoppingCart([...shoppingCart, book]);
+    }
+
     return (
         <Router>
             <NavbarComponent wishList={wishList}/>
             <Route path="/register" component={CreateAccountForm}/>
             <Route path="/CreateBookForm" component={CreateBookForm}/>
             <Route path="/BooksByAuthor" component={BooksByAuthor}/>
-            <Route path="/Cart" component={Cart}/>
+            <Route path="/Cart" component={() => <Cart userEmail={Auth.getProfile().username}/>}/>
             <Route path="/CommentsForm" component={CommentsForm}/>
-            <Route path="/BookDetailsForm" component={() => <BookDetailsForm userEmail={Auth.getProfile().username} wishListChange={handleWishListChange} ></ BookDetailsForm>}/>
+            <Route path="/BookDetailsForm" component={() => <BookDetailsForm userEmail={Auth.getProfile().username} wishListChange={handleWishListChange} shoppingCartChange={handleShoppingCartChange}></ BookDetailsForm>}/>
             <Route path="/MoreBookDetails" component={MoreBookDetails}/>
             <PrivateRoute path="/editProfile" component={() => <EditProfileComponent userEmail={Auth.getProfile().username}/>}/>
             <PrivateRoute path="/WishList" component={() => <WishList userEmail={Auth.getProfile().username}/>}/>

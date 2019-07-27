@@ -64,7 +64,8 @@ function BookDetailsForm(props) {
                                                   onClick={() => props.wishListChange(books)}>
                                               Add to wishlist
                                           </Button>
-                                          <Button variant="primary" size="sm">
+                                          <Button variant="primary" size="sm"
+                                                  onClick={() => props.shoppingCartChange(books.book_id)}>
                                               Shopping Cart
                                           </Button>
                                         </div>

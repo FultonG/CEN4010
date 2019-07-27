@@ -152,14 +152,14 @@ export default {
             updates: {$set: {"comment": comment}}
                           });
     },
-   updateNickname: function (userEmail, bookId, nickname) {
+    updateNickname: function (userEmail, bookId, nickname) {
         return axios.post('/api/purchase/updatePurchase', 
                           {
             primaryKeys: {"user_email": userEmail, "book_id": bookId}, 
             updates: {$set: {"nickname": nickname}}
                           });
     },
-   updateQuantity: function (userEmail, bookId, quantity) {
+    updateQuantity: function (userEmail, bookId, quantity) {
         return axios.post('/api/purchase/updatePurchase', 
                           {
             primaryKeys: {"user_email": userEmail, "book_id": bookId}, 

@@ -16,10 +16,12 @@ function Cart(props) {
         <Container>
             <h2>Shopping Cart</h2>
             <Row>
-                {items.map((item, index) => (
+                {items.map((books, index) => (
                     <Card key = {index}>
+                        <Card.Img variant="top" src={books.book.cover_url} />
                         <Card.Body>
-                            
+                            <Card.Title>{books.book.title}</Card.Title>
+                            <Card.Text>{books.book.description}</Card.Text>
                         </Card.Body>
                     </Card>
                 ))}
