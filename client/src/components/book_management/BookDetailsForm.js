@@ -20,7 +20,7 @@ function BookDetailsForm(props) {
     }, []);
 
     function updatetruebooks() {
-        API.getBooksByPage({page: 1})
+        API.getAllBooks()
         .then(res => {
             console.log(res.data);
             setTrueBooks(res.data);
