@@ -152,25 +152,25 @@ class MoreBookDetails extends React.Component {
                                         </section>
                                         <section>
                                             <div className="book-info">
-                                                <h3> {this.state.books.title} </h3>
-                                                <p> By {this.state.books.author}</p>
-                                                <p> Publisher: {this.state.books.publisher} </p>
-                                                <p> Rating: {this.state.starRating} </p>
-                                                <p> Price: {this.state.books.price} </p>
-                                                <p> Genre: {this.state.books.genre} </p>
-                                                <p> Description: {this.state.books.description} </p>
+                                                <h3> <strong>{this.state.books.title} </strong></h3>
+                                                <p>  <strong>By</strong> {this.state.books.author}</p>
+                                                <p>  <strong>Publisher:</strong> {this.state.books.publisher} </p>
+                                                <p>  <strong>Rating:</strong> {this.state.starRating} </p>
+                                                <p>  <strong>Price:</strong> {this.state.books.price} </p>
+                                                <p>  <strong>Genre:</strong> {this.state.books.genre} </p>
+                                                <p>  <strong>Description:</strong><i> {this.state.books.description}</i></p>
                                             </div>
                                         </section>
                                         </div>
                                       <section>
-                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<p > {this.state.books.author_bio} </p>
+                                    <p className="Author_Biography"  ><strong>Author biography:</strong><span><i> {this.state.books.author_bio} </i></span>
                                   </p>
                               </section>
                               
                               <Form onSubmit={this.handleSubmit.bind(this)}>
                               <div className="write-review" >
                                   <center>
-                                    <h5>Rate this book</h5>
+                                    <h5><strong>Rate this book</strong></h5>
                                   </center> 
                                   <div>
                                      <center>
@@ -179,7 +179,8 @@ class MoreBookDetails extends React.Component {
                                      <center className="review-name"> How you will appear to other customers: </center>
                                      <center className="review-name">{this.state.reviewNickname}</center>
                                      <center className="rating-stars">
-                                        <StarRatingComponent  name={"Rate this book" } value={this.starRating} onStarClick={this.onStarClick.bind(this)} starCount={5} ></StarRatingComponent>
+                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                         <StarRatingComponent  name={"Rate this book" } value={this.starRating} onStarClick={this.onStarClick.bind(this)} starCount={5} ></StarRatingComponent>
                                      </center>
                                      <center>Tell us what you think</center> 
                                      <center>
@@ -196,7 +197,7 @@ class MoreBookDetails extends React.Component {
                                                           <div class="card-body">
                                                             <blockquote class="blockquote mb-0">
                                                               <p>{this.state.comment}</p>
-                                                              <footer class="blockquote-footer">Rate given by {this.state.reviewNickname} is: {this.state.starRating}</footer>
+                                                              <footer class="blockquote-footer"><i>Rate given by {this.state.reviewNickname} is: {this.state.starRating}</i></footer>
                                                             </blockquote>
                                                           </div>
                                                         </div>

@@ -50,12 +50,12 @@ function BookDetailsForm(props) {
                                     </section>
                                     <section>
                                         <div className="book-info">
-                                          <h3> {books.title} </h3>
+                                          <h3> <strong> {books.title} </strong> </h3>
                                           <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>&nbsp;&nbsp;&nbsp;&nbsp;By {books.author}</Link>
-                                          <p> <strong>Publisher:</strong> {books.publisher} </p>
-                                          <p> <strong>Price:</strong> {books.price} </p>
-                                          <p> <strong>Genre:</strong> {books.genre} </p>
-                                          <p> <strong>Description:</strong><i> {books.description} </i></p>
+                                          <p>  <strong>Publisher:</strong> {books.publisher} </p>
+                                          <p>  <strong>Price:</strong> {books.price} </p>
+                                          <p>  <strong>Genre:</strong> {books.genre} </p>
+                                          <p>  <strong>Description:</strong><i> {books.description} </i></p>
                                           &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
                                                                     onClick={() => props.shoppingCartChange(books)}>
                                                                 Add to Shopping Cart
