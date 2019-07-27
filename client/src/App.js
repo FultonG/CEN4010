@@ -11,7 +11,7 @@ import MoreBookDetails from "./components/book_management/MoreBookDetails";
 import BooksByAuthor from "./components/book_management/BooksByAuthor";
 import CommentsForm from "./components/book_management/CommentsForm";
 import WishList from "./components/WishList/WishList";
-import Cart from "./components/ShoppingCart/Cart";
+import Cart from "./components/ShoppingCart/cart";
 import API from "./utils/API";
 
 function App() {
