@@ -13,6 +13,10 @@ router.post("/getBooksByPage", (req, res) => {
     books.getBooksByPage(req.body,(status, data = "ok") => res.status(status).send(data));
 });
 
+router.post("/addBookReview", (req, res) => {
+    books.addBookReview(req.body,(status, data = "ok") => res.status(status).send(data));
+});
+
 router.post("/getBookByAuthor", (req, res) => {
     books.getBookByAuthor(req.body, (status, data = "ok") => res.status(status).send(data));
 });

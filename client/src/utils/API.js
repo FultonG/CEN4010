@@ -131,6 +131,9 @@ export default {
     updateBookAverageRating: function (id) {
         return axios.post('/api/book/updateBookAverageRating', id);
     },
+    addBookReview: function (data) {
+        return axios.post('/api/book/addBookReview', data);
+    },
     addPurchase: function (userEmail, bookId, quantity) {
         return axios.post('/api/purchase/addPurchase', {user_email: userEmail, book_id: bookId, quantity: quantity});
     },

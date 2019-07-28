@@ -12,13 +12,16 @@ class MoreBookDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ifPurchased: true,
+            ifPurchased: false,
             books: [],
             reviewNickname: '',
             comment: '',
             tempComment: '',
             starRating: 0,
             tempRating: 0,
+            bookRate: 0,
+            review: {nickname: '', rating: 0, comment: ''},
+            reviews: [],
             myEmail: this.props.location.state.email,
             bookID: this.props.location.state.bookID
         };
@@ -29,29 +32,43 @@ class MoreBookDetails extends React.Component {
         this.handleSubmit.bind(this);
         this.onStarClick.bind(this);
         this.setComment.bind(this);
-
+        this.updateBookRate.bind(this);
+        this.checkIfPurchased.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
         this.updateBooks(this.state.bookID);
         this.defaultReviewName(this.state.myEmail);
-        this.purchaseBook();
-
+        this.checkIfPurchased();
+        
     }
 
     // I'll leave this here until the purchase feature is done
     purchaseBook() {
         const Purchase = {
-            rating: 0,
-            comment: '',
-            nickname: this.state.reviewNickname,
+            user_email: this.state.myEmail,
+            book_id: this.state.bookID,
             quantity: 1 
         };
         API.addPurchase(Purchase)
-        .then(() => console("Book Purchased!"))
+        .then(() => alert("Book Purchased!"))
         .catch(err => console.log(err));
     }
+
+    checkIfPurchased() {
+        const Purchase = {
+            user_email: this.state.myEmail,
+            book_id: this.state.bookID,
+        };
+        API.getPurchase(Purchase)
+        .then(res => {
+          if (res.data.book_id == this.state.bookID) {
+                     this.setState((state) => {
+          return {ifPurchased: true};
+      }); }})
+        .catch(err => console.log(err));    
+  }
 
     updateBooks(bookID) {
         API.getBook({_id: bookID})
@@ -59,68 +76,98 @@ class MoreBookDetails extends React.Component {
             this.setState((state) => {
                 return {books: res.data};
             });
+            
+            this.setState((state) => {
+            return {reviews: (res.data.review).slice(0)};
+            });
+            this.updateBookRate(this.state.reviews)
         })
-        .catch(err => console.log(err));
-        
+        .catch(err => console.log(err)); 
+    }
+
+    updateBookRate(currentReviews) {
+      let value = 0;
+      for (let i = 0; i < currentReviews.length; i++) {
+        value += currentReviews[i].rating;
+      }
+
+      value =  ((value)/(currentReviews.length)).toFixed(2);
+      this.setState((state) => {
+          return {bookRate: value};
+      });
     }
 
 
     setReviewName(event) {
         let ifChecked = event.currentTarget.checked;
+        
          API.getUser({'email': this.state.myEmail})
         .then (res => {
             if(ifChecked) {
-                this.setState((state) => {
-                return {reviewNickname: 'Anonymous'};
-              });
+                  this.setState((state) => {
+                  return {reviewNickname: 'Anonymous'};
+                });
+
+                  this.setState(prevState => {
+                  let review = { ...prevState.review };
+                  review.nickname = 'Anonymous';
+                  return {review}
+                });
             }
             else {
-               this.setState((state) => {
-                return {reviewNickname: ((res.data).nickname)};
-              });
+                  this.setState((state) => {
+                  return {reviewNickname: ((res.data).nickname)};
+                });
+
+                  this.setState(prevState => {
+                  let review = { ...prevState.review };
+                  review.nickname = ((res.data).nickname);
+                  return {review}
+                });
             }
         })
         .catch(err => console.log(err));
-        
     }
 
     defaultReviewName(email) {
         console.log(email);
         API.getUser({'email': email})
         .then (res => {
-            this.setState((state) => {
-            return {reviewNickname: ((res.data).nickname)};
-              });
-        })
+                  this.setState((state) => {
+                  return {reviewNickname: ((res.data).nickname)};
+        });
+                  this.setState(prevState => {
+                  let review = { ...prevState.review };
+                  review.nickname = ((res.data).nickname);
+                  return {review}
+        });
+
+      })
         .catch(err => console.log(err));
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        const Rating = {primaryKeys: {"user_email": this.state.myEmail, "book_id": this.state.bookID}, updates: {$set: 
-        {"rating": this.starRating}}};
-        API.updateRating(Rating)
-        .then(() => {
-                this.setState((state) => {
-                return {starRating: this.state.tempRating};
-              });
-        })
-        .catch(err => console.log(err));
-
-        const Comment = {primaryKeys: {"user_email": this.state.myEmail, "book_id": this.state.bookID}, updates: {$set: 
-        {"comment": this.comment}}};
-        API.updateComment(Comment)
-        .then(() => {
-                this.setState((state) => {
-                return {comment: this.state.tempComment};
-            });
-        })
-        .catch(err => console(err));
+      this.setState((state) => {
+            return {review: {nickname: this.state.reviewNickname, rating: this.state.tempRating, comment: this.state.tempComment}};
+      });
+      event.preventDefault();
+      const myReview = {
+          _id: this.state.bookID,
+          review: this.state.review
+      }      
+      API.addBookReview(myReview).then(res => {
+      })
+      .catch(err => console.log(err));
     }
 
     onStarClick(event) {
       this.setState((state) => {
-        return {tempRating: event};
+        return {tempRating: event}
+      });
+      this.setState(prevState => {
+        let review = { ...prevState.review };
+        review.rating = event;
+        return {review}
       });
 
     }
@@ -128,10 +175,15 @@ class MoreBookDetails extends React.Component {
     setComment(event) {
         let commentString = event.currentTarget.value.toString(event.currentTarget.value);
         this.setState((state) => {
-            return {tempComment: commentString};
+           return {tempComment: commentString}
         });
-    }
+        this.setState(prevState => {
+        let review = { ...prevState.review };
+        review.comment = commentString;
+        return {review}
+      });
 
+    }
 
     render() {
     	return(
@@ -152,25 +204,28 @@ class MoreBookDetails extends React.Component {
                                         </section>
                                         <section>
                                             <div className="book-info">
-                                                <h3> <strong>{this.state.books.title} </strong></h3>
-                                                <p>  <strong>By</strong> {this.state.books.author}</p>
-                                                <p>  <strong>Publisher:</strong> {this.state.books.publisher} </p>
-                                                <p>  <strong>Rating:</strong> {this.state.starRating} </p>
-                                                <p>  <strong>Price:</strong> {this.state.books.price} </p>
-                                                <p>  <strong>Genre:</strong> {this.state.books.genre} </p>
-                                                <p>  <strong>Description:</strong><i> {this.state.books.description}</i></p>
+                                                <h3> {this.state.books.title} </h3>
+                                                <p> By {this.state.books.author}</p>
+                                                <p> Publisher: {this.state.books.publisher} </p>
+                                                <p> Rating: {this.state.bookRate} </p>
+                                                <p> Price: {this.state.books.price} </p>
+                                                <p> Genre: {this.state.books.genre} </p>
+                                                <p> Description: {this.state.books.description} </p>
+                                                <Button variant="primary" size="sm"
+                                                                    onClick={this.purchaseBook.bind(this)}>
+                                                                  Purchase Book
+                                                </Button>
                                             </div>
                                         </section>
                                         </div>
                                       <section>
-                                    <p className="Author_Biography"  ><strong>Author biography:</strong><span><i> {this.state.books.author_bio} </i></span>
+                                  <p className="Author_Biography"  >&nbsp;&nbsp;&nbsp;&nbsp;Author biography:<p > {this.state.books.author_bio} </p>
                                   </p>
-                              </section>
-                              
+                              </section>  
                               <Form onSubmit={this.handleSubmit.bind(this)}>
                               <div className="write-review" >
                                   <center>
-                                    <h5><strong>Rate this book</strong></h5>
+                                    <h5>Rate this book</h5>
                                   </center> 
                                   <div>
                                      <center>
@@ -179,8 +234,7 @@ class MoreBookDetails extends React.Component {
                                      <center className="review-name"> How you will appear to other customers: </center>
                                      <center className="review-name">{this.state.reviewNickname}</center>
                                      <center className="rating-stars">
-                                         &nbsp;
-                                         <StarRatingComponent  name={"Rate this book" } value={this.starRating} onStarClick={this.onStarClick.bind(this)} starCount={5} ></StarRatingComponent>
+                                        <StarRatingComponent  name={"Rate this book" } value={this.starRating} onStarClick={this.onStarClick.bind(this)} starCount={5} ></StarRatingComponent>
                                      </center>
                                      <center>Tell us what you think</center> 
                                      <center>
@@ -188,30 +242,35 @@ class MoreBookDetails extends React.Component {
                                          <div style={{paddingTop: "1%" }}>
                                            <Button disabled={!this.state.ifPurchased} variant="primary" size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                                          </div>
+                                        {this.state.reviews.map((reviews, index) => (
+                                        <ListGroup key={index}>
+                                          <ListGroup.Item key={index}>
                                             <center style={{paddingTop: "1%" }}> 
                                                   <Container>
                                                         <div class="card">
                                                           <p class="card-header">
-                                                          Comment by {this.state.reviewNickname}
+                                                          Comment by {this.state.reviews[index].nickname}
                                                           </p>
                                                           <div class="card-body">
                                                             <blockquote class="blockquote mb-0">
-                                                              <p>{this.state.comment}</p>
-                                                              <footer class="blockquote-footer"><i>Rate given by {this.state.reviewNickname} is: {this.state.starRating}</i></footer>
+                                                              <p>{this.state.reviews[index].comment}</p>
+                                                              <footer class="blockquote-footer">Rate given by {this.state.reviews[index].nickname} is: {this.state.reviews[index].rating}</footer>
                                                             </blockquote>
                                                           </div>
                                                         </div>
                                                   </Container>
                                             </center>
+                                    </ListGroup.Item>
+                                </ListGroup>
+                            ))}
                                      </center>  
                                   </div>
                               </div>
-
                               </Form>
-
                               </div>   
                             </div>
                           </div>
+
         </React.Fragment>
         )  
     }

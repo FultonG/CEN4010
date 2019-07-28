@@ -26,7 +26,8 @@ function CreateBookForm() {
             price: bookPrice,
             cover_url: bookCover_url,
             author: bookAuthor,
-            author_bio: bookAuthorBio
+            author_bio: bookAuthorBio,
+            review: []
         };
         API.createBook(Book)
         .then(() => alert("Book Created!"))

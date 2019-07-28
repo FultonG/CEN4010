@@ -2,8 +2,9 @@ const mongodbConnection = require("../dbconfig/connection.js"),
     ObjectId = require('mongodb').ObjectId,
     purchase = {
         addPurchase: (data, cb) => {
+            let myPurchase = data.user_email;
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.insertOne(data, function (err, result) {
+            collection.insertOne({user_email: myPurchase.user_email, book_id: myPurchase.book_id, quantity: myPurchase.quantity}, function (err, result) {
                 if (!err) {
                     cb(200, result )
                 } else {
@@ -11,10 +12,12 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                     cb(500, err);
                 }
             });
+            
         },
         getPurchase: (data, cb) => {
+            let myPurchase = data.user_email;
             const collection = mongodbConnection.db().collection("Purchase");
-            collection.findOne({user_email: data.email, book_id: data._id}, function (err, result) {
+            collection.findOne({user_email: myPurchase.user_email, book_id: myPurchase.book_id}, function (err, result) {
                 if (!err) {
                     cb(200, result )
                 } else {
@@ -22,6 +25,7 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                     cb(500, err);
                 }
             });
+            
         },
         getPurchases: (data, cb) => {
             const collection = mongodbConnection.db().collection("Purchase");

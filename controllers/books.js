@@ -67,6 +67,19 @@ const mongodbConnection = require("../dbconfig/connection.js"),
              });
              
          },
+        addBookReview: (data, cb) => {
+            let bookID = new ObjectId(data._id);
+            const collection = mongodbConnection.db().collection("Book");
+            collection.updateOne({_id: bookID}, {$addToSet: {review: data.review}}, (addError, addResult) => {
+            if (!addError) {
+                cb(200, addResult);
+            } else {
+                console.log(addError);
+                cb(500, addError);
+              }
+            });
+            
+        },
         updateBookAverageRating: (id, cb) => {
             const purchaseCollection = mongodbConnection.db().collection("Purchase");
             const avgRating = purchaseCollection.find({ _id: new ObjectId(id) }).toArray((err, result) => {
