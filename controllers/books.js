@@ -12,6 +12,18 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 }
             });
         },
+        getAllBooks: (data, cb) => {
+            const collection = mongodbConnection.db().collection("Book");
+            collection.find({}).toArray((err, result) => {
+                if (!err) {
+                    cb(200, result)
+                }
+                else {
+                    console.log(err);
+                    cb(500, err);
+                }
+            });
+        },
         getBookByAuthor: (data, cb) => {
             const collection = mongodbConnection.db().collection("Book");
             collection.find({author: data.author}).skip(10*(data.page - 1)).limit(10).toArray((err, result) => {
@@ -42,16 +54,10 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                 !err ? cb(200, result) : cb(500, err);
             });
         },
-        updateBook: (data, cb) => {
-            const collection = mongodbConnection.db().collection("Book");
-            collection.updateOne({ _id: new ObjectId(data.primaryKeys) },
-                { $set: data.updates }, function (err, result) {
-                    !err ? cb(200, result) : cb(500, err);
-                });
-        },
         getBook: (id, cb) => {
-            const collection = mongodbConnection.db().collection("User");
-            collection.findOne({ _id: new ObjectId(id) }, (findError, findResult) => {
+            const collection = mongodbConnection.db().collection("Book");
+            let myID = new ObjectId(id._id);
+            collection.findOne({ _id: myID }, (findError, findResult) => {
                 if (findResult) {
                     cb(200, findResult);
                 }
@@ -59,7 +65,21 @@ const mongodbConnection = require("../dbconfig/connection.js"),
                     cb(404, findError);
                 }
              });
+             
          },
+        addBookReview: (data, cb) => {
+            let bookID = new ObjectId(data._id);
+            const collection = mongodbConnection.db().collection("Book");
+            collection.updateOne({_id: bookID}, {$addToSet: {review: data.review}}, (addError, addResult) => {
+            if (!addError) {
+                cb(200, addResult);
+            } else {
+                console.log(addError);
+                cb(500, addError);
+              }
+            });
+            
+        },
         updateBookAverageRating: (id, cb) => {
             const purchaseCollection = mongodbConnection.db().collection("Purchase");
             const avgRating = purchaseCollection.find({ _id: new ObjectId(id) }).toArray((err, result) => {

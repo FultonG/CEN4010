@@ -14,16 +14,13 @@ function BookDetailsForm(props) {
     const [bookAuthor]  = useState(props.author);
     const [bookID]  = useState(props.book_id);
     const [ifPurchased, setIfPurchased] = useState(false);
-    const [reviewNickname, setReviewNickname] = useState(defaultReviewName);
-    console.log(bookAuthor)
 
     useEffect(() => {
-        updatetruebooks();   
+        updatetruebooks();
     }, []);
 
     function updatetruebooks() {
-        console.log("Updating books");
-        API.getBooksByPage({page: 1})
+        API.getAllBooks()
         .then(res => {
             console.log(res.data);
             setTrueBooks(res.data);
@@ -32,31 +29,9 @@ function BookDetailsForm(props) {
         .catch(err => console.log(err));
     }
 
-    function setReviewName(event) {
-        let ifChecked = event.currentTarget.checked;
-        API.getUser({email: email})
-        .then (res => {
-            if(ifChecked) {
-                setReviewNickname((res.data).nickname);
-            }
-            else {
-                setReviewNickname((res.data).first_name.concat(' ', (res.data).last_name));
-            }
-        })
-        .catch(err => console.log(err));
-    }
-
-    function defaultReviewName() {
-        API.getUser({email: email})
-        .then (res => {
-            setReviewNickname((res.data).first_name.concat(' ', (res.data).last_name));
-        })
-        .catch(err => console.log(err));
-    }
-
         return (
-          <React.Fragment>  
-            {books.map((books, index) => (  
+          <React.Fragment>
+            {books.map((books, index) => (
                 <ListGroup key={index}>
                     <ListGroup.Item key={index}>
                         <div className="card">
@@ -65,7 +40,7 @@ function BookDetailsForm(props) {
                                 <div className="description">
                                     <section>
                                       <div align="center">
-                                        <ModalImage 
+                                        <ModalImage
                                             small={books.cover_url}
                                             medium={books.cover_url}
                                             hideZoom={true}
@@ -75,55 +50,37 @@ function BookDetailsForm(props) {
                                     </section>
                                     <section>
                                         <div className="book-info">
-                                          <h3> {books.title} </h3>
-                                          <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>By {books.author}</Link>
-                                          <p> Publisher: {books.publisher} </p>
-                                          <p> Price: {books.price} </p>
-                                          <p> Genre: {books.genre} </p>
-                                          <p> Rating: (average rating go here!...) </p>
-                                          <p> Description: {books.description} </p>
-                                          <Button variant="primary" size="sm"
-                                                  onClick={() => props.wishListChange(books)}>
-                                              Add to wishlist
-                                          </Button>
+                                          <h3> <strong> {books.title} </strong> </h3>
+                                          <Link to={{pathname: '/BooksByAuthor', state: { bookAuthor: books.author}}}>&nbsp;&nbsp;&nbsp;&nbsp;By {books.author}</Link>
+                                          <p>  <strong>Publisher:</strong> {books.publisher} </p>
+                                          <p>  <strong>Price:</strong> {books.price} </p>
+                                          <p>  <strong>Genre:</strong> {books.genre} </p>
+                                          <p>  <strong>Description:</strong><i> {books.description} </i></p>
+                                          &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
+                                                                    onClick={() => props.shoppingCartChange(books)}>
+                                                                Add to Shopping Cart
+                                                            </Button>
+                                          &nbsp;&nbsp;&nbsp;<Button variant="primary" size="sm"
+                                                                onClick={() => props.wishListChange(books)}>
+                                                                  Add to wishlist
+                                                            </Button>
+                                          <p><Link to={{pathname: '/MoreBookDetails', state: { email: email, bookID: books._id }}}>More Details about "{books.title}".</Link></p>
                                         </div>
                                     </section>
                               </div>
-                              <section>
-                                  <div className="Author_Biography"  >Author biography:<p > {books.author_bio} </p>
-                                  </div>
+                              <section >
+                                  <p className="Author_Biography"  ><strong>Author biography:</strong><span><i> {books.author_bio} </i></span>
+                                  </p>
                               </section>
                               </div>
-                              <div className="write-review">
-                                  <center>
-                                    <h5>Rate this book</h5>
-                                  </center> 
-                                  <div>
-                                     <center className="review-name"> How you will appear to other customers: </center>
-                                     <center className="review-name">{reviewNickname}</center>
-                                     <center>
-                                        <Form.Check type={'checkbox'} label="Use Nickname?" onChange={setReviewName}/>
-                                     </center>
-                                     <center className="rating-stars">
-                                        <StarRatingComponent  name={"Rate this book" } starCount={5} ></StarRatingComponent>
-                                     </center>
-                                     <center>Tell us what you think</center> 
-                                     <center>
-                                       <textarea rows="3" cols="50" ></textarea>  
-                                         <div style={{paddingTop: "1%" }}>
-                                           <Button variant="primary" disabled={!ifPurchased} size="sm" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;</Button>
-                                         </div>
-                                     </center>
-                                  </div>
-                              </div>     
+                              
                             </div>
                           </div>
                     </ListGroup.Item>
                </ListGroup>
             ))}
-        </React.Fragment>   
+        </React.Fragment>
       );
-      
 }
 
 export default BookDetailsForm;

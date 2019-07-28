@@ -4,14 +4,14 @@
   }
   
   #book-img {
-    width: 16em;
-    height: 20em;
+    width: 20em;
+    height: 24em;
     margin: auto;
     padding-right: 5%;
   }
   
   .book-info {
-    padding-right: 5em;
+    padding-right: 4em;
   }
 
   .review-name {
@@ -42,6 +42,7 @@
 
   p {
     text-align: left;
+    padding-left: 1em;
   }
 
   #p1{
@@ -57,7 +58,7 @@
   i {
     display: block;
     margin: 0 auto;
-    padding-left: 5em;
+    
   }
   
   .summary {
@@ -71,9 +72,8 @@
   }
 
   .rating-stars {
-    margin-left: 0;
-    font-size:20px ;
-    width:92%;
+    font-size:      200%;
+    letter-spacing: 1em;
   }
 
   
@@ -81,8 +81,8 @@
 /* Image */
 
 img {
-  width: 35%;
-  height: 80%;
+  width: 32%;
+  height: 84%;
  
   
 }
@@ -106,6 +106,11 @@ img:focus {
   right: 25%;
   bottom: 0;
   background-color: rgb(41, 40, 40)
+}
+
+
+p.ex1 {
+  padding: 20px;
 }
 
 

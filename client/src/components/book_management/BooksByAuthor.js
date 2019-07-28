@@ -56,16 +56,12 @@ class BooksByAuthor extends React.Component {
                                         </section>
                                         <section>
                                             <div className="book-info">
-                                                <h3> {books.title} </h3>
-                                                <p> By {books.author}</p>
-                                                <p> Publisher: {books.publisher} </p>
-                                                <p> Price: {books.price} </p>
-                                                <p> Genre: {books.genre} </p>
-                                                <p> Description: {books.description} </p>
-                                                <Button variant="primary" size="sm"
-                                                        onClick={() => {}}>
-                                                    Add to wishlist
-                                                </Button>
+                                                <h3> <strong> {books.title} </strong> </h3>
+                                                <p>  <strong>By</strong> {books.author}</p>
+                                                <p>  <strong>Publisher:</strong> {books.publisher} </p>
+                                                <p>  <strong>Price:</strong> {books.price} </p>
+                                                <p>  <strong>Genre:</strong> {books.genre} </p>
+                                                <p>  <strong>Description:</strong><i> {books.description} </i></p>
                                             </div>
                                         </section>
                                     </div>
